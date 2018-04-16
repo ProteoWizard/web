@@ -49,10 +49,12 @@
     
 
     <h1>ProteoWizard Downloads</h1>
-    
 
-
+<!--    
 <form action="http://colocsvr.camm.usc.edu/download.php" method="post">
+-->
+
+<form action="http://data.mallicklab.com/download.php" method="post">
 
 <h2> Get ProteoWizard (3 steps)</H2>    
 <div class="inset">
