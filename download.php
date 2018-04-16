@@ -14,9 +14,9 @@
 $debug = 0;
 
 $FileNameBaseArray = array(
-    "bt36" => "pwiz-bin-windows-x86-vc100-release-XXX.tar.bz2", #pwiz-bin-windows-x86-vc100-release-3_0_3725.tar.bz2 
+    "bt36" => "pwiz-bin-windows-x86-vc120-release-XXX.tar.bz2", #pwiz-bin-windows-x86-vc100-release-3_0_3725.tar.bz2 
     "bt36i" => "pwiz-setup-XXX-x86.msi", #pwiz-setup-3.0.3725-x86.msi 
-    "bt83" => "pwiz-bin-windows-x86_64-vc100-release-XXX.tar.bz2", #pwiz-bin-windows-x86_64-vc100-release-3_0_3725.tar.bz2 
+    "bt83" => "pwiz-bin-windows-x86_64-vc120-release-XXX.tar.bz2", #pwiz-bin-windows-x86_64-vc100-release-3_0_3725.tar.bz2 
     "bt83i" => "pwiz-setup-XXX-x86_64.msi", #pwiz-setup-3.0.3725-x86_64.msi 
 	"bt23" => "pwiz-bin-darwin-x86-xgcc40-release-XXX.tar.bz2", #pwiz-bin-darwin-x86-xgcc40-release-3_0_3725.tar.bz2
 	"bt17" => "pwiz-bin-linux-x86_64-gcc48-release-XXX.tar.bz2", #pwiz-bin-linux-x86_64-gcc48-release-3_0_3725.tar.bz2 

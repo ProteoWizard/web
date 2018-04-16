@@ -17,17 +17,14 @@
 }
 </style>
 <link href="SpryAssets/SpryTabbedPanels.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript">
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-  var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-30609227-1']);
-  _gaq.push(['_trackPageview']);
-
-  (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-  })();
+  ga('create', 'UA-54926454-1', 'auto');
+  ga('send', 'pageview');
 
 </script>
 
@@ -63,11 +60,11 @@
 <UL>
 <SELECT NAME="downloadtype">
   <optgroup label="For End Users">
-	<OPTION value="bt83i">&nbsp;&nbsp;Windows 64-bit installer(no T2D support)</OPTION> 
-	<OPTION value="bt36i">&nbsp;&nbsp; Windows installer (includes vendor reader support)</OPTION>
+	<OPTION value="bt83i">&nbsp;&nbsp;Windows 64-bit installer(inc. vendor reader support but no T2D)</OPTION> 
+	<OPTION value="bt36i">&nbsp;&nbsp; Windows installer (inc. vendor reader support)</OPTION>
 	<OPTION value="bt23">&nbsp;&nbsp; Macintosh (NO vendor reader support)</OPTION>
 	<OPTION value="bt17">&nbsp;&nbsp; Linux 64 bit (NO vendor reader support)</OPTION>
-	<OPTION value="bt36">&nbsp;&nbsp; Windows tar.bz2 (includes vendor reader support)</OPTION>
+	<OPTION value="bt36">&nbsp;&nbsp; Windows tar.bz2 (inc. vendor reader support)</OPTION>
 	<OPTION value="bt83">&nbsp;&nbsp; Windows 64-bit tar.bz2 (no T2D support)</OPTION>  
   </optgroup>
   <optgroup label="For Developers">
@@ -90,9 +87,9 @@
     <li class="TabbedPanelsTab" tabindex="2">AB Sciex<BR />WiffReader</li>
     <li class="TabbedPanelsTab" tabindex="3">Agilent <BR />MHDAC</li>
     <li class="TabbedPanelsTab" tabindex="4">Bruker<BR />CompassXtract</li>
-    <li class="TabbedPanelsTab" tabindex="5">Thermo <BR />msFileReader</li>
-    <li class="TabbedPanelsTab" tabindex="6">Waters <BR />WRDAC</li>
-    <li class="TabbedPanelsTab" tabindex="7">Shimadzu <BR />Reader</li>
+        <li class="TabbedPanelsTab" tabindex="5">Shimadzu <BR />SFCS</li>
+    <li class="TabbedPanelsTab" tabindex="6">Thermo <BR />msFileReader</li>
+    <li class="TabbedPanelsTab" tabindex="7">Waters <BR />WRDAC</li>
 
   </ul>
   <div class="TabbedPanelsContentGroup">
@@ -108,14 +105,14 @@
     <div class="TabbedPanelsContent">
     <!--#include virtual="licenses/bruker.html" -->
     </div>
+     <div class="TabbedPanelsContent">
+    <!--#include virtual="licenses/shimadzu.html" -->
+    </div>
     <div class="TabbedPanelsContent">
     <!--#include virtual="licenses/thermo.html" -->
     </div>
     <div class="TabbedPanelsContent">
     <!--#include virtual="licenses/waters.html" -->
-    </div>
-    <div class="TabbedPanelsContent">
-    <!--#include virtual="licenses/shimadzu.html" -->
     </div>
 
   </div>
