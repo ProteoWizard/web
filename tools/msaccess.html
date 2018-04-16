@@ -11,10 +11,10 @@
         <i>msaccess</i> is a command line tool for extracting data and metadata from data files. 
 
         <p>
-        Examples:
+        Examples (see below for many more options):
         <ul>
             <li><code>msaccess data.mzML -x spectrum_table</code><br/>
-            (creates data.mzML.spectrum_table.txt with summary information for all spectra)<p/></li>
+            (creates data.mzML.spectrum_table.txt with summary information for all spectra as read from the scan headers)<p/></li>
 
             <li><code>msaccess data.mzML -x "binary 0-3"</code><br/>
             (creates files data.mzML.binary.*.txt with binary data for spectra 0 through 3)<p/></li>
@@ -25,6 +25,135 @@
         </p>
 
     <hr/>
+	
+<p>Run msaccess with no command line arguments to see this usage message:<br />
+<p>Usage: msaccess [options] [filenames]<br />
+MassSpecAccess - command line access to mass spec data files<br />
+ uses -x/--exec to specify analysis command.</p>
+
+<p>Options:</p>
+
+<p> -f [ --filelist ] arg : text file containing filenames to process<br />
+ -o [ --outdir ] arg (=.) : output directory<br />
+ -c [ --config ] arg : configuration file (optionName=value)<br />
+ -x [ --exec ] arg : execute command<br />
+ --filter arg : add a spectrum list filter<br />
+ <br />
+ Filter options:<br />
+ <br />
+ index int_set<br />
+ msLevel int_set<br />
+ precursorRecalculation (based on ms1 data)<br />
+ precursorRefine (based on ms1 data)<br />
+ peakPicking prefer_vendor:<true|false> int_set(MS <br />
+ levels)<br />
+ scanNumber int_set<br />
+ scanEvent int_set<br />
+ scanTime [scanTimeLow,scanTimeHigh]<br />
+ sortByScanTime (sort by ascending scan start time)<br />
+ stripIT (strip ion trap ms1 scans)<br />
+ metadataFixer (add/replace TIC/BPI metadata)<br />
+ titleMaker (add/replace spectrum title according to<br />
+ user-specified format string; the following keywords<br />
+ are recognized: <RunId> <Index> <Id> <SourcePath> <br />
+ <ScanNumber> <ActivationType> <IsolationMz> <br />
+ <SelectedIonMz> <ChargeState> <PrecursorSpectrumId> <br />
+ <SpectrumType> <MsLevel> <ScanStartTimeInMinutes> <br />
+ <ScanStartTimeInSeconds> <BasePeakMz> <br />
+ <BasePeakIntensity> <TotalIonCurrent><br />
+ threshold <count|count-after-ties|absolute|bpi-relat<br />
+ ive|tic-relative|tic-cutoff> <threshold> <br />
+ <most-intense|least-intense> [int_set(MS levels)]<br />
+ mzWindow [mzLow,mzHigh]<br />
+ mzPrecursors [mz1,mz2, ... mzn] zero for no <br />
+ precursor m/z<br />
+ defaultArrayLength int_set<br />
+ zeroSamples <removeExtra|addMissing[=flankingZeroCou<br />
+ nt]> <MS levels> (remove extra, or add missing, <br />
+ zeros)<br />
+ MS2Denoise moving window filter for MS2: num peaks <br />
+ to select in window:int_val(default 6) window width <br />
+ (Da):val (default 30) multicharge fragment <br />
+ relaxation: <true|false> (default true)<br />
+ MS2Deisotope deisotope ms2 spectra using Markey <br />
+ method<br />
+ ETDFilter removePrecursor:<default:true|false> <br />
+ removeChargeReduced:<default:true|false> <br />
+ removeNeutralLoss:<default:true|false> <br />
+ blanketRemoval:<default:true|false> <br />
+ MatchingTolerance:(val <PPM|MZ>) (default:3.1 MZ)<br />
+ chargeStatePredictor overrideExistingCharge:<default<br />
+ :true|false> maxMultipleCharge:<int>(3) <br />
+ minMultipleCharge:<int>(2) <br />
+ singleChargeFractionTIC:<real>(0.9)<br />
+ activation <ETD|CID|SA|HCD|BIRD|ECD|IRMPD|PD|PSD|PQD<br />
+ |SID|SORI> (filter by precursor activation type)<br />
+ analyzerType <FTMS|ITMS> (deprecated syntax for <br />
+ filtering by mass analyzer type)<br />
+ analyzer <quad|orbi|FT|IT|TOF> (filter by mass <br />
+ analyzer type)<br />
+ polarity <positive|negative|+|-> (filter by scan <br />
+ polarity)<br />
+ <br />
+ 'int_set' means that a set of integers must be <br />
+ specified, as a list of intervals of the form [a,b] <br />
+ or a[-][b]<br />
+ <br />
+ <br />
+ -v [ --verbose ] : print progress messages</p>
+
+<p>Analysis commands (used with -x/--exec):</p>
+
+<p> metadata <br />
+ (write file-level metadata)</p>
+
+<p> run_summary [delimiter=fixed|space|comma|tab] [msLevels=int_set] [charges=int_set]<br />
+ (print summary statistics about a run)<br />
+ delimiter: sets column separation; default is fixed width<br />
+ msLevels: if specified, summary only operates on these MS levels; default is all MS levels<br />
+ charges: if specified, summary only operates on these charge states; default is all charges</p>
+
+<p> spectrum_table [delimiter=fixed|space|comma|tab]<br />
+ (write spectrum metadata as read from scan headers, in a table format)<br />
+ delimiter: sets column separation; default is fixed width</p>
+
+<p> binary i[-][j] [sn] [precision=d]<br />
+ (write binary data for spectra i through j)<br />
+ sn: interpret as scan number, not index<br />
+ precision=d: write d decimal places</p>
+
+<p> slice [mz=[a,b]] [rt=[a,b]] [index=[a,b]] [sn=[a,b]]<br />
+ (write data from a rectangular region)<br />
+ mz=[a,b] (set m/z range)<br />
+ rt=[a,b] (set retention time range)<br />
+ index=[a,b] (set spectrum index range)<br />
+ sn=[a,b] (set scan number range)</p>
+
+<p> tic [mzLow [mzHigh]]<br />
+ (write total ion counts for an m/z range)</p>
+
+<p> sic mzCenter radius ("amu"|"ppm")<br />
+ (write selected ion chromatogram for an m/z and radius)</p>
+
+<p> image [args]<br />
+ (create pseudo-2D-gel image)<br />
+ label=xxxx (set filename label to xxxx)<br />
+ mzLow=N (set low m/z cutoff)<br />
+ mzHigh=N (set high m/z cutoff)<br />
+ timeScale=N (set scaling factor for time axis)<br />
+ binCount=N (set histogram bin count)<br />
+ zRadius=N (set intensity function z-score radius [=2])<br />
+ scan (render y-axis linear with scans)<br />
+ time (render y-axis linear with time)<br />
+ bry (use blue-red-yellow gradient)<br />
+ grey (use grey-scale gradient)<br />
+ binSum (sum intensity in bins [default = max intensity])<br />
+ ms2locs (indicate masses selected for ms2)<br />
+ pepxml=xxx (set ms2 id's from pepxml file xxx)<br />
+ msi=xxx (set ms2 id's from msinspect output file xxx)<br />
+ flat=xxx (set ms2 id's from tab delim file xxx)</p>
+
+
 
 </body>
 </html>
