@@ -96,10 +96,10 @@
     <H4>Populate pwiz_libraries</H4>
       <P>We'll access the ProteoWizard svn repository to download the source for the ProteoWizard dependencies and populate the pwiz_libraries directory.<br />
       From the pwiz_project directory:<br />
-      <P class="indent"> &gt; svn co https://proteowizard.svn.sourceforge.net/svnroot/proteowizard/trunk/pwiz/libraries pwiz_libraries/</p>
+      <P class="indent"> &gt; svn co https://svn.code.sf.net/p/proteowizard/code/trunk/pwiz/libraries pwiz_libraries/</p>
     <H4>Populate pwiz_src</H4>
      <P> To populate pwiz_src we'll download a compressed .tar.gz archive containing the ProteoWizard source code.  I like to put this archive in the pwiz_project directory, and then have boost-build extract it at build time.  This saves space and, if the project is checked into a source repository, allows for much faster check outs.  <br />
-      The source archive can be found from our <a href="download.shtml">download</a> page.<br />
+      The source archive can be found from our <a href="downloads.shtml">download</a> page.<br />
       At the time of writing this tutorial, the most recent source archive is<br />
       <span class="inputstyle">pwiz-src-without-ltv-2_1_2416.tar.bz2</span><br />
       I downloaded the archive to my pwiz_project directory.</p>

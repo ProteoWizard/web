@@ -144,7 +144,7 @@ A cross-platform toolkit for mass spectrometry and proteomics.  Chambers, M.C., 
 
      
 <p>
-	There are several flavours of ProteoWizard depending upon your intended use.  If you are primarily interested in using the tools, the binary distributions for your platform are most likely what you want.  If you are interested in using ProteoWizard as part of a software project you are developing, you should get the source distribution, or download from our <a href="http://proteowizard.svn.sourceforge.net/viewvc/proteowizard/trunk/pwiz/">subversion repository</a> directly.  Other packages are also on our <a href="http://teamcity.labkey.org:8080/project.html?projectId=project4">TeamCity site</a> </p>
+	There are several flavours of ProteoWizard depending upon your intended use.  If you are primarily interested in using the tools, the binary distributions for your platform are most likely what you want.  If you are interested in using ProteoWizard as part of a software project you are developing, you should get the source distribution, or download from our <a href="https://sourceforge.net/p/proteowizard/code/">subversion repository</a> directly.  Other packages are also on our <a href="http://teamcity.labkey.org:8080/project.html?projectId=project4">TeamCity site</a> </p>
 <p>
 
 
