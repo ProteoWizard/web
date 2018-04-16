@@ -142,7 +142,12 @@ p.3Level, li.3Level, div.3Level {
 	font-size:12.0pt;
 	font-family:Times;
 	color:black;
-	layout-grid-mode:line
+	layout-grid-mode:line;
+}
+p.FreeFormBAAAAA, li.FreeFormBAAAAA, div.FreeFormBAAAAA {
+	font-size:10.0pt;
+	font-family:"Times New Roman";
+	color:black
 }
 -->
 </style>
@@ -155,8 +160,7 @@ Arial;text-transform:uppercase'>AB Sciex
     LLC</span></b></p>
   <h5>END USER BETA SOFTWARE LICENSE AGREEMENT</h5>
   <h5><span class=GramE>and</span></h5>
-  <h4 align=center style='text-align:center'>LIMITED DEVELOPER &amp;
-    REDISTRIBUTION LICENSE</h4>
+  <h4 align=center style='text-align:center'>LIMITED DEVELOPER LICENSE</h4>
   <h4 align=center style='text-align:center'><a name=Text1><i><span style='font-weight:normal'>WIFF Reader Distributable Beta SDK</span></i></a></h4>
   <p class=MsoBodyText2>NOTICE TO USER: please read this document carefully.&nbsp; THIS IS THE cONTRACT BETWEEN YOU AND ab
     sciex REGARDING this SOFTWARE product.&nbsp; THIS AGREEMENT includes license terms and restrictions, WARRANTY AND
@@ -171,11 +175,11 @@ class=GramE>accompanies</span> this AB Sciex WIFF Reader Distributable Beta SDK
     product (&quot;Software&quot;) and related explanatory materials
     (&quot;Documentation&quot;). The term &quot;SDK&quot; also includes any
     upgrades, modified versions, updates, additions and copies of the SDK licensed
-    to you by AB Sciex.&nbsp; The term "AB
-    Sciex," as used in this License, means AB Sciex LLC and its subsidiaries and
-    affiliates.&nbsp; The term "License" or
-    "Agreement" means this EULA and Limited Developer &amp; Redistribution License
-    including any and all Appendices.&nbsp; The term "you" or "Licensee" means the purchaser of this License to the
+    to you by AB Sciex.&nbsp; The term “AB
+    Sciex,” as used in this License, means AB Sciex LLC and its subsidiaries and
+    affiliates.&nbsp; The term “License” or
+    “Agreement” means this EULA and Limited Developer &amp; Redistribution License
+    including any and all Appendices.&nbsp; The term “you” or “Licensee” means the purchaser of this License to the
     Software.</span></p>
   <p style='text-align:justify'><b><span style='font-size:12.0pt;
 font-family:Arial;
@@ -217,8 +221,8 @@ style='font-family:Arial;"Times New Roman"'> Developer
     nonexclusive, license to use copies of the Software and install such Software
     on your machine(s) for your single concurrent internal </span><span
 style='font-family:Arial'>use.</span></p>
-  <p class=MsoBodyTextIndent style='text-align:justify'>2.&nbsp;&nbsp; You may make one copy of the Software in
-    machine-readable form solely for backup or archival purposes.&nbsp; You must reproduce on any such copy all
+  <p class=MsoBodyTextIndent style='text-align:justify'>2.&nbsp;&nbsp; You may make one copy of the Software in machine-readable
+    form solely for backup or archival purposes.&nbsp; You must reproduce on any such copy all
     copyright notices and any other proprietary legends found on the original.&nbsp; You may not make any other copies of the
     Software.</p>
   <p class=MsoBodyTextIndent style='text-align:justify'>3.&nbsp;&nbsp; From time to time, AB Sciex may change the terms of this
@@ -232,7 +236,7 @@ style='font-family:Arial'>use.</span></p>
     permitted in this Agreement.</span></p>
   <p style='text-align:justify;'><span style='font-family:Arial;color:black'>2.&nbsp; You may not sublicense, copy, merge, modify,
     sell, resell, rent, lease, assign, transfer (except temporarily in the event of
-    a computer malfunction or as expressly permitted under the Section "Use of the Software"),
+    a computer malfunction or as expressly permitted under the Section “Use of the Software”),
     or distribute this license or the Software, or create derivative works based on
     the Software (except as outlined in the Distribution Rights below), or any part
     thereof or any interest therein.&nbsp; </span></p>
@@ -249,11 +253,10 @@ style='font-family:Arial;"Times New Roman"'>reverse
     its structure, sequence, and organization, is and remains the confidential
     trade secret of AB Sciex.&nbsp; You agree
     that you shall not attempt, cause or permit the reverse engineering,
-    modification, <span class=SpellE>decompiliation</span>, disassembly of the
-    Software to any human readable or perceivable form, or creation of any
-    derivative works based on the Software or any part thereof except as expressly </span><span
-style='font-family:Arial;color:black'>permitted under
-    the Section "Use of the Software"</span><span style='font-family:Arial'>.&nbsp; </span></p>
+    modification, decompiliation, disassembly of the Software to any human readable
+    or perceivable form, or creation of any derivative works based on the Software or
+    any part thereof except as expressly </span><span style='font-family:Arial;color:black'>permitted under the Section “Use of the
+    Software”</span><span style='font-family:Arial'>.&nbsp; </span></p>
   <p style='text-align:justify;'><span style='font-family:Arial;"Times New Roman"'>5.&nbsp; You may not remove any proprietary,
     copyright, trade secret or warning legend from the Software or any
     Documentation and you</span><span style='font-family:Arial'> acknowledge that
@@ -262,28 +265,37 @@ style='font-family:Arial;color:black'>permitted under
     Sciex</span><span style='font-family:Arial;"Times New Roman"'>.</span></p>
   <p style='text-align:justify;'><span style='font-family:Arial;"Times New Roman"'>6.&nbsp; You agree to comply fully with all
     export laws and restrictions and regulations of the United States or applicable
-    foreign agencies or authorities.&nbsp; You agree that you will not export or reexport, directly or indirectly, the
-    Software into any country prohibited by the United States Export Administration
-    Act and the regulations thereunder or other applicable United States law.</span></p>
+    foreign agencies or authorities.&nbsp; You agree that you will not export or reexport, directly or indirectly,
+    the Software into any country prohibited by the United States Export
+    Administration Act and the regulations thereunder or other applicable United
+    States law.</span></p>
   <p style='text-autospace:none'><b><span style='font-family:Arial;color:black'>Distribution
     of the Distributable Components (DCs)</span></b></p>
   <p style='text-autospace:none'><span
 style='font-family:Arial;color:black'>1.&nbsp; <b>Distributable Components.</b> The
-    software contains Distributable Components that you are permitted </span></p>
+    Software contains Distributable Components that you are permitted </span></p>
+  <p style='text-autospace:none'><span class=GramE><span style='font-family:Arial;
+color:black'>to</span></span><span style='font-family:Arial;color:black'> distribute
+    for non-commercial purposes provided that: (a) the Distributable Components are
+    bundled as part of, and for the sole purpose of running programs developed by
+    you and supplied by you; and (b) you comply with all other terms in this
+    EULA.&nbsp; As used herein commercial
+    purposes include, but are not limited to, charging a purchase price, license
+    fee, maintenance fee, subscription fee, or providing software incorporating
+    Distributable Components for use with a product sold by you or an affiliate.</span></p>
   <p style='text-autospace:none'><span
-style='font-family:Arial;color:black'>&nbsp;&nbsp;&nbsp;&nbsp; <span class=GramE>to</span> distribute in programs you develop if you comply with the terms below.</span></p>
+style='font-family:Arial;color:black'>2.&nbsp; <b>Right to Use and Distribute.</b> The code and text files listed in Appendix <span class=GramE>A</span> are “Distributable </span></p>
   <p style='text-autospace:none'><span
-style='font-family:Arial;color:black'>2.&nbsp; <b>Right to Use and Distribute.</b> The code and text files listed in Appendix <span class=GramE>A</span> are "Distributable </span></p>
-  <p style='text-autospace:none'><span
-style='font-family:Arial;color:black'>&nbsp;&nbsp;&nbsp;&nbsp; Components".</span></p>
+style='font-family:Arial;color:black'>&nbsp;&nbsp;&nbsp;&nbsp; Components”.&nbsp; All other code and text files of the Software
+    are not distributable.</span></p>
   <p style='text-autospace:none'><span
 class=GramE><span style='font-family:Arial;color:black'>3.&nbsp; <b>Third
     Party</b></span></span><b><span
 style='font-family:Arial;color:black'> Distribution.</span></b><span
-style='font-family:Arial;color:black'> You may permit distributors of your
-    programs to copy and distribute the</span></p>
-  <p style='text-autospace:none'><span class=GramE><span style='font-family:Arial;
-color:black'>Distributable Components as part of those programs.</span></span></p>
+style='font-family:Arial;color:black'> You may not permit distributors of your
+    programs or end users of your&nbsp;&nbsp;&nbsp;&nbsp; </span></p>
+  <p style='text-autospace:none'><span
+style='font-family:Arial;color:black'>&nbsp;&nbsp;&nbsp;&nbsp; <span class=GramE>programs</span> to copy and distribute the Distributable Components as part of those or their programs.</span></p>
   <p style='text-autospace:none'><span
 style='font-family:Arial;color:black'>4. <b>Distribution
     Requirements, General.</b> For any Distributable Component you distribute, you
@@ -304,14 +316,14 @@ class=GramE>distribute</span> Distributable Components included in a setup
     program only as part of that setup program without modification;</span></p>
   <p style='text-autospace:none'><span style='font-family:Arial;color:black'>(e) <span
 class=GramE>require</span> distributors and external end users to agree to
-    terms that protect it at least as much as this EULA agreement; and</span></p>
+    terms that protect it at least as much as this EULA; and</span></p>
   <p style='text-autospace:none'><span style='font-family:Arial;color:black'>(f) <span
 class=GramE>display</span> your valid copyright notice on your programs.</span></p>
   <p style='text-autospace:none'><span style='font-family:Arial;color:black'>5. <b>Distribution Requirement,
-    Indemnification.&nbsp; </b>For any
-    Distributable Component you distribute, you must and you hereby agree to: indemnify,
-    defend, and hold harmless AB Sciex from any and all claims and costs, including
-    attorneys' fees, related to the distribution or use of your programs.</span></p>
+    Indemnification.&nbsp; </b>For any Distributable
+    Component you distribute, you must and you hereby agree to: indemnify, defend,
+    and hold harmless AB Sciex from any and all claims and costs, including
+    attorneys’ fees, related to the distribution or use of your programs.</span></p>
   <p style='text-autospace:none'><span
 style='font-family:Arial;color:black'>6.&nbsp; <b>Distribution Restrictions.</b> You
     may not:</span></p>
@@ -319,9 +331,9 @@ style='font-family:Arial;color:black'>6.&nbsp; <b>Distribution Restrictions.</b>
 class=GramE>alter</span> any copyright, trademark or patent notice in the
     Distributable Component;</span></p>
   <p style='text-autospace:none'><span style='font-family:Arial;color:black'>(b) <span
-class=GramE>use</span> AB <span class=SpellE>Sciex</span> or AB <span
-class=SpellE>Sciex's</span> trademarks in your programs' names or in a way that
-    suggests your programs come from or are endorsed by AB Sciex;</span></p>
+class=GramE>use</span> AB Sciex or AB Sciex’s trademarks in your programs’
+    names or in a way that suggests your programs come from or are endorsed by AB
+    Sciex;</span></p>
   <p style='text-autospace:none'><span style='font-family:Arial;color:black'>(c) <span
 class=GramE>include</span> Distributable Components in malicious, deceptive or
     unlawful programs; or</span></p>
@@ -329,9 +341,8 @@ class=GramE>include</span> Distributable Components in malicious, deceptive or
 class=GramE>modify</span> or distribute the source code of any Distributable Component
     so that any part of it becomes subject to an Excluded License. An Excluded
     License is one that requires, as a condition of use, modification or
-    distribution, that (<span class=SpellE>i</span>) the code be disclosed or
-    distributed in source code form; and/or (ii) others have the right to modify
-    it.</span></p>
+    distribution, that (i) the code be disclosed or distributed in source code
+    form; and/or (ii) others have the right to modify it.</span></p>
   <p style='text-align:justify;page-break-after:avoid'><b><span style='font-family:Arial'>Trial</span></b></p>
   <p style='text-align:justify'><span style='font-family:Arial'>If
     this license is granted on a trial basis, you are hereby notified that license
@@ -366,7 +377,7 @@ class=GramE>modify</span> or distribute the source code of any Distributable Com
   <p class=MsoBodyText style='text-align:justify;'><span
 style='font-weight:normal'>You acknowledge that the
     Software has not been cleared, approved, registered or otherwise qualified
-    (collectively, "Approval") by AB Sciex</span> <span style='font-weight:normal'>with
+    (collectively, “Approval”) by AB Sciex</span> <span style='font-weight:normal'>with
     any regulatory agency, including without limitation for use in diagnostic or
     therapeutic procedures or any other use requiring compliance with any federal
     or state law regulating diagnostic or therapeutic products, blood products,
@@ -387,18 +398,18 @@ style='font-weight:normal'>You acknowledge that the
     GENERALITY OF THE FOREGOING, AB SCIEX MAKES NO WARRANTIES THAT THE SOFTWARE
     WILL MEET YOUR REQUIREMENTS, THAT OPERATION OF THE LICENSED SOFTWARE WILL BE
     UNINTERRUPTED OR ERROR FREE OR WILL CONFORM EXACTLY TO THE DOCUMENTATION, OR
-    THAT AB SCIEX WILL CORRECT ALL PROGRAM ERRORS.&nbsp; AB SCIEX'S SOLE LIABILITY AND
+    THAT AB SCIEX WILL CORRECT ALL PROGRAM ERRORS.&nbsp; AB SCIEX’S SOLE LIABILITY AND
     RESPONSIBILITY FOR BREACH OF WARRANTY RELATING TO THE SOFTWARE OR DOCUMENTATION
-    SHALL BE LIMITED, AT AB SCIEX'S <span style='text-transform:uppercase'>SOLE OPTION,
-    TO </span></span><span style='font-family:Arial;
-text-transform:uppercase'>(1) correctION of any error identified to ab sciex in
-    A writing from you in a subsequent release of the Software, which shall be
-    supplied to you free of charge, (2) acceptING a return of the PRODUCT and
-    refundING THE purchase price </span><span style='font-family:Arial;text-transform:
-uppercase'>UPON RETURN OF THE PRODUCT</span><span style='font-family:Arial'> AND REMOVAL OF ALL COPIES OF THE SOFTWARE FROM YOUR COMPUTERS AND STORAGE
-    DEVICES,</span><span style='font-family:Arial;"Times New Roman"'> (3) </span><span style='font-family:Arial'>REPLACEMENT OF THE DEFECTIVE
-    SOFTWARE WITH A FUNCTIONALLY EQUIVALENT PROGRAM AT NO CHARGE TO YOU, OR (4)
-    PROVIDING A REASONABLE WORK AROUND WITHIN A REASONABLE TIME.&nbsp; AB SCIEX SOLE LIABILITY AND
+    SHALL BE LIMITED, AT AB SCIEX’S <span style='text-transform:uppercase'>SOLE
+    OPTION, TO </span></span><span style='font-family:Arial;"Times New Roman";text-transform:uppercase'>(1) correctION of any error
+    identified to ab sciex in A writing from you in a subsequent release of the
+    Software, which shall be supplied to you free of charge, (2) acceptING a return
+    of the PRODUCT and refundING THE purchase price </span><span style='font-family:
+Arial;text-transform:uppercase'>UPON RETURN OF THE PRODUCT</span><span
+style='font-family:Arial'> AND REMOVAL OF ALL COPIES OF THE SOFTWARE FROM YOUR
+    COMPUTERS AND STORAGE DEVICES,</span><span style='font-family:Arial;"Times New Roman"'> (3) </span><span style='font-family:Arial'>REPLACEMENT OF
+    THE DEFECTIVE SOFTWARE WITH A FUNCTIONALLY EQUIVALENT PROGRAM AT NO CHARGE TO
+    YOU, OR (4) PROVIDING A REASONABLE WORK AROUND WITHIN A REASONABLE TIME.&nbsp; AB SCIEX SOLE LIABILITY AND
     RESPONSIBILITY UNDER THIS AGREEMENT FOR BREACH OF WARRANTY RELATING TO MEDIA IS
     THE REPLACEMENT OF DEFECTIVE MEDIA RETURNED WITHIN 90 DAYS OF THE DELIVERY
     DATE.&nbsp; THESE ARE YOUR SOLE AND EXCLUSIVE
@@ -455,31 +466,35 @@ style='font-family:Arial;"Times New Roman"'>.&nbsp; <span class=GramE>This Agree
 style='font-family:Arial;"Times New Roman"'>All questions
     concerning this Agreement shall be directed to: AB Sciex, 500 Old Connecticut
     Path, Framingham MA U.S.A., Attention: Legal Department.</span></p>
-  <h1><br clear=all style='page-break-before:always'>
-  </h1>
+  <p style='text-align:justify'><span style='font-family:Arial;
+"Times New Roman"'>Unpublished rights reserved under the
+    copyright laws of the United States.</span></p>
+  <p style='text-align:justify'><span class=GramE><span
+style='font-family:Arial;"Times New Roman"'>AB Sciex LLC,
+    500 Old Connecticut Path, Framingham, MA 01701 U.S.A.</span></span></p>
+  <p style='text-align:justify'><span class=GramE><span
+style='font-family:Arial;"Times New Roman"'>For Research
+    Use Only.</span></span><span style='font-family:Arial;"Times New Roman"'> Not for use in diagnostic procedures.&nbsp; The trademarks mentioned herein are the
+    property of AB Sciex Pte. <span class=GramE>Ltd. or their respective owners.</span>&nbsp; AB SCIEX™ is being used under license.</span></p>
+  <p style='text-align:justify'><span style='font-family:Arial;
+"Times New Roman"'>© 2012 AB SCIEX</span></p>
+  <br clear=all style='page-break-before:always'>
   <h1 align=center style='text-align:center'><span style='font-size:12.0pt;
 font-family:Arial;"Times New Roman"'>APPENDIX
     A</span></h1>
-  <p align=center style='text-align:center'><b><span style='font-size:12.0pt;font-family:Arial'>REDISTRIBUTABLE
+  <p align=center style='text-align:center'><b><span style='font-size:12.0pt;font-family:Arial'>DISTRIBUTABLE
     COMPONENTS OF THE SOFTWARE</span></b></p>
-  <ol start=1 type=1>
-    <li><span style='font-family:
-     Arial;"Times New Roman"'>Clearcore2.Data.dll</span></li>
-    <li><span style='font-family:
-     Arial;"Times New Roman"'>Clearcore2.Data.AnalystDataProvider.dll</span></li>
-    <li><span style='font-family:
-     Arial;"Times New Roman"'>Clearcore2.Data.CommonInterfaces.dll</span></li>
-    <li><span style='font-family:
-     Arial;"Times New Roman"'>Clearcore2.Data.WiffReader.dll</span></li>
-    <li><span style='font-family:
-     Arial;"Times New Roman"'>Clearcore2.InternalRawXYProcessing.dll</span></li>
-    <li><span style='font-family:
-     Arial;"Times New Roman"'>Clearcore2.ProjectUtilities.dll</span></li>
-    <li><span style='font-family:
-     Arial;"Times New Roman"'>Clearcore2.StructuredStorage.dll</span></li>
-    <li><span style='font-family:
-     Arial;"Times New Roman"'>Clearcore2.Utility.dll</span></li>
-  </ol>
+  <p><span style='font-family:Arial;"Times New Roman"'>Clearcore2.Compression.dll</span></p>
+  <p><span style='font-family:Arial;"Times New Roman"'>Clearcore2.Data.AnalystDataProvider.dll</span></p>
+  <p><span style='font-family:Arial;"Times New Roman"'>Clearcore2.Data.CommonInterfaces.dll</span></p>
+  <p><span style='font-family:Arial;"Times New Roman"'>Clearcore2.Data.dll</span></p>
+  <p><span style='font-family:Arial;"Times New Roman"'>Clearcore2.Data.WiffReader.dll</span></p>
+  <p><span style='font-family:Arial;"Times New Roman"'>Clearcore2.InternalRawXYProcessing.dll</span></p>
+  <p><span style='font-family:Arial;"Times New Roman"'>Clearcore2.Muni.dll</span></p>
+  <p><span style='font-family:Arial;"Times New Roman"'>Clearcore2.ProjectUtilities.dll</span></p>
+  <p><span style='font-family:Arial;"Times New Roman"'>Clearcore2.RawXYProcessing.dll</span></p>
+  <p><span style='font-family:Arial;"Times New Roman"'>Clearcore2.StructuredStorage.dll</span></p>
+  <p><span style='font-family:Arial;"Times New Roman"'>Clearcore2.Utility.dll</span></p>
 </div>
 </body>
 </html>
