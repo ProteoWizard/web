@@ -9,14 +9,15 @@
     <h2>Filters as used in msaccess, msconvert, and other ProteoWizard tools</h2>
 
     <p>
-<br/>
 <h3>Note:</h3> 
-Each filter entry below has the form "filtername filterargs", where "filtername" is the literal name of the filter and "filterargs" is a list of arguments that you replace with actual values.<br/>
-For example, the "index" filter as described below would be used like this in the msconvert program:<br/>
---filter "index 1-15"
+Each filter entry listed below has the form <br/>
+&nbsp;&nbsp;filtername filterargs<br/> 
+where <i>filtername</i> is the literal name of the filter and <i>filterargs</i> is a list of arguments that you replace with actual values.<br/>
+For example, the &quot;index&quot; filter as described below would be used like this in the msconvert program:<br/>
+&nbsp;&nbsp;--filter &quot;index 1-15&quot;<br/>
 <br/>
+Filters are applied sequentially in the order that you list them, and the sequence order can make a large difference in your output.  In particular, the peakPicking filter must be first in line if you wish to use the vendor-supplied centroiding algorithms since these use the vendor DLLs, which only operate on raw untransformed data.
 <br/>
-
 Many filters take 'int_set' arguments.  An int_set is a set of integers written as a list of intervals of the form [a,b] or a[-][b].<br/>
 For example '[0,3]' and '0-3' both mean 'the set of integers from 0 to 3 inclusive'.<br/>
 '1-' means 'the set of integers from 1 to the largest allowable number'.  <br/>
