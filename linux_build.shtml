@@ -20,7 +20,19 @@
 	text-indent: 15px;
 }
 </style>
-</head>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-30609227-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script></head>
 
 <body>
 
@@ -31,7 +43,7 @@
     
       
     <!-- Content goes here. -->
-    
+    <p><i>These notes describe using the boost-build bjam build tool officially supported by ProteoWizard.  See the <a href="http://proteowizard.sourceforge.net/downloads.shtml">downloads</a> page for information on using semi-official but perhaps more familiar GNU/Autotools build files instead, which include many examples of building programs that use ProteoWizard.</i></p>
     
     <h1>Building with Proteowizard‬</h1>
     <p>Written by: Jarrett Egertson on 12/15/2010  jegertso &lt;a .t&gt; u.washington.edu</p>

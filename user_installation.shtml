@@ -9,7 +9,19 @@
 
 <script src="SpryAssets/SpryMenuBar.js" type="text/javascript"></script>
 <link href="SpryAssets/SpryMenuBarHorizontal.css" rel="stylesheet" type="text/css" />
-</head>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-30609227-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script></head>
 
 <body>
 
@@ -33,9 +45,9 @@ To download ProteoWizard, you will:
     <strong>3)</strong> Read the Licensing Agreements<BR />
     <strong>4)</strong> Click the 'I Agree to License Agreements, download ProteoWizard' button<BR />
     </p>
-  <p>Your browser will then download a tar.bz2 file containing ProteoWizard binaries (and source, if requested).  ProteoWizard does not have a formal installer.  Consequently, to install ProteoWizard, you have just to uncompress the downloaded archive (we recommend somewhere like c:\pwiz).  <BR />
+  <p>Your browser will then download a tar.bz2 file containing ProteoWizard binaries (and source, if requested).  ProteoWizard does not have a formal installer, except for Windows.  Consequently, to install ProteoWizard, you have just to uncompress the downloaded archive (we recommend somewhere like c:\pwiz).  <BR />
     </p>
-  <p><strong>5)</strong> On windows, there is also an installer.  If you downloaded the package, unzip the archive, which has a .tar.bz2 extension, using WinZIP into a directory of your choice. Many users alternately use <a href="http://www.7-zip.org/">7-zip</a>.  You must have <a href="http://www.microsoft.com/downloads/details.aspx?familyid=A5C84275-3B97-4AB7-A40D-3802B2AF5FC2&displaylang=en" target="_blank">MSVC 2008 SP1 (x86)</a>, <a href="http://www.microsoft.com/downloads/details.aspx?FamilyID=ab99342f-5d1a-413d-8319-81da479ab0d7&displaylang=en" target="_blank">.NET Framework 3.5 SP1</a> and <a href="http://www.microsoft.com/download/en/details.aspx?id=17851" target="_blank">4.0</a> installed: both versions are currently required for vendor DLL support.<BR />
+  <p><strong>5)</strong> On windows, you will probably want to download the installer (if you downloaded the package instead, unzip the archive, which has a .tar.bz2 extension, using WinZIP into a directory of your choice. Many users alternately use <a href="http://www.7-zip.org/">7-zip</a>).  You must have <a href="http://www.microsoft.com/downloads/details.aspx?familyid=A5C84275-3B97-4AB7-A40D-3802B2AF5FC2&displaylang=en" target="_blank">MSVC 2008 SP1 (x86)</a>, <a href="http://www.microsoft.com/downloads/details.aspx?FamilyID=ab99342f-5d1a-413d-8319-81da479ab0d7&displaylang=en" target="_blank">.NET Framework 3.5 SP1</a> and <a href="http://www.microsoft.com/download/en/details.aspx?id=17851" target="_blank">4.0</a> installed: both versions are currently required for vendor DLL support.<BR />
   <BR />
     <strong>5b)</strong> On macintosh, unzip the archive, which has a .tar.bz2 extension, using either stuffit-expander or Archive Utility on the archive and then moving the pwiz directory into a directory of your choice.<br /><BR />
     <strong>5c)</strong> On linux, navigate to the download directory and then use 'tar xjvf [archive name].tar.bz2' on the archive and them move the pwiz directory into a directory of your choice.<BR /><BR />
@@ -51,9 +63,9 @@ To download ProteoWizard, you will:
 <HR />
 
 
-<P>On windows, the executable to convert data files is msconvert.exe or msConvertGui.exe. For instructions on how to use msconvert.exe from a command line, go to our <a href="tools.shtml">tools page</a> </P>
+<P>On windows, the executable to convert data files is msconvert.exe or msConvertGui.exe. The installer will offer to add msConvertGui to your Windows Explorer menu. This allows you to right-click on a file or directory and open it in msConvertGui, with the default conversion parameters you deem appropriate for that kind of data.  For instructions on how to use msconvert.exe from a command line, go to our <a href="tools.shtml">tools page</a> </P>
 
-<P> Another way to look at the commands and options is to open a command window, navigate to the Proteowizard folder extracted in step 5, and type msconvert.exe without any options.</P>
+<P> Another way to look at the commands and options is to open a command window, navigate to the Proteowizard folder extracted in step 5, and type msconvert.exe without any options.  Note that msconvert offers a few conversion filters that msConvertGui does not, newer filters tend to be added to msConvertGui later.</P>
 
  
 
