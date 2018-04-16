@@ -11,7 +11,7 @@
         <i>msaccess</i> is a command line tool for extracting data and metadata from data files. 
 
         <p>
-        Examples (see below for many more options):
+        Examples (see below for many more options, see  <a href="../tools/filters.html">here</a> for details on the --filter option):
         <ul>
             <li><code>msaccess data.mzML -x spectrum_table</code><br/>
             (creates data.mzML.spectrum_table.txt with summary information for all spectra as read from the scan headers)<p/></li>
@@ -50,69 +50,7 @@ MassSpecAccess - command line access to mass spec data files<br />
  -c [ --config ] arg      : configuration file (containing settings as optionName=value)<br />
  -x [ --exec ] arg        : execute command, e.g --exec "tic mz=409-412"<br />
  --filter arg             : add a spectrum list filter, e.g. --filter="msLevel [2,3]"<br />
- <br />
- Filter options:<br />
- <br />
- index int_set<br />
- msLevel int_set<br />
- precursorRecalculation  (based on ms1 data)<br />
- precursorRefine  (based on ms1 data)<br />
- peakPicking prefer_vendor:&lt;true|false&gt;  int_set(MS levels)<br />
- scanNumber int_set<br />
- scanEvent int_set<br />
- scanTime [scanTimeLow,scanTimeHigh]<br />
- sortByScanTime (sort by ascending scan start time)<br />
- stripIT  (strip ion trap ms1 scans)<br />
- metadataFixer  (add/replace TIC/BPI metadata)<br />
- titleMaker  (add/replace spectrum title according to<br />
- user-specified format string; the following keywords<br />
- are recognized: &lt;RunId&gt; &lt;Index&gt; &lt;Id&gt; &lt;SourcePath&gt; <br />
- &lt;ScanNumber&gt; &lt;ActivationType&gt; &lt;IsolationMz&gt; <br />
- &lt;SelectedIonMz&gt; &lt;ChargeState&gt; &lt;PrecursorSpectrumId&gt; <br />
- &lt;SpectrumType&gt; &lt;MsLevel&gt; &lt;ScanStartTimeInMinutes&gt; <br />
- &lt;ScanStartTimeInSeconds&gt; &lt;BasePeakMz&gt; <br />
- &lt;BasePeakIntensity&gt; &lt;TotalIonCurrent&gt;<br />
- threshold &lt;count|count-after-ties|absolute|bpi-relative|tic-relative|tic-cutoff&gt; &lt;threshold&gt; <br />
- &lt;most-intense|least-intense&gt; [int_set(MS levels)]<br />
- mzWindow [mzLow,mzHigh]<br />
- mzPrecursors [mz1,mz2, ... mzn] zero for no precursor m/z<br />
- defaultArrayLength int_set<br />
- zeroSamples &lt;removeExtra|addMissing[=flankingZeroCount]&gt; &lt;MS levels&gt;  <br />
- (remove extra, or add missing, zeros)<br />
- MS2Denoise moving window filter for MS2: num peaks <br />
- to select in window:int_val(default 6) window width <br />
- (Da):val (default 30) multicharge fragment <br />
- relaxation: &lt;true|false&gt; (default true)<br />
- MS2Deisotope deisotope ms2 spectra using Markey method<br />
- ETDFilter removePrecursor:&lt;default:true|false&gt;  <br />
- removeChargeReduced:&lt;default:true|false&gt;  <br />
- removeNeutralLoss:&lt;default:true|false&gt;  <br />
- blanketRemoval:&lt;default:true|false&gt;  <br />
- MatchingTolerance:(val &lt;PPM|MZ&gt;) (default:3.1 MZ)<br />
- chargeStatePredictor overrideExistingCharge:&lt;default<br />
- :true|false&gt;  maxMultipleCharge:&lt;int&gt;(3)  <br />
- minMultipleCharge:&lt;int&gt;(2)  <br />
- singleChargeFractionTIC:&lt;real&gt;(0.9)<br />
- activation &lt;ETD|CID|SA|HCD|BIRD|ECD|IRMPD|PD|PSD|PQD<br />
- |SID|SORI&gt; (filter by precursor activation type)<br />
- analyzerType &lt;FTMS|ITMS&gt; (deprecated syntax for <br />
- filtering by mass analyzer type)<br />
- analyzer &lt;quad|orbi|FT|IT|TOF&gt; (filter by mass <br />
- analyzer type)<br />
- polarity &lt;positive|negative|+|-&gt; (filter by scan <br />
- polarity)<br />
- <br />
- 'int_set' means that a set of integers must be <br />
- specified, as a list of intervals of the form [a,b] <br />
- or a[-][b].<br />
- For example '[0,3]' and '0-3' both mean 'the set of <br />
- integers from 0 to 3 inclusive'.<br />
- '1-' means 'the set of integers from 1 to the <br />
- largest allowable number'.  <br />
- '9' is also an integer set, equivalent to '[9,9]'.<br />
- '[0,2] 5-7' is the set '0 1 2 5 6 7'. <br />
- <br />
- <br />
+ <i>(see a full list of supported filter types <a href="../tools/filters.html">here</a>)</i>  <br />
  -v [ --verbose ]         : print progress messages</p>
 <p>Analysis commands (used with -x/--exec):</p>
 <p>metadata <br />
