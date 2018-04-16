@@ -152,7 +152,7 @@ A cross-platform toolkit for mass spectrometry and proteomics.  Chambers, M.C., 
 
 </p>
 <p>
-	Developers interested in building ProteoWizard libraries for use in their own projects will note that there are a few choices for source distributions.  Officially, the ProteoWizard libraries and tools are built using the <a href="http://www.boost.org/boost-build2/doc/html/bbv2/jam.html">bjam</a> build system, but we also provide alternate semi-official build files for MSVC (.sln and .vc(x)proj for VC8, 9, and 10) and for GNU/Autotools (the familiar old "configure ; make ; make install").  Note that these alternate build files do not support vendor DLLs: maintaining that capability is complex and thus limited to the officially supported bjam build.  You can read more about it  <a href="http://proteowizard.svn.sourceforge.net/viewvc/proteowizard/trunk/pwiz/scripts/autotools/FAQ">here</a>.</p>
+	Developers interested in building ProteoWizard libraries for use in their own projects will note that there are a few choices for source distributions.  Officially, the ProteoWizard libraries and tools are built using the <a href="http://www.boost.org/boost-build2/doc/html/bbv2/jam.html">bjam</a> build system, but we also provide alternate semi-official build files for MSVC (.sln and .vc(x)proj for VC8, 9, and 10) and for GNU/Autotools (the familiar old "configure ; make ; make install").  Note that these alternate build files do not support vendor DLLs: maintaining that capability is complex and thus limited to the officially supported bjam build.  You can read more about it  <a href="https://sourceforge.net/p/proteowizard/code/HEAD/tree/trunk/pwiz/scripts/autotools/FAQ">here</a>.</p>
 <p>
 <HR>
 
