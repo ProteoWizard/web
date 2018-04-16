@@ -62,8 +62,11 @@ function buildTOC(tagFilter, tocNode) {
   <div class="example">
   <code><pre>
 $ mspicture
-Usage: mspicture [options] [input_filename]
+Usage: mspicture [options] [input_filenames]
 Mass Spec Picture - command line access to mass spec data files with optional peptide annotation
+
+Returns:
+0 on success, or the number of input files that generated processing errors.
 
 Options:
 
@@ -112,8 +115,7 @@ Questions, comments, and bug reports:
 http://proteowizard.sourceforge.net
 support@proteowizard.org
 
-ProteoWizard release: 2.1.2599
-Build date: Mar 25 2011 13:12:36
+
 </pre></code>
 </div>
 
@@ -503,5 +505,5 @@ nativeID, rt, mz, score, sequence</p>
 
 <hr />
 <address></address>
-<!-- hhmts start -->Last modified: Thu Apr 14 10:55:42 PDT 2011 <!-- hhmts end -->
+<!-- hhmts start -->Last modified: Mon Feb 4 10:55:42 PDT 2013 <!-- hhmts end -->
 </body> </html>
