@@ -9,7 +9,19 @@
 
 <script src="SpryAssets/SpryMenuBar.js" type="text/javascript"></script>
 <link href="SpryAssets/SpryMenuBarHorizontal.css" rel="stylesheet" type="text/css" />
-</head>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-30609227-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script></head>
 
 <body>
 
@@ -91,7 +103,7 @@
     <a href="http://camm.usc.edu" target="_blank">Center for Applied Molecular Medicine (CAMM)</a><br />
     <a href="http://www.mc.vanderbilt.edu/msrc" target="_blank">Vanderbilt University Mass Spectrometry Research Center</a><br />
     <a href="http://proteome.gs.washington.edu/" target="_blank">MacCoss Lab, University of Washington</a><br />
-    <a href="http://canarycenter.stanford.edu/" target="_blank">Mallick Lab, Stanford University, Canary Center for Early Detection</a><br />
+    <a href="http://mallicklab.stanford.edu/" target="_blank">Mallick Lab, Stanford University, Canary Center for Early Detection</a><br />
     <a href="http://tools.proteomecenter.org/wiki/index.php?title=TPP:Authors_and_Contributors" target="_blank">Seattle Proteome Center, Institute for Systems Biology (SPC-ISB)</a><br />
     <a href="http://insilicos.com" target="_blank">Insilicos Software</a><br />
     <a href="http://labkey.org" target="_blank">LabKey Software</a><br />    
