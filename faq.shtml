@@ -9,7 +9,19 @@
 
 <script src="SpryAssets/SpryMenuBar.js" type="text/javascript"></script>
 <link href="SpryAssets/SpryMenuBarHorizontal.css" rel="stylesheet" type="text/css" />
-</head>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-30609227-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script></head>
 
 <body>
 
@@ -30,7 +42,15 @@
 
         <h2>How do I cite ProteoWizard?</h2>
 <p>
-        If you use or incorporate the ProteoWizard tools or libraries, please cite our Bioinformatics Application Note [<a href="http://bioinformatics.oxfordjournals.org/cgi/content/abstract/btn323?ijkey=BNjsLHD6Ki2zYgS&keytype=ref" target="_blank">abstract</a>]
+        If you use or incorporate the ProteoWizard tools or libraries, please cite our Nature Biotechnology Commentary </p>
+        
+        <P>A cross-platform toolkit for mass spectrometry and proteomics.  Chambers, M.C., MacLean, B., Burke, R., Amode, D., Ruderman, D.L., Neumann, S., Gatto, L., Fischer, B., Pratt, B., Egertson, J., Hoff, K., Kessner, D., Tasman, N., Shulman, N., Frewen, B., Baker, T.A., Brusniak, M.-Y., Paulse, C., Creasy, D., Flashner, L., Kani, K., Moulding, C., Seymour, S.L., Nuwaysir, L.M., Lefebvre, B., Kuhlmann, F., Roark, J., Rainer, P., Detlev, S., Hemenway, T., Huhmer, A., Langridge, J., Connolly, B., Chadick, T., Holly, K., Eckels, J., Deutsch, E.W., Moritz, R.L., Katz, J.E., Agus, D.B., MacCoss, M., Tabb, D.L. & Mallick, P. Nature Biotechnology 30, 918-920 (2012). [<a href="http://www.nature.com/nbt/journal/v30/n10/full/nbt.2377.html" target="_blank">article</a>]
+        </P>
+        
+        <P>and/or
+        
+        
+        Our Bioinformatics Application Note [<a href="http://bioinformatics.oxfordjournals.org/cgi/content/abstract/btn323?ijkey=BNjsLHD6Ki2zYgS&keytype=ref" target="_blank">abstract</a>]
 
 		[<a href="http://bioinformatics.oxfordjournals.org/cgi/reprint/btn323?ijkey=BNjsLHD6Ki2zYgS&keytype=ref" target="_blank">pdf</a>]
 :<br/>

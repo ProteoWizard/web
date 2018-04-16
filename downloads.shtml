@@ -70,16 +70,18 @@
 <SELECT NAME="downloadtype">
   <OPTION value="bt36i">Windows installer (includes vendor reader support)</OPTION>
   <OPTION value="bt36">Windows tar.bz2 (includes vendor reader support)</OPTION>
-  <OPTION value="bt83i">Windows 64-bit installer(no Bruker or T2D support)</OPTION>
   <OPTION value="bt83">Windows 64-bit tar.bz2 (no Bruker or T2D support)</OPTION>  
   <OPTION value="bt23">Macintosh (NO vendor reader support)</OPTION>
   <OPTION value="bt17">Linux 64 bit (NO vendor reader support)</OPTION>
   <OPTION value="bt81">Source, bjam build (includes vendor reader support)</OPTION>
-  <OPTION value="bt81n">Source, bjam build (NO vendor reader support)</OPTION>
-  <OPTION value="bt211">Source, MSVC build (NO vendor reader support)</OPTION>
-  <OPTION value="bt212">Source, GNU Autotools build (NO vendor reader support)</OPTION>
+  <OPTION value="bt81n">Source, bjam build (NO 3rd party reader support (e.g. vendors, mz5))</OPTION>
+  <OPTION value="bt211">Source, MSVC build (NO 3rd party reader support (e.g. vendors, mz5))</OPTION>
+  <OPTION value="bt212">Source, GNU Autotools build (NO 3rd party reader support (e.g. vendors, mz5))</OPTION>
 </SELECT>
 <!--  <OPTION value="bt22">Linux</OPTION>  -->
+<!--   <OPTION value="bt83i">Windows 64-bit installer(no Bruker or T2D support)</OPTION>  -->
+
+
 </UL>
 
 <H3> Step 2, Read License Agreements</H3>
@@ -87,12 +89,11 @@
 <div id="TabbedPanels1" class="TabbedPanels">
   <ul class="TabbedPanelsTabGroup">
     <li class="TabbedPanelsTab" tabindex="1">Pwiz <BR />Core</li>
-    <li class="TabbedPanelsTab" tabindex="2">Thermo <BR />msFileReader</li>
-    <li class="TabbedPanelsTab" tabindex="3">Agilent <BR />MHDAC</li>
-    <li class="TabbedPanelsTab" tabindex="4">Waters <BR />WRDAC</li>
     <li class="TabbedPanelsTab" tabindex="5">AB Sciex<BR />WiffReader</li>
+    <li class="TabbedPanelsTab" tabindex="3">Agilent <BR />MHDAC</li>
     <li class="TabbedPanelsTab" tabindex="6">Bruker<BR />CompassXtract</li>
-
+    <li class="TabbedPanelsTab" tabindex="2">Thermo <BR />msFileReader</li>
+    <li class="TabbedPanelsTab" tabindex="4">Waters <BR />WRDAC</li>
   </ul>
   <div class="TabbedPanelsContentGroup">
     <div class="TabbedPanelsContent">
@@ -134,6 +135,12 @@
 <hr/>
 
 <H2>Notes:</h2>
+
+<H3> Please cite us in your publications: </H3>
+
+  <p style="border-bottom:dotted; border-bottom-width:thin;">   
+A cross-platform toolkit for mass spectrometry and proteomics.  Chambers, M.C., MacLean, B., Burke, R., Amode, D., Ruderman, D.L., Neumann, S., Gatto, L., Fischer, B., Pratt, B., Egertson, J., Hoff, K., Kessner, D., Tasman, N., Shulman, N., Frewen, B., Baker, T.A., Brusniak, M.-Y., Paulse, C., Creasy, D., Flashner, L., Kani, K., Moulding, C., Seymour, S.L., Nuwaysir, L.M., Lefebvre, B., Kuhlmann, F., Roark, J., Rainer, P., Detlev, S., Hemenway, T., Huhmer, A., Langridge, J., Connolly, B., Chadick, T., Holly, K., Eckels, J., Deutsch, E.W., Moritz, R.L., Katz, J.E., Agus, D.B., MacCoss, M., Tabb, D.L. & Mallick, P. Nature Biotechnology 30, 918-920 (2012). [<a href="http://www.nature.com/nbt/journal/v30/n10/full/nbt.2377.html" target="_blank">article</a>]
+</p>
 
   <p style="border-bottom:dotted; border-bottom-width:thin;">   
     We are formally at version 3 beta (full 3.0 release is pending publication). However, as we use TeamCity for continuous integration, each time a developer checks in an update, ProteoWizard is built from scratch, run through a battery of tests, and then published to our website for download. 
