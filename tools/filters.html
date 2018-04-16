@@ -45,11 +45,26 @@ This filter keeps spectra that match the listed charge state(s), expressed as an
 precursorRecalculation <br/>
 This filter recalculates the precursor m/z and charge for MS2 spectra. It looks at the prior MS1 scan to better infer the parent mass.  However, it only works on orbitrap and FT data,although it does not use any 3rd party (vendor DLL) code.  Since the time the code was written, Thermo has since fixed up its own estimation in response, so it's less critical than it used to be (though can still be useful).<br/>
 <br/>
+
+mzRefiner input1.pepXML input2.mzid [msLevels=&lt;1-&gt;] [thresholdScore=&lt;CV_Score_Name&gt;] [thresholdValue=&lt;floatset&gt;] [thresholdStep=&lt;float&gt;] [maxSteps=&lt;count&gt;]<br/>
+This filter recalculates the m/z and charges, adjusting precursors for MS2 spectra and spectra masses for MS1 spectra. It uses an ident file with a threshold field and value to calculate the error and will then choose a shifting mechanism to correct masses throughout the file. It only works on orbitrap, FT, and TOF data. It is designed to work on mzML files created by msconvert from a single dataset (single run), and with an identification file created using that mzML file. It does not use any 3rd party (vendor DLL) code. Recommended Score and thresholds: MS-GF:SpecEValue,-1e-10 (&lt;1e-10); MyriMatch:MVH,35- (&gt;35); xcorr,3- (&gt;3)<br/>
+<br/>
+
+lockmassRefiner mz=&lt;real&gt; mzNegIons=&lt;real (mz)&gt; tol=&lt;real (1.0 Daltons)&gt;<br/>
+For Waters data, adjusts m/z values according to the specified lockmass m/z and tolerance. Distinct m/z value for negative ions is optional and defaults to the given mz value. For other data, currently does nothing.<br/>
+<br/>
 precursorRefine <br/>
 This filter recalculates the precursor m/z and charge for MS2 spectra. It looks at the prior MS1 scan to better infer the parent mass.  It only works on orbitrap, FT, and TOF data. It does not use any 3rd party (vendor DLL) code.<br/>
 <br/>
-peakPicking &lt;prefer_vendor&gt; &lt;ms_levels&gt;<br/>
-This filter performs centroiding on spectra with the selected &lt;ms_levels&gt;, expressed as an int_set.  The value for &lt;prefer_vendor&gt; must be &quot;True&quot; or &quot;False&quot;: when True, vendor (Windows DLL) code is used if available.  IMPORTANT NOTE: since this filter operates on the raw data through the vendor DLLs, IT MUST BE THE FIRST FILTER IN ANY LIST OF FILTERS.<br/>
+peakPicking [&lt;PickerType&gt; [snr=&lt;minimum signal-to-noise ratio&gt;] [peakSpace=&lt;minimum peak spacing&gt;] [msLevel=&lt;ms_levels&gt;]]<br/>
+This filter performs centroiding on spectra with the selected &lt;ms_levels&gt;, expressed as an int_set.  The value for &lt;PickerType&gt; must be &quot;cwt&quot; or &quot;vendor&quot;: when &lt;PickerType&gt; = &quot;vendor&quot;, vendor (Windows DLL) code is used if available. <br/>
+IMPORTANT NOTE: since this filter operates on the raw data through the vendor DLLs, IT MUST BE THE FIRST FILTER IN ANY LIST OF FILTERS when &quot;vendor&quot; is used.<br/>The other option for PickerType is &quot;cwt&quot;, which uses ProteoWizard's wavelet-based algorithm for performing peak-picking with a wavelet-space signal-to-noise ratio of &lt;signal-to-noise ratio&gt;.<br/>
+Defaults:<br/>
+ &lt;PickerType&gt; is a low-quality (non-vendor) local maxima algorithm<br/>
+ &lt;signal-to-noise ratio&gt; = 1.0<br/>
+ &lt;minimum peak spacing&gt; = 0.1<br/>
+ &lt;ms_levels&gt; = 1-<br/>
+ <br/>
 <br/>
 scanNumber &lt;scan_numbers&gt;<br/>
 This filter selects spectra by scan number.  Depending on the input data type, scan number and spectrum index are not always the same thing - scan numbers are not always contiguous, and are usually 1-based.<br/>
@@ -138,6 +153,9 @@ This filter is similar to the &quot;threshold&quot; filter, with a few more opti
    &lt;mz_list&gt; is a list of mz values of the form [mz1,mz2, ... mzn] (for example, &quot;[100, 300, 405.6]&quot;). Data points within &lt;tolerance&gt; of any of these values will be kept.<br/>
    &lt;include_or_exclude&gt; is optional and has value &quot;include&quot; (the default) or &quot;exclude&quot;.  If &quot;exclude&quot; is used the filter drops data points that match the various criteria instead of keeping them.<br/>
 <br/>
+scanSumming [precursorTol=&lt;precursor tolerance&gt;] [scanTimeTol=&lt;scan time tolerance&gt;] <br/>
+This filter sums MS2 sub-scans whose precursors are within &lt;precursor tolerance&gt;(default: 0.05 Th.)and &lt;scan time tolerance&gt; (default: 10 secs.). Its use is intended for some Waters DDA data, where sub-scans should be summed together to increase the SNR. This filter has only been tested for Waters data.<br/>
+<br/>
 MS2Denoise [&lt;peaks_in_window&gt; [&lt;window_width_Da&gt; [multicharge_fragment_relaxation]]]<br/>
 Noise peak removal for spectra with precursor ions.<br/>
    &lt;peaks_in_window&gt; - the number peaks to select in window, default is 6.<br/>
@@ -150,11 +168,13 @@ a sliding window of&lt;window_width_Da&gt; Da.<br/>
 If&lt;multicharge_fragment_relaxation&gt; is true, allows more peaks at lower mass (i.e. below precursor).<br/>
 If&lt;window_width_Da&gt; is set to 0, the window size defaults to the highest observed mass in the spectrum (this leaving only&lt;peaks_in_window&gt; ions in the output spectrum).<br/>
 Reference: "When less can yield more - Computational preprocessing of MS/MS spectra for peptide identification", Bernhard Y. Renard, Marc Kirchner, Flavio Monigatti, Alexander R. Ivanov, Juri Rappsilber, Dominic Winter, Judith A. J. Steen, Fred A. Hamprecht and Hanno Steen Proteomics, 9, 4978-4984, 2009.<br/>
-<br/>
-MS2Deisotope [&lt;hi_res&gt; [&lt;mz_tolerance&gt;]]<br/>
-Deisotopes ms2 spectra using Markey method.<br/>
-  &lt;hi_res&gt; sets high resolution mode to &quot;false&quot; (the default) or &quot;true&quot;.<br/>
-  &lt;mz_tolerance&gt; sets the mz tolerance.  It defaults to .01 in high resoltion mode, otherwise it defaults to 0.5.<br/>
+<br/>MS2Deisotope [hi_res [mzTol=&lt;mzTol&gt;]] [Poisson [minCharge=&lt;minCharge&gt;] [maxCharge=&lt;maxCharge&gt;]]<br/>
+Deisotopes ms2 spectra using the Markey method or a Poisson model.<br/>
+  For the Markey method, hi_res sets high resolution mode to &quot;false&quot; (the default) or &quot;true&quot;.<br/>
+  &lt;mzTol&gt; sets the mz tolerance.  It defaults to .01 in high resoltion mode, otherwise it defaults to 0.5.<br/>
+  Poisson activates a Poisson model based on the relative intensity<br/>
+distribution.<br/>
+  &lt;minCharge&gt; (default: 1) and &lt;maxCharge&gt; (default: 3) define the charge search range within the Poisson deisotoper. (default: 1)<br/>
 <br/>
 ETDFilter [&lt;removePrecursor&gt; [&lt;removeChargeReduced&gt; [&lt;removeNeutralLoss&gt; [&lt;blanketRemoval&gt; [&lt;matchingTolerance&gt; ]]]]]<br/>
 Filters ETD MSn spectrum data points, removing unreacted precursors, charge-reduced precursors, and neutral losses.<br/>
@@ -163,13 +183,12 @@ Filters ETD MSn spectrum data points, removing unreacted precursors, charge-redu
   &lt;removeNeutralLoss&gt; - specify &quot;true&quot; to remove neutral loss species from charge reduced precursor (default is &quot;false&quot;)<br/>
   &lt;matchingTolerance&gt; - specify matching tolerance in MZ or PPM (examples: &quot;3.1 MZ&quot; (the default) or &quot;2.2 PPM&quot;)<br/>
 <br/>
-chargeStatePredictor [&lt;overrideExistingCharge&gt; [&lt;maxMultipleCharge&gt;<br/>
-[&lt;minMultipleCharge&gt; [&lt;singleChargeFractionTIC&gt;<br/>
-[&lt;algorithmMakeMS2&gt;]]]]]<br/>
+chargeStatePredictor [overrideExistingCharge=&lt;true|false (false)&gt;] [maxMultipleCharge=&lt;int (3)&gt;] [minMultipleCharge=&lt;int (2)&gt;] [singleChargeFractionTIC=&lt;real (0.9)&gt;] [maxKnownCharge=&lt;int (0)&gt;] [makeMS2=&lt;true|false (false)&gt;]<br/>
 Predicts MSn spectrum precursors to be singly or multiply charged depending on the ratio of intensity above and below the precursor m/z, or optionally using the &quot;makeMS2&quot; algorithm<br/>
-  &lt;overrideExistingCharge&gt; : always override existing charge information (default:&quot;true&quot;)<br/>
+  &lt;overrideExistingCharge&gt; : always override existing charge information (default:&quot;false&quot;)<br/>
   &lt;maxMultipleCharge&gt; (default 3) and &lt;minMultipleCharge&gt; (default 2): range of values to add to the spectrum's existing &quot;MS_possible_charge_state&quot; values.If these are the same values, the spectrum's MS_possible_charge_state values are removed and replaced with this single value.<br/>
   &lt;singleChargeFractionTIC&gt; : is a percentage expressed as a value between 0 and 1 (the default is 0.9, or 90 percent). This is the value used as the previously mentioned ratio of intensity above and below the precursor m/z.<br/>
+  &lt;maxKnownCharge&gt; (default is 0, meaning no maximum): the maximum charge allowed for &quot;known&quot; charges even if override existing charge is false. This allows overriding junk charge calls like +15 peptides.<br/>
   &lt;algorithmMakeMS2&gt; : default is &quot;false&quot;, when set to &quot;true&quot; the &quot;makeMS2&quot; algorithm is used instead of the one described above.<br/>
 <br/>
 activation &lt;precursor_activation_type&gt;<br/>
