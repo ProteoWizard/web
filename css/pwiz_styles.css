@@ -35,7 +35,7 @@ h4 {
 
 
 body {
-	font-family: Cambria, Calibri, Corbel, Candara, Consolas, Verdana,Arial, Helvetica, sans-serif;
+	font-family: Cambria, Calibri, Corbel, Verdana, Arial, Helvetica, sans-serif;
 	font-size: 13px;
 	font-style: normal;
 	line-height: normal;
@@ -50,7 +50,7 @@ body {
 
 
 td, textarea, input, select {
-	font-family: Tahoma;
+	font-family: cambria, tahoma;
 	font-size: 13px;
 	color: #000;
 	font-weight: normal;
@@ -73,7 +73,7 @@ a:hover, a:active, a:focus { /* this group of selectors will give a keyboard nav
 }
 
 a {
-	font-family: Verdana, tahoma, Arial, Helvetica, sans-serif;
+	font-family: Cambria, Calibria, Verdana, cambria, tahoma, Arial, Helvetica, sans-serif;
 	font-size: 12px;
 	font-weight: bold;
 }
@@ -112,7 +112,7 @@ a:visited {
 }
 
 .text0 {
-	font-family: tahoma;
+	font-family: cambria, tahoma;
 	font-size: 12px;
 	font-weight: normal;
 	color: #FFFFFF;
@@ -120,50 +120,50 @@ a:visited {
 
 
 .text1 {
-	font-family: tahoma;
+	font-family: cambria, tahoma;
 	font-size: 12px;
 	color: FF9933;
 	font-weight: bold;
 }
 .text2 {
-	font-family: tahoma;
+	font-family: cambria, tahoma;
 	font-size: 12px;
 	font-weight: bold;
 	color: #000000;
 }
 .text3 {
-	font-family: tahoma;
+	font-family: cambria, tahoma;
 	font-size: 12px;
 	font-weight: bold;
 	color: 8A8EC1;
 }
 .text4 {
-	font-family: tahoma;
+	font-family: cambria, tahoma;
 	font-size: 14px;
 	font-weight: bold;
 	color: BF302C;
 }
 .text5 {
-	font-family: tahoma;
+	font-family: cambria, tahoma;
 	font-size: 12px;
 	font-weight: normal;
 	color: C6C6C6;
 }
 .text6 {
-	font-family: tahoma;
+	font-family: cambria, tahoma;
 	font-size: 12px;
 	font-weight: bold;
 	color: #FFFFFF;
 }
 .text7 {
-	font-family: tahoma;
+	font-family: cambria, tahoma;
 	font-size: 12px;
 	font-weight: normal;
 	color: #000000;
 }
 .text8 {
 
-	font-family: tahoma;
+	font-family: cambria, tahoma;
 	font-size: 12px;
 	font-weight: normal;
 	color: 94AEC5;
@@ -171,7 +171,7 @@ a:visited {
 .text9 {
 
 
-	font-family: tahoma;
+	font-family: cambria, tahoma;
 	font-size: 12px;
 	font-weight: normal;
 	color: 4E4E4E;
@@ -186,21 +186,21 @@ a:visited {
 	color: #000000;
 }
 a.a:link {
-	font-family: tahoma;
+	font-family: cambria, tahoma;
 	font-size: 12px;
 	font-weight: normal;
 	color: #FFFFFF;
 	text-decoration: underline;
 }
 a.a:hover {
-	font-family: tahoma;
+	font-family: cambria, tahoma;
 	font-size: 12px;
 	font-weight: normal;
 	color: #000000;
 	text-decoration: none;
 }
 a.a:visited {
-	font-family: tahoma;
+	font-family: cambria, tahoma;
 	font-size: 12px;
 	font-weight: normal;
 	color: #FFFFFF;
@@ -208,28 +208,28 @@ a.a:visited {
 }
 a.b:link {
 
-	font-family: tahoma;
+	font-family: cambria, tahoma;
 	font-size: 12px;
 	font-weight: bold;
 	color: 7C7C7C;
 	text-decoration: none;
 }
 a.b:hover {
-	font-family: tahoma;
+	font-family: cambria, tahoma;
 	font-size: 12px;
 	font-weight: bold;
 	color: #85B350;
 	text-decoration: underline;
 }
 a.b:visited {
-	font-family: tahoma;
+	font-family: cambria, tahoma;
 	font-size: 12px;
 	font-weight: bold;
 	color: 7C7C7C;
 	text-decoration: none;
 }
 a.c:link {
-	font-family: tahoma;
+	font-family: cambria, tahoma;
 	font-size: 12px;
 	font-weight: bold;
 	color: #FFFFFF;
@@ -237,7 +237,7 @@ a.c:link {
 }
 a.c:hover {
 
-	font-family: tahoma;
+	font-family: cambria, tahoma;
 	font-size: 12px;
 	font-weight: bold;
 	color: #000000;
@@ -245,7 +245,7 @@ a.c:hover {
 }
 a.c:visited {
 
-	font-family: tahoma;
+	font-family: cambria, tahoma;
 	font-size: 12px;
 	font-weight: bold;
 	color: #FFFFFF;
@@ -255,7 +255,7 @@ a.d:link {
 
 
 
-	font-family: tahoma;
+	font-family: cambria, tahoma;
 	font-size: 12px;
 	font-weight: normal;
 	color: #FFFFFF;
@@ -264,7 +264,7 @@ a.d:link {
 a.d:hover {
 
 
-	font-family: tahoma;
+	font-family: cambria, tahoma;
 	font-size: 12px;
 	font-weight: bold;
 	color: #FFFFFF;
@@ -273,7 +273,7 @@ a.d:hover {
 a.d:visited {
 
 
-	font-family: tahoma;
+	font-family: cambria, tahoma;
 	font-size: 12px;
 	font-weight: normal;
 	color: #FFFFFF;
@@ -281,7 +281,7 @@ a.d:visited {
 }
 a.e:link {
 
-	font-family: tahoma;
+	font-family: cambria, tahoma;
 	font-size: 12px;
 	font-weight: bold;
 	color: 944F23;
@@ -289,7 +289,7 @@ a.e:link {
 }
 a.e:hover {
 
-	font-family: tahoma;
+	font-family: cambria, tahoma;
 	font-size: 12px;
 	font-weight: bold;
 	color: #4E4E4E;
@@ -297,7 +297,7 @@ a.e:hover {
 }
 a.e:visited {
 
-	font-family: tahoma;
+	font-family: cambria, tahoma;
 	font-size: 12px;
 	font-weight: bold;
 	color: 944F23;
@@ -305,7 +305,7 @@ a.e:visited {
 }
 a.f:link {
 
-	font-family: tahoma;
+	font-family: cambria, tahoma;
 	font-size: 12px;
 	font-weight: normal;
 	color: 594B13;
@@ -313,7 +313,7 @@ a.f:link {
 }
 a.f:hover {
 
-	font-family: tahoma;
+	font-family: cambria, tahoma;
 	font-size: 12px;
 	font-weight: normal;
 	color: #4E4E4E;
@@ -321,7 +321,7 @@ a.f:hover {
 }
 a.f:visited {
 
-	font-family: tahoma;
+	font-family: cambria, tahoma;
 	font-size: 12px;
 	font-weight: normal;
 	color: 594B13;
@@ -329,7 +329,7 @@ a.f:visited {
 }
 a.g:link {
 
-	font-family: tahoma;
+	font-family: cambria, tahoma;
 	font-size: 12px;
 	font-weight: bold;
 	color: #000000;
@@ -337,7 +337,7 @@ a.g:link {
 }
 a.g:hover {
 
-	font-family: tahoma;
+	font-family: cambria, tahoma;
 	font-size: 12px;
 	font-weight: bold;
 	color: #FF6600;
@@ -345,14 +345,14 @@ a.g:hover {
 }
 a.g:visited {
 
-	font-family: tahoma;
+	font-family: cambria, tahoma;
 	font-size: 12px;
 	font-weight: bold;
 	color: #000000;
 	text-decoration: underline;
 }
 .inputstyle {
-	font-family: tahoma;
+	font-family: cambria, tahoma;
 	font-size: 12px;
 	font-weight: normal;
 	color: #5F726F;
