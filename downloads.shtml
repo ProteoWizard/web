@@ -29,7 +29,12 @@
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
   })();
 
-</script></head>
+</script>
+
+
+
+
+</head>
 
 <body>
 
@@ -46,37 +51,28 @@
     <h1>ProteoWizard Downloads</h1>
     
 
-     
-<p>
-	There are several flavours of ProteoWizard depending upon your intended use.  If you are primarily interested in using the tools, the binary distributions for your platform are most likely what you want.  If you are interested in using ProteoWizard as part of a software project you are developing, you should get the source distribution, or download from our <a href="http://proteowizard.svn.sourceforge.net/viewvc/proteowizard/trunk/pwiz/">subversion repository</a> directly.  Other packages are also on our <a href="http://teamcity.labkey.org:8080/project.html?projectId=project4">TeamCity site</a> </p>
-<p>
-
-
-     There is no formal installer for Mac or Linux. For installation help see our <a href="user_installation.shtml"> installation</a> page. On Windows, we recommend using the installer. You must have <a href="http://www.microsoft.com/downloads/details.aspx?FamilyID=ab99342f-5d1a-413d-8319-81da479ab0d7&displaylang=en" target="_blank">.NET Framework 3.5 SP1</a> and <a href="http://www.microsoft.com/download/en/details.aspx?id=17851" target="_blank">4.0</a> installed: both versions are currently required for vendor DLL support.
-
-</p>
-<p>
-	Developers interested in building ProteoWizard libraries for use in their own projects will note that there are a few choices for source distributions.  Officially, the ProteoWizard libraries and tools are built using the <a href="http://www.boost.org/boost-build2/doc/html/bbv2/jam.html">bjam</a> build system, but we also provide alternate semi-official build files for MSVC (.sln and .vc(x)proj for VC8, 9, and 10) and for GNU/Autotools (the familiar old "configure ; make ; make install").  Note that these alternate build files do not support vendor DLLs: maintaining that capability is complex and thus limited to the officially supported bjam build.  You can read more about it  <a href="http://proteowizard.svn.sourceforge.net/viewvc/proteowizard/trunk/pwiz/scripts/autotools/FAQ">here</a>.</p>
-<p>
-<HR>
 
 <form action="http://colocsvr.camm.usc.edu/download.php" method="post">
 
 <h2> Get ProteoWizard (3 steps)</H2>    
 <div class="inset">
 
-<H3> Step 1, Choose Platform: </H3>
+<H3> Step 1, Choose Download Type: </H3>
 <UL>
 <SELECT NAME="downloadtype">
-  <OPTION value="bt36i">Windows installer (includes vendor reader support)</OPTION>
-  <OPTION value="bt36">Windows tar.bz2 (includes vendor reader support)</OPTION>
-  <OPTION value="bt83">Windows 64-bit tar.bz2 (no Bruker or T2D support)</OPTION>  
-  <OPTION value="bt23">Macintosh (NO vendor reader support)</OPTION>
-  <OPTION value="bt17">Linux 64 bit (NO vendor reader support)</OPTION>
-  <OPTION value="bt81">Source, bjam build (includes vendor reader support)</OPTION>
-  <OPTION value="bt81n">Source, bjam build (NO 3rd party reader support (e.g. vendors, mz5))</OPTION>
-  <OPTION value="bt211">Source, MSVC build (NO 3rd party reader support (e.g. vendors, mz5))</OPTION>
-  <OPTION value="bt212">Source, GNU Autotools build (NO 3rd party reader support (e.g. vendors, mz5))</OPTION>
+  <optgroup label="For End Users">
+	<OPTION value="bt36i">&nbsp;&nbsp; Windows installer (includes vendor reader support)</OPTION>
+	<OPTION value="bt23">&nbsp;&nbsp; Macintosh (NO vendor reader support)</OPTION>
+	<OPTION value="bt17">&nbsp;&nbsp; Linux 64 bit (NO vendor reader support)</OPTION>
+	<OPTION value="bt36">&nbsp;&nbsp; Windows tar.bz2 (includes vendor reader support)</OPTION>
+	<OPTION value="bt83">&nbsp;&nbsp; Windows 64-bit tar.bz2 (no Bruker or T2D support)</OPTION>  
+  </optgroup>
+  <optgroup label="For Developers">
+	<OPTION value="bt81">&nbsp;&nbsp; Source, bjam build (includes vendor reader support)</OPTION>
+	<OPTION value="bt81n">&nbsp;&nbsp; Source, bjam build (NO 3rd party reader support (e.g. vendors, mz5))</OPTION>
+	<OPTION value="bt211">&nbsp;&nbsp; Source, MSVC build (NO 3rd party reader support (e.g. vendors, mz5))</OPTION>
+	<OPTION value="bt212">&nbsp;&nbsp; Source, GNU Autotools build (NO 3rd party reader support (e.g. vendors, mz5))</OPTION>
+   </optgroup>
 </SELECT>
 <!--  <OPTION value="bt22">Linux</OPTION>  -->
 <!--   <OPTION value="bt83i">Windows 64-bit installer(no Bruker or T2D support)</OPTION>  -->
@@ -89,36 +85,31 @@
 <div id="TabbedPanels1" class="TabbedPanels">
   <ul class="TabbedPanelsTabGroup">
     <li class="TabbedPanelsTab" tabindex="1">Pwiz <BR />Core</li>
-    <li class="TabbedPanelsTab" tabindex="5">AB Sciex<BR />WiffReader</li>
+    <li class="TabbedPanelsTab" tabindex="2">AB Sciex<BR />WiffReader</li>
     <li class="TabbedPanelsTab" tabindex="3">Agilent <BR />MHDAC</li>
-    <li class="TabbedPanelsTab" tabindex="6">Bruker<BR />CompassXtract</li>
-    <li class="TabbedPanelsTab" tabindex="2">Thermo <BR />msFileReader</li>
-    <li class="TabbedPanelsTab" tabindex="4">Waters <BR />WRDAC</li>
+    <li class="TabbedPanelsTab" tabindex="4">Bruker<BR />CompassXtract</li>
+    <li class="TabbedPanelsTab" tabindex="5">Thermo <BR />msFileReader</li>
+    <li class="TabbedPanelsTab" tabindex="6">Waters <BR />WRDAC</li>
   </ul>
   <div class="TabbedPanelsContentGroup">
     <div class="TabbedPanelsContent">
     <!--#include virtual="licenses/pwiz.html" -->
     </div>
-        <div class="TabbedPanelsContent">
-    <!--#include virtual="licenses/thermo.html" -->
+    <div class="TabbedPanelsContent">
+    <!--#include virtual="licenses/absciex.html" -->
     </div>
     <div class="TabbedPanelsContent">
     <!--#include virtual="licenses/agilent.html" -->
     </div>
     <div class="TabbedPanelsContent">
-    <!--#include virtual="licenses/waters.html" -->
-    </div>
-        <div class="TabbedPanelsContent">
-    <!--#include virtual="licenses/absciex.html" -->
-    </div>
-        <div class="TabbedPanelsContent">
     <!--#include virtual="licenses/bruker.html" -->
     </div>
-
-
-    
-    
-    
+    <div class="TabbedPanelsContent">
+    <!--#include virtual="licenses/thermo.html" -->
+    </div>
+    <div class="TabbedPanelsContent">
+    <!--#include virtual="licenses/waters.html" -->
+    </div>
   </div>
 </div>
 <br />
@@ -143,13 +134,28 @@ A cross-platform toolkit for mass spectrometry and proteomics.  Chambers, M.C., 
 </p>
 
   <p style="border-bottom:dotted; border-bottom-width:thin;">   
-    We are formally at version 3 beta (full 3.0 release is pending publication). However, as we use TeamCity for continuous integration, each time a developer checks in an update, ProteoWizard is built from scratch, run through a battery of tests, and then published to our website for download. 
+    We are formally at version 3. However,  we use a continuous integration approach.  Consequently, each time a developer checks in an update, ProteoWizard is built from scratch, run through a battery of tests, and then published to our website for download. 
   If you would like an older version, they are archived on our <a href="http://teamcity.labkey.org:8080/project.html?projectId=project4">TeamCity site.</a>
  </p>
 
 <p >All binary executables are currently built for x86 architecture only (i.e. will not work on PowerPC)
 
     </p>
+
+     
+<p>
+	There are several flavours of ProteoWizard depending upon your intended use.  If you are primarily interested in using the tools, the binary distributions for your platform are most likely what you want.  If you are interested in using ProteoWizard as part of a software project you are developing, you should get the source distribution, or download from our <a href="http://proteowizard.svn.sourceforge.net/viewvc/proteowizard/trunk/pwiz/">subversion repository</a> directly.  Other packages are also on our <a href="http://teamcity.labkey.org:8080/project.html?projectId=project4">TeamCity site</a> </p>
+<p>
+
+
+     There is no formal installer for Mac or Linux. For installation help see our <a href="user_installation.shtml"> installation</a> page. On Windows, we recommend using the installer. You must have <a href="http://www.microsoft.com/downloads/details.aspx?FamilyID=ab99342f-5d1a-413d-8319-81da479ab0d7&displaylang=en" target="_blank">.NET Framework 3.5 SP1</a> and <a href="http://www.microsoft.com/download/en/details.aspx?id=17851" target="_blank">4.0</a> installed: both versions are currently required for vendor DLL support.
+
+</p>
+<p>
+	Developers interested in building ProteoWizard libraries for use in their own projects will note that there are a few choices for source distributions.  Officially, the ProteoWizard libraries and tools are built using the <a href="http://www.boost.org/boost-build2/doc/html/bbv2/jam.html">bjam</a> build system, but we also provide alternate semi-official build files for MSVC (.sln and .vc(x)proj for VC8, 9, and 10) and for GNU/Autotools (the familiar old "configure ; make ; make install").  Note that these alternate build files do not support vendor DLLs: maintaining that capability is complex and thus limited to the officially supported bjam build.  You can read more about it  <a href="http://proteowizard.svn.sourceforge.net/viewvc/proteowizard/trunk/pwiz/scripts/autotools/FAQ">here</a>.</p>
+<p>
+<HR>
+
 
 
     <!-- End of Content  -->

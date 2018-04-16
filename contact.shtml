@@ -102,8 +102,7 @@ document.write('<A href="mailto:' + emailE + '">' + emailE + '</a>')
 </NOSCRIPT>
 
         </p>
-<p>Follow @Proteowizard on Twitter for updates on our product.  </p> 
-<!-- Add ProteoLOL and spruce up the Facebook fan page.--> 
+
     
     <br/>
     <hr>
