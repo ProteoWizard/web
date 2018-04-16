@@ -16,14 +16,17 @@
             <li><code>msaccess data.mzML -x spectrum_table</code><br/>
             (creates data.mzML.spectrum_table.txt with summary information for all spectra as read from the scan headers)<p/></li>
 
-            <li><code>msaccess data.mzML -x "binary 0-3"</code><br/>
+            <li><code>msaccess data.mzML -x "binary index=0,3"</code><br/>
             (creates files data.mzML.binary.*.txt with binary data for spectra 0 through 3)<p/></li>
 
-            <li><code>msaccess data.mzML -x "slice delimiter=tab index=[2,6] mz=[100,600]"</code><br/>
+            <li><code>msaccess data.mzML -x "slice delimiter=tab index=2,6 mz=100,600"</code><br/>
             (creates data.mzML.slice.index_2-6.mz_100.0000-600.0000.tsv with a table of data in the selected range)<p/></li>
 
-            <li><code>msaccess data.mzML -x image</code><br/>
-            (creates data.mzML.image* with pseudo-2D-gel image of the data file)<p/></li>
+            <li><code>msaccess data.mzML -x "tic mz=409,410 delimiter=comma" --filter="msLevel 2"</code><br/>
+            (creates data.mzML.tic.409.00-410.00.csv with total ion current info for mass range 409-410 in ms2 scans)<p/></li>
+
+            <li><code>msaccess data.mzML -x "image width=800 height=600"</code><br/>
+            (creates data.mzML.image* with pseudo-2D-gel image of the data file, sized at 800x600 pixels)<p/></li>
         </ul>
         </p>
 
@@ -39,8 +42,8 @@ MassSpecAccess - command line access to mass spec data files<br />
 <p> -f [ --filelist ] arg : text file containing filenames to process<br />
  -o [ --outdir ] arg (=.) : output directory<br />
  -c [ --config ] arg : configuration file (optionName=value)<br />
- -x [ --exec ] arg : execute command<br />
- --filter arg : add a spectrum list filter<br />
+ -x [ --exec ] arg : execute command, e.g --exec "tic mz=409-412"<br />
+ --filter arg : add a spectrum list filtere.g. --filter="msLevel[2,3]"<br />
  <br />
  Filter options (see below for a description of 'int_set'):<br />
  <br />
@@ -60,8 +63,8 @@ MassSpecAccess - command line access to mass spec data files<br />
  user-specified format string; the following keywords<br />
  are recognized: <RunId> <Index> <Id> <SourcePath> <br />
  <ScanNumber> <ActivationType> <IsolationMz> <br />
- <SelectedIonMz> <ChargeState> <PrecursorSpectrumId> <br />
  <SpectrumType> <MsLevel> <ScanStartTimeInMinutes> <br />
+ <SelectedIonMz> <ChargeState> <PrecursorSpectrumId> <br />
  <ScanStartTimeInSeconds> <BasePeakMz> <br />
  <BasePeakIntensity> <TotalIonCurrent><br />
  threshold <count|count-after-ties|absolute|bpi-relat<br />
@@ -109,61 +112,65 @@ MassSpecAccess - command line access to mass spec data files<br />
  <br />
  -v [ --verbose ] : print progress messages</p>
 
-<p>Analysis commands (used with -x/--exec, e.g. -x 'tic 409 410'):</p>
+<p>Analysis commands (used with -x/--exec, e.g. -x 'tic index=409,410'):</p>
 
 <p> metadata <br />
  (write file-level metadata)</p>
 
-<p> run_summary [delimiter=fixed|space|comma|tab] [msLevels=int_set] [charges=int_set]<br />
+<p> run_summary [msLevels=<int_set>] [charges=<int_set>] [delimiter=<fixed|space|comma|tab>]<br />
  (print summary statistics about a run)<br />
- delimiter: sets column separation; default is fixed width<br />
  msLevels: if specified, summary only operates on these MS levels; default is all MS levels<br />
  charges: if specified, summary only operates on these charge states; default is all charges</p>
+ delimiter: sets column separation; default is fixed width<br />
 
-<p> spectrum_table [delimiter=fixed|space|comma|tab]<br />
+<p> spectrum_table [delimiter=<fixed|space|comma|tab>]<br />
  (write spectrum metadata as read from scan headers, in a table format)<br />
  delimiter: sets column separation; default is fixed width</p>
 
-<p> binary i[-][j] [sn] [precision=d]<br />
- (write binary data for spectra i through j)<br />
- sn: interpret as scan number, not index<br />
- precision=d: write d decimal places</p>
+<p> binary index=<spectrumIndexLow>[,<spectrumIndexHigh>] | sn=<scanNumberLow>[,<scanNumberHigh>] [precision=<precision>]<br />
+ (write binary data for selected spectra as indexes or scan numbers)<br />
+ index: write data for spectra in this index range<br />
+ sn: write data for spectra in this scan number range<br />
+ precision: write this many decimal places</p>
 
-<p> slice [delimiter=fixed|space|comma|tab] [mz=[a,b]] [rt=[a,b]] [index=[a,b]] [sn=[a,b]]<br />
+<p> slice [mz=<mzLow>[,<mzHigh>]] [rt=<rtLow>[,<rtHigh>]]] [index=<indexLow>[,<indexHigh>] | sn=<scanLow>[,<scanHigh>]] [delimiter=<fixed|space|comma|tab>]<br />
  (write data from a rectangular region)<br />
- delimiter: sets column separation; default is fixed width<br />
- mz=[a,b] (set m/z range)<br />
- rt=[a,b] (set retention time range)<br />
- index=[a,b] (set spectrum index range)<br />
- sn=[a,b] (set scan number range)</p>
+ mz: set m/z range<br />
+ rt: set retention time range<br />
+ index: set spectrum index range<br />
+ sn: set scan number range<br />
+ delimiter: sets column separation; default is fixed width</p>
 
-<p> tic [delimiter=fixed|space|comma|tab] [mzLow [mzHigh]]<br />
- (write total ion counts for an m/z range)</p>
- delimiter: sets column separation; default is fixed width<br />
+<p> tic [mz=<mzLow>[,<mzHigh>]] [delimiter=<fixed|space|comma|tab>]<br />
+ (write total ion counts for an m/z range)<br />
+ mz: set mz range<br />
+ delimiter: sets column separation; default is fixed width</p>
 
-<p> sic [delimiter=fixed|space|comma|tab] mzCenter radius ("amu"|"ppm")<br />
- (write selected ion chromatogram for an m/z and radius)</p>
- delimiter: sets column separation; default is fixed width<br />
-
+<p> sic mzCenter=<mz> radius=<radius> radiusUnits=<amu|ppm> [delimiter=<fixed|space|comma|tab>]<br />
+ (write selected ion chromatogram for an m/z and radius)<br />
+ mzCenter: set mz value<br />
+ radius: set radius value<br />
+ radiusUnits: set units for radius value (must be amu or ppm)<br />
+ delimiter: sets column separation; default is fixed width </p>
+ 
 <p> image [args]<br />
  (create pseudo-2D-gel image)<br />
  label=xxxx (set filename label to xxxx)<br />
- mzLow=N (set low m/z cutoff)<br />
- mzHigh=N (set high m/z cutoff)<br />
+ mz=mzLow[,mzHigh] (set m/z cutoff range)<br />
  timeScale=N (set scaling factor for time axis)<br />
  binCount=N (set histogram bin count)<br />
- zRadius=N (set intensity function z-score radius [=2])<br />
+ zRadius=N (set intensity function z-score radius, default=2)<br />
  scan (render y-axis linear with scans)<br />
  time (render y-axis linear with time)<br />
  bry (use blue-red-yellow gradient)<br />
  grey (use grey-scale gradient)<br />
- binSum (sum intensity in bins [default = max intensity])<br />
+ binSum (sum intensity in bins, else show max intensity)<br />
  ms2locs (indicate masses selected for ms2)<br />
  pepxml=xxx (set ms2 id's from pepxml file xxx)<br />
  msi=xxx (set ms2 id's from msinspect output file xxx)<br />
  flat=xxx (set ms2 id's from tab delim file xxx)<br />
- width=xxx (set image width to xxx pixels [default is calculated])<br />
- height=yyy (set image height to yyy pixels [default is calculated])</p>
+ width=xxx (set image width to xxx pixels, default is calculated)<br />
+ height=yyy (set image height to yyy pixels, default is calculated)</p>
 
 
 
