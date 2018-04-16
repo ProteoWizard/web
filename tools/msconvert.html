@@ -91,6 +91,8 @@ Options:<br/>
 &nbsp; --numpressPic            : use numpress positive integer lossy compression for binary intensities (maximum 0.5 absolute error guaranteed)<br/>
 &nbsp; --numpressSlof [toler]   : use numpress short logged float lossy compression for binary intensities (relative error guaranteed less than given tolerance, default is 0.0002)<br/>
 &nbsp; -n [ --numpressAll]      : same as --numpressLinear --numpressSlof (see https://github.com/fickludd/ms-numpress for more info)<br/>
+&nbsp; --numpressLinearAbsTol   : desired absolute tolerance for linear numpress prediction (e.g. use 1e-4 for a mass accuracy of 0.2 ppm at 500 m/z, default uses -1.0 for maximal accuracy). Note: setting this value may substantially reduce file size, this overrides relative accuracy tolerance. <br/>
+&nbsp;                              Numpress may be used at the same time as zlib (-z) for best compression, though some older mzML parsers may not handle this properly.<br/>
 &nbsp; -g [ --gzip ]                    : gzip entire output file (adds .gz to filename)<br/>
 &nbsp; --filter arg                     : add a spectrum list filter<br/>
 &nbsp; --merge                  : create a single output file from multiple input <br/>
