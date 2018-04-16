@@ -19,6 +19,9 @@
             <li><code>msaccess data.mzML -x "binary 0-3"</code><br/>
             (creates files data.mzML.binary.*.txt with binary data for spectra 0 through 3)<p/></li>
 
+            <li><code>msaccess data.mzML -x "slice delimiter=tab index=[2,6] mz=[100,600]"</code><br/>
+            (creates data.mzML.slice.index_2-6.mz_100.0000-600.0000.tsv with a table of data in the selected range)<p/></li>
+
             <li><code>msaccess data.mzML -x image</code><br/>
             (creates data.mzML.image* with pseudo-2D-gel image of the data file)<p/></li>
         </ul>
@@ -126,18 +129,21 @@ MassSpecAccess - command line access to mass spec data files<br />
  sn: interpret as scan number, not index<br />
  precision=d: write d decimal places</p>
 
-<p> slice [mz=[a,b]] [rt=[a,b]] [index=[a,b]] [sn=[a,b]]<br />
+<p> slice [delimiter=fixed|space|comma|tab] [mz=[a,b]] [rt=[a,b]] [index=[a,b]] [sn=[a,b]]<br />
  (write data from a rectangular region)<br />
+ delimiter: sets column separation; default is fixed width<br />
  mz=[a,b] (set m/z range)<br />
  rt=[a,b] (set retention time range)<br />
  index=[a,b] (set spectrum index range)<br />
  sn=[a,b] (set scan number range)</p>
 
-<p> tic [mzLow [mzHigh]]<br />
+<p> tic [delimiter=fixed|space|comma|tab] [mzLow [mzHigh]]<br />
  (write total ion counts for an m/z range)</p>
+ delimiter: sets column separation; default is fixed width<br />
 
-<p> sic mzCenter radius ("amu"|"ppm")<br />
+<p> sic [delimiter=fixed|space|comma|tab] mzCenter radius ("amu"|"ppm")<br />
  (write selected ion chromatogram for an m/z and radius)</p>
+ delimiter: sets column separation; default is fixed width<br />
 
 <p> image [args]<br />
  (create pseudo-2D-gel image)<br />
