@@ -19,7 +19,7 @@
         <p>
         Examples:
         <ul>
-		
+
             <li><code>msconvert</code><br/>
             (prints usage information)<p/></li>
 
@@ -40,13 +40,13 @@
 
             <li><code>msconvert data.RAW --filter "msLevel 2-"</code><br/>
             (only write ms2 and higher scans)<p/></li>
-			
-			<li><code>msconvert data.RAW  --filter "zeroSamples removeExtra"</code><br/>
+
+            <li><code>msconvert data.RAW  --filter "zeroSamples removeExtra"</code><br/>
             (omit zero-valued samples that are not next to non-zero samples)<p/></li>
 
-			<li><code>msconvert data.RAW --32 --zlib --filter "peakPicking true [2,3]" --filter "zeroSamples removeExtra" </code><br/>
+            <li><code>msconvert data.RAW --32 --zlib --filter "peakPicking true 1-" --filter "zeroSamples removeExtra" </code><br/>
             (various tricks to create a smaller file, much like the old ReAdW converter program)<p/></li>
-			
+
         </ul>
         </p>
     </p>
