@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>Untitled Document</title>
+<title>ProteoWizard: News</title>
 
 <link href="css/pwiz_structure.css" rel="stylesheet" type="text/css">
 <link href="css/pwiz_styles.css" rel="stylesheet" type="text/css">
@@ -23,7 +23,21 @@
     <h1>New &amp; Noteworthy</h1>
     <p>Check here for the latest in features, and for general news about the project. </p>
 
+
 <HR />
+    <H2>2/22/2012</H2>
+    <p>
+    New Windows Installer!
+    </p>
+
+
+    <H2>11/23/2011</H2>
+    <p>
+    New support for Bruker Data Files!
+    </p>
+    
+
+
     <H2>5/1/2011</H2>
     <p>
     New support for AB Sciex Data Files!

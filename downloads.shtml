@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>ProteoWizard: Download</title>
+<title>ProteoWizard: Downloads</title>
 
 <link href="css/pwiz_structure.css" rel="stylesheet" type="text/css">
 <link href="css/pwiz_styles.css" rel="stylesheet" type="text/css">
@@ -38,11 +38,14 @@
 <p>
 	There are several flavours of ProteoWizard depending upon your intended use.  If you are primarily interested in using the tools, the binary distributions for your platform are most likely what you want.  If you are interested in using ProteoWizard as part of a software project you are developing, you should get the source distribution, or download from our <a href="http://proteowizard.svn.sourceforge.net/viewvc/proteowizard/trunk/pwiz/">subversion repository</a> directly.  Other packages are also on our <a href="http://teamcity.labkey.org:8080/project.html?projectId=project4">TeamCity site</a> </p>
 <p>
-     There is no formal installer, however, for installation help see our <a href="user_installation.shtml"> installation</a> page. On windows, make sure you have <a href="http://www.microsoft.com/downloads/details.aspx?familyid=A5C84275-3B97-4AB7-A40D-3802B2AF5FC2&displaylang=en" target="_blank">MSVC 2008 SP1 (x86)</a> and <a href="http://www.microsoft.com/downloads/details.aspx?FamilyID=ab99342f-5d1a-413d-8319-81da479ab0d7&displaylang=en" target="_blank">.NET Framework 3.5 SP1</a> installed <br/>
+
+
+     There is no formal installer for Mac or Linux. For installation help see our <a href="user_installation.shtml"> installation</a> page. On Windows, we recommend using the installer. You must have <a href="http://www.microsoft.com/downloads/details.aspx?familyid=A5C84275-3B97-4AB7-A40D-3802B2AF5FC2&displaylang=en" target="_blank">MSVC 2008 SP1 (x86)</a>, <a href="http://www.microsoft.com/downloads/details.aspx?FamilyID=ab99342f-5d1a-413d-8319-81da479ab0d7&displaylang=en" target="_blank">.NET Framework 3.5 SP1</a> and <a href="http://www.microsoft.com/download/en/details.aspx?id=17851" target="_blank">4.0</a> installed: both versions are currently required for vendor DLL support.
+
 </p>
 <HR>
 
-<form action="http://camm.usc.edu/download.php" method="post">
+<form action="http://colocsvr.camm.usc.edu/download.php" method="post">
 
 <h2> Get ProteoWizard (3 steps)</H2>    
 <div class="inset">
@@ -50,12 +53,13 @@
 <H3> Step 1, Choose Platform: </H3>
 <UL>
 <SELECT NAME="downloadtype">
-  <OPTION value="bt36">Windows (includes vendor reader support)</OPTION>
-  <OPTION value="bt83">Windows 64 bit </OPTION>
-  <OPTION value="bt23">Macintosh </OPTION>
-  <OPTION value="bt17">Linux 64 bit </OPTION>
+  <OPTION value="bt36i">Windows installer (includes vendor reader support)</OPTION>
+  <OPTION value="bt36">Windows tar.bz2 (includes vendor reader support)</OPTION>
+  <OPTION value="bt83">Windows 64 bit (NO vendor reader support)</OPTION>
+  <OPTION value="bt23">Macintosh (NO vendor reader support)</OPTION>
+  <OPTION value="bt17">Linux 64 bit (NO vendor reader support)</OPTION>
   <OPTION value="bt81">Source (includes vendor reader support)</OPTION>
-  <OPTION value="bt81n">Source (without vendor reader support)</OPTION>
+  <OPTION value="bt81n">Source (NO vendor reader support)</OPTION>
 
 </SELECT>
 <!--  <OPTION value="bt22">Linux</OPTION>  -->
@@ -65,11 +69,13 @@
 
 <div id="TabbedPanels1" class="TabbedPanels">
   <ul class="TabbedPanelsTabGroup">
-    <li class="TabbedPanelsTab" tabindex="1">Pwiz Core</li>
-    <li class="TabbedPanelsTab" tabindex="2">Thermo msFileReader</li>
-    <li class="TabbedPanelsTab" tabindex="3">Agilent MHDAC</li>
-    <li class="TabbedPanelsTab" tabindex="4">Waters WRDAC</li>
-    <li class="TabbedPanelsTab" tabindex="5">AB Sciex WiffReader</li>
+    <li class="TabbedPanelsTab" tabindex="1">Pwiz <BR />Core</li>
+    <li class="TabbedPanelsTab" tabindex="2">Thermo <BR />msFileReader</li>
+    <li class="TabbedPanelsTab" tabindex="3">Agilent <BR />MHDAC</li>
+    <li class="TabbedPanelsTab" tabindex="4">Waters <BR />WRDAC</li>
+    <li class="TabbedPanelsTab" tabindex="5">AB Sciex<BR />WiffReader</li>
+    <li class="TabbedPanelsTab" tabindex="6">Bruker<BR />CompassXtract</li>
+
   </ul>
   <div class="TabbedPanelsContentGroup">
     <div class="TabbedPanelsContent">
@@ -86,6 +92,9 @@
     </div>
         <div class="TabbedPanelsContent">
     <!--#include virtual="licenses/absciex.html" -->
+    </div>
+        <div class="TabbedPanelsContent">
+    <!--#include virtual="licenses/bruker.html" -->
     </div>
 
 
@@ -110,7 +119,8 @@
 <H2>Notes:</h2>
 
   <p style="border-bottom:dotted; border-bottom-width:thin;">   
-    Though we are formally at version 2.1, we use a continuous integration environment (each time a developer checks in an update, ProteoWizard is built from scratch, run through a battery of tests, and then published to our website for download).  If you would like an older version, they are archived on our <a href="http://teamcity.labkey.org:8080/project.html?projectId=project4">TeamCity site</a>.
+    We are formally at version 3, but we use TeamCity for continuous integration. Each time a developer checks in an update, ProteoWizard is built from scratch, run through a battery of tests, and then published to our website for download. 
+  If you would like an older version, they are archived on our <a href="http://teamcity.labkey.org:8080/project.html?projectId=project4">TeamCity site.</a>
  </p>
 
 <p >All binary executables are currently built for x86 architecture only (i.e. will not work on PowerPC)
