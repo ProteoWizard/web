@@ -87,9 +87,9 @@ Options:<br/>
 &nbsp; --noindex                : do not write index<br/>
 &nbsp; -i [ --contactInfo ] arg : filename for contact info<br/>
 &nbsp; -z [ --zlib ]            : use zlib compression for binary data<br/>
-&nbsp; --numpressLinear toler   : use numpress linear prediction lossy compression for binary mz and rt data (relative error guaranteed less than given tolerance)  <br/>
+&nbsp; --numpressLinear [toler]  : use numpress linear prediction lossy compression for binary mz and rt data (relative error guaranteed less than given tolerance, default is 2e-009)  <br/>
 &nbsp; --numpressPic            : use numpress positive integer lossy compression for binary intensities (maximum 0.5 absolute error guaranteed)<br/>
-&nbsp; --numpressSlof toler     : use numpress short logged float lossy compression for binary intensities (relative error guaranteed less than given tolerance)<br/>
+&nbsp; --numpressSlof [toler]   : use numpress short logged float lossy compression for binary intensities (relative error guaranteed less than given tolerance, default is 0.0002)<br/>
 &nbsp; -n [ --numpressAll]      : same as --numpressLinear --numpressSlof (see https://github.com/fickludd/ms-numpress for more info)<br/>
 &nbsp; -g [ --gzip ]            : gzip entire output file (adds .gz to filename)<br/>
 &nbsp; --filter arg             : add a spectrum list filter<br/>
