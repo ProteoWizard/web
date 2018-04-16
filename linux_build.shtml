@@ -45,6 +45,15 @@
     <!-- Content goes here. -->
     <p><i>These notes describe using the boost-build bjam build tool officially supported by ProteoWizard.  See the <a href="http://proteowizard.sourceforge.net/downloads.shtml">downloads</a> page for information on using semi-official but perhaps more familiar GNU/Autotools build files instead, which include many examples of building programs that use ProteoWizard.</i></p>
     
+    <p> MACUSERS - Please note that these instructions mostly work for you as well - however, you will likely need to build using:
+    
+    	<UL>
+        ./quickbuild.sh runtime-link=shared
+        </UL>
+    </p>
+    
+    
+    
     <h1>Building with Proteowizard‬</h1>
     <p>Written by: Jarrett Egertson on 12/15/2010  jegertso &lt;a .t&gt; u.washington.edu</p>
     <h2>Goal</h2>
