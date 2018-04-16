@@ -39,7 +39,7 @@ MassSpecAccess - command line access to mass spec data files<br />
  -x [ --exec ] arg : execute command<br />
  --filter arg : add a spectrum list filter<br />
  <br />
- Filter options:<br />
+ Filter options (see below for a description of 'int_set'):<br />
  <br />
  index int_set<br />
  msLevel int_set<br />
@@ -97,12 +97,16 @@ MassSpecAccess - command line access to mass spec data files<br />
  <br />
  'int_set' means that a set of integers must be <br />
  specified, as a list of intervals of the form [a,b] <br />
- or a[-][b]<br />
+ or a[-][b].  For example '[0,3]' and '0-3' both mean <br />
+ 'the set of integers from 0 to 3 inclusive' (i.e. '0 1 2 3').<br />
+ '1-' means 'the set of integers from 1 to the largest <br />
+ allowable number'.  '9' is also an integer set, equivalent<br />
+ to '[9,9]'.   '[0,2] 5-7' is the set '0 1 2 5 6 7'.<br />
  <br />
  <br />
  -v [ --verbose ] : print progress messages</p>
 
-<p>Analysis commands (used with -x/--exec):</p>
+<p>Analysis commands (used with -x/--exec, e.g. -x 'tic 409 410'):</p>
 
 <p> metadata <br />
  (write file-level metadata)</p>
@@ -151,7 +155,9 @@ MassSpecAccess - command line access to mass spec data files<br />
  ms2locs (indicate masses selected for ms2)<br />
  pepxml=xxx (set ms2 id's from pepxml file xxx)<br />
  msi=xxx (set ms2 id's from msinspect output file xxx)<br />
- flat=xxx (set ms2 id's from tab delim file xxx)</p>
+ flat=xxx (set ms2 id's from tab delim file xxx)<br />
+ width=xxx (set image width to xxx pixels [default is calculated])<br />
+ height=yyy (set image height to yyy pixels [default is calculated])</p>
 
 
 
