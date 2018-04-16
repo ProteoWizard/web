@@ -45,7 +45,9 @@
     <p> MACUSERS - Please note that these instructions mostly work for you as well - however, you will likely need to build using:
     
     	<UL>
-        ./quickbuild.sh runtime-link=shared
+        ./quickbuild.sh runtime-link=shared<br />
+        or <<br />
+        ./quickbuild.sh runtime-link=shared address-model=32 architecture=x86 </BR>
         </UL>
     </p>
     
