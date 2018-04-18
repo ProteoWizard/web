@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Michael Doshi">
+
+    <title>ProteoWizard: Download</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+
+    <!-- Theme CSS -->
+    <link href="css/main.css" rel="stylesheet">
+    <link href="css/template.css" rel="stylesheet">
+
+    <!-- Google Analytics -->
+    <script async src="//www.google-analytics.com/analytics.js"></script>
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){ (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o), m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-54926454-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
+                    Menu <i class="fa fa-bars"></i>
+                </button>
+                <a href="index.html" class="navbar-left page-scroll">
+                    <img src="img/proteowizard-logo.jpg">
+                </a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="projects.html">Projects</a>
+                    </li>
+                    <li>
+                        <a href="download.html">Download</a>
+                    </li>
+                    <li>
+                        <a href="publications.html">Publications</a>
+                    </li>
+                    <li>
+                        <a href="team.html">Team</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-toggle" data-toggle="dropdown">Documentation<span class="caret"></span></button></a>
+                        <ul class="dropdown-menu dropdown-menu-custom">
+                            <li><a href="doc_users.html">Users</a></li>
+                            <li><a href="doc_developers.html">Developers</a></li>
+                            <!-- TODO: Add Tutorials page -->
+                            <!--<li><a href="tutorials.html">Tutorials</a></li>-->
+                            <li><a href="faq.html">FAQ</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="support.html">Support</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <!-- Info Section -->
+    <section id="info" class="container content-section">
+        <div class="row">
+            <div class="col-xs-10 col-xs-offset-1">
+                <h1>Download</h1>
+                <h2 id="subheading">Downloading is as easy as...</h2>
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <form action="javascript:download();">
+                            <!--<div class="form-group">
+                                <label for="inputName">Name</label>
+                                <input type="text" class="form-control" id="inputName" placeholder="John Appleseed">
+                            </div>-->
+                            <div class="form-group">
+                                <label for="inputEmail">Email <span style="font-weight:normal;">(optional) <span class="pwiz-orange">*</span></span></label>
+                                <input type="text" class="form-control" id="inputEmail" placeholder="john.appleseed@gmail.com">
+                            </div>
+                            <div class="form-group">
+                                <label for="selectSoftware">Software</label>
+                                <select id="softwareType" class="form-control">
+                                    <option value="proteo">ProteoWizard</option>
+                                    <option value="bumber">Bumbershoot</option>
+                                    <option value="sky">Skyline</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="selectPlatform">Platform</label>
+                                <select id="downloadType" class="form-control" id="selectPlatform">
+                                    <option value="proteo" disabled="disabled">For End Users</option>
+                                    <option value="proteo" data-value="bt83i" selected="selected">Windows 64-bit installer(able to convert vendor files except T2D)</option>
+                                    <option value="proteo" data-value="bt36i">Windows installer (able to convert vendor files)</option>
+                                    <option value="proteo" data-value="bt23">Macintosh (NOT able to convert vendor files)</option>
+                                    <option value="proteo" data-value="bt17">Linux 64 bit (NOT able to convert vendor files</option>
+                                    <option value="proteo" data-value="bt36">Windows tar.bz2 (able to convert vendor files)</option>
+                                    <option value="proteo" data-value="bt83">Windows 64-bit tar.bz2 (able to convert vendor files except T2D)</option>
+
+                                    <option value="proteo" disabled="disabled"></option>
+                                    <option value="proteo" disabled="disabled">For Developers</option>
+                                    <option value="proteo" data-value="bt81">Source, bjam build (includes vendor reader support)</option>
+                                    <option value="proteo" data-value="bt81n">Source, bjam build (NO 3rd party reader support (e.g. vendors, mz5))</option>
+                                    <option value="proteo" data-value="bt211">Source, MSVC build (NO 3rd party reader support (e.g. vendors, mz5))</option>
+                                    <option value="proteo" data-value="bt212">Source, GNU Autotools build (NO 3rd party reader support (e.g. vendors, mz5))</option>
+                                    <option value="proteo" data-value="ProteoWizard_Windows_X86_64_pwizBindingsCli_ExampleProject">Windows x86_64 pwiz_bindings_cli example project</option>
+                                
+                                    <option value="bumber" data-value="Bumbershoot_Windows_X86_64_i">IDPicker Windows x86 64-bit Installer</option>
+                                    <option value="bumber" data-value="ProteoWizard_Bumbershoot_Windows_X86_i">IDPicker Windows x86 Installer</option>
+                                    <option value="bumber" data-value="Bumbershoot_Windows_X86_64">Bumbershoot Win x86 64bit tar.bz2</option>
+                                    <option value="bumber" data-value="ProteoWizard_Bumbershoot_Windows_X86">Bumbershoot Win x86 tar.bz2</option>
+                                    <option value="bumber" data-value="ProteoWizard_Bumbershoot_Linux_X86_64">Bumbershoot Linux x86 64bit tar.bz2</option>
+                                </select>
+                            </div>
+                            <div class="form-check">
+                                <label class="form-check-label">
+                                    <input id="license-agreements" class="form-check-input" type="checkbox" value="">
+                                    I have read and accepted the <a href="licenses.html" onclick="return popup(this, 'License-Agreements')">license agreements</a>
+                                </label>
+                            </div>
+                            <p><span class="pwiz-orange">* </span><small>We will never email you except with major update announcements. This information is needed for supporting the project in funding applications.</small></p>
+                            <button id="download-btn" type="submit" class="btn btn-default btn-lg center-block">Download</button>
+                        </form>
+                    </div>
+                    <div class="col-sm-6">
+                        <p>Please cite us in your publications</p>
+                        <p>A cross-platform toolkit for mass spectrometry and proteomics. Chambers, M.C., MacLean, B., ... Mallick, P. Nature Biotechnology 30, 918-920 (2012). <a href="http://www.nature.com/nbt/journal/v30/n10/full/nbt.2377.html"><b>Article&nbsp;&rarr;</b></a></p>
+                        <p>If you would like to support the efforts of ProteoWizard, donations are happily accepted. Thank you so much for your support!</p>
+                        <a href="http://giving.stanford.edu/goto/mallickgift" target="_blank" class="btn btn-default btn-lg center-block">Donate</a>
+                    </div>
+                </div>
+
+                <h2>Installation</h2>
+                <ul class="list-unstyled">
+                    <li>
+                        <span class="underline"><b>Windows Users</b></span>: You must have the following software installed to use ProteoWizard - <a href="http://www.microsoft.com/downloads/details.aspx?familyid=A5C84275-3B97-4AB7-A40D-3802B2AF5FC2&displaylang=en">MSVC 2008 SP1 (x86)</a>, <a href="http://www.microsoft.com/downloads/details.aspx?FamilyID=ab99342f-5d1a-413d-8319-81da479ab0d7&displaylang=en">.NET Framework 3.5 SP1</a> and <a href="http://www.microsoft.com/download/en/details.aspx?id=17851">4.0</a> - note that both versions are currently required in order to get vendor support. You might also need <a href="https://www.microsoft.com/de-de/download/confirmation.aspx?id=40784">this</a>.
+                    </li>
+                    <li>
+                        <span class="underline"><b>Mac Users</b></span>: You will need to unzip the ProteoWizard package, which will show up on your computer as a folder labeled pwiz and should end with .tar.bz2. In order to obtain the package, you will need to use either Stuffit-expander or Archive Utility (typically located in the Applications folder of your computer) to save and move the pwiz folder to your computer.
+                    </li>
+                    <li>
+                        <span class="underline"><b>Linux Users</b></span>: Navigate to the download directory. Once there, use 'tar xjvf [archive name].tar.bz2' on the archive and move the pwiz directory into a directory of your choice. PRO-TIP: For convenience, adjust your "PATH" environment variable to include your ProteoWizard tools directory, so that the command line tools may be run from any directory.
+                    </li>
+                </ul>
+
+                <h2>Versions</h2>
+                <p>We are formally at version 3. Older versions are archived on <a href="http://teamcity.labkey.org:8080/project.html?projectId=project4">TeamCity</a>.</p>
+                <p>There are several flavors of ProteoWizard depending upon your intended use. If you are primarily interested in using the tools, the binary distributions for your platform are most likely what you want. If you are interested in using ProteoWizard as part of a software project you are developing, you should get the source distribution, or download from our <a href="https://sourceforge.net/p/proteowizard/code/">subversion repository</a> directly. Other packages are also on <a href="http://teamcity.labkey.org:8080/project.html?projectId=project4">Teamcity</a>.</p>
+                <p>Developers interested in building ProteoWizard libraries for use in their own projects will note that there are a few choices for source distributions. Officially, the ProteoWizard libraries and tools are built using the <a href="http://www.boost.org/boost-build2/doc/html/bbv2/jam.html">bjam</a> build system, but we also provide alternate semi-official build files for MSVC and for GNU/Autotools (the familiar old "configure ; make ; make install"). Note that these alternate build files do not support vendor DLLs: maintaining that capability is complex and thus limited to the officially supported bjam build. You can read more about it <a href="https://sourceforge.net/p/proteowizard/code/HEAD/tree/trunk/pwiz/scripts/autotools/FAQ">here</a>.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container text-center">
+            <div class="row">
+                <div class="col-xs-8 col-xs-offset-2 col-sm-10 col-sm-offset-1">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <h3>Careers</h3>
+                            <p>The ProteoWizard team is always looking to expand its volunteer developer base! To contribute, please email <a href="mailto:parag@proteowizard.org" target="_top"><b>parag@proteowizard.org</b></a></p>
+                        </div>
+                        <div class="col-sm-4">
+                            <h3>Contact Us</h3>
+                            <p>3155 Porter Drive<br>Palo Alto, CA 94304</p>
+                        </div>
+                        <div class="col-sm-4">
+                            <h3>Donate</h3>
+                            <p>If you would like to support the efforts of ProteoWizard, you can donate <a href="http://giving.stanford.edu/goto/mallickgift" target="_blank"><b>HERE</b></a>. Thank you so much for your support!</p>
+                        </div>
+                    </div>
+                </div> 
+            </div>
+            <p>Copyright &copy;2016 ProteoWizard. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Banner -->
+    <div id="sourceforge-banner">
+        <a href="http://sourceforge.net/projects/proteowizard">
+            <img src="http://sflogo.sourceforge.net/sflogo.php?group_id=216483&type=11" width="120" height="30" border="0" alt="Get ProteoWizard at SourceForge.net. Fast, secure, and free open source software downloads" />
+        </a>
+    </div>
+
+    <!-- jQuery -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+
+    <!-- Theme JavaScript -->
+    <script src="js/main.js"></script>
+
+</body>
+
+</html>
