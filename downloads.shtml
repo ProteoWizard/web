@@ -51,30 +51,46 @@
 <form action="http://colocsvr.camm.usc.edu/download.php" method="post">
 -->
 
+
 <form action="http://data.mallicklab.com/download.php" method="post">
 
 <h2> Get ProteoWizard (3 steps)</H2>    
 <div class="inset">
 
 <H3> Step 1, Choose Download Type: </H3>
+<P> Please note that reading and conversion of vendor formatted files only works on Windows (or Windows Emulation).  All other functionality of ProteoWizard is fully platform independent.  </P> 
 <UL>
 <SELECT NAME="downloadtype">
   <optgroup label="For End Users">
-	<OPTION value="bt83i">&nbsp;&nbsp;Windows 64-bit installer(inc. vendor reader support but no T2D)</OPTION> 
-	<OPTION value="bt36i">&nbsp;&nbsp; Windows installer (inc. vendor reader support)</OPTION>
-	<OPTION value="bt23">&nbsp;&nbsp; Macintosh (NO vendor reader support)</OPTION>
-	<OPTION value="bt17">&nbsp;&nbsp; Linux 64 bit (NO vendor reader support)</OPTION>
-	<OPTION value="bt36">&nbsp;&nbsp; Windows tar.bz2 (inc. vendor reader support)</OPTION>
-	<OPTION value="bt83">&nbsp;&nbsp; Windows 64-bit tar.bz2 (no T2D support)</OPTION>  
+	<OPTION value="bt83i">&nbsp;&nbsp;Windows 64-bit installer(able to convert vendor files except T2D)</OPTION> 
+	<OPTION value="bt36i">&nbsp;&nbsp; Windows installer (able to convert vendor files)</OPTION>
+	<OPTION value="bt23">&nbsp;&nbsp; Macintosh (NOT able to convert vendor files)</OPTION>
+	<OPTION value="bt17">&nbsp;&nbsp; Linux 64 bit (NOT able to convert vendor files)</OPTION>
+	<OPTION value="bt36">&nbsp;&nbsp; Windows tar.bz2 (able to convert vendor files)</OPTION>
+	<OPTION value="bt83">&nbsp;&nbsp; Windows 64-bit tar.bz2 (able to convert vendor files except T2D)</OPTION>  
   </optgroup>
+    <optgroup label="Bumbershoot">
+    <OPTION value="Bumbershoot_Windows_X86_64_i">&nbsp;&nbsp; IDPicker Windows x86 64-bit Installer</OPTION>
+	<OPTION value="ProteoWizard_Bumbershoot_Windows_X86_i">&nbsp;&nbsp; IDPicker Windows x86 Installer</OPTION>
+    <OPTION value="Bumbershoot_Windows_X86_64">&nbsp;&nbsp; Bumbershoot Win x86 64bit tar.bz2</OPTION>
+    <OPTION value="ProteoWizard_Bumbershoot_Windows_X86">&nbsp;&nbsp; Bumbershoot Win x86 tar.bz2</OPTION>
+    <OPTION value="ProteoWizard_Bumbershoot_Linux_X86_64">&nbsp;&nbsp; Bumbershoot Linux x86 64bit tar.bz2</OPTION>
+   </optgroup>
+
+  
   <optgroup label="For Developers">
 	<OPTION value="bt81">&nbsp;&nbsp; Source, bjam build (includes vendor reader support)</OPTION>
 	<OPTION value="bt81n">&nbsp;&nbsp; Source, bjam build (NO 3rd party reader support (e.g. vendors, mz5))</OPTION>
 	<OPTION value="bt211">&nbsp;&nbsp; Source, MSVC build (NO 3rd party reader support (e.g. vendors, mz5))</OPTION>
 	<OPTION value="bt212">&nbsp;&nbsp; Source, GNU Autotools build (NO 3rd party reader support (e.g. vendors, mz5))</OPTION>
+    <OPTION value="ProteoWizard_Windows_X86_64_pwizBindingsCli_ExampleProject">&nbsp;&nbsp;Windows x86_64 pwiz_bindings_cli example project</OPTION>
+    
    </optgroup>
 </SELECT>
-<!--  <OPTION value="bt22">Linux</OPTION>  -->
+<!--  <OPTION value="bt22">Linux</OPTION>  
+    	<OPTION value="ProteoWizard_Windows_X86_64_pwizBindingsCli_ExampleProject">&nbsp;&nbsp;Windows x86_64 pwiz_bindings_cli example project</OPTION>
+
+-->
 
 
 </UL>
@@ -119,6 +135,7 @@
 </div>
 <br />
 <H3> Step 3, Click below to agree to Licenses and get ProteoWizard </H3>
+
 <input type="submit" value="I agree to the licensing terms, download ProteoWizard"/>
 
 </form>
@@ -135,7 +152,7 @@
 <H3> Please cite us in your publications: </H3>
 
   <p style="border-bottom:dotted; border-bottom-width:thin;">   
-A cross-platform toolkit for mass spectrometry and proteomics.  Chambers, M.C., MacLean, B., Burke, R., Amode, D., Ruderman, D.L., Neumann, S., Gatto, L., Fischer, B., Pratt, B., Egertson, J., Hoff, K., Kessner, D., Tasman, N., Shulman, N., Frewen, B., Baker, T.A., Brusniak, M.-Y., Paulse, C., Creasy, D., Flashner, L., Kani, K., Moulding, C., Seymour, S.L., Nuwaysir, L.M., Lefebvre, B., Kuhlmann, F., Roark, J., Rainer, P., Detlev, S., Hemenway, T., Huhmer, A., Langridge, J., Connolly, B., Chadick, T., Holly, K., Eckels, J., Deutsch, E.W., Moritz, R.L., Katz, J.E., Agus, D.B., MacCoss, M., Tabb, D.L. & Mallick, P. Nature Biotechnology 30, 918-920 (2012). [<a href="http://www.nature.com/nbt/journal/v30/n10/full/nbt.2377.html" target="_blank">article</a>]
+A cross-platform toolkit for mass spectrometry and proteomics.  Chambers, M.C., MacLean, B., ... Mallick, P. Nature Biotechnology 30, 918-920 (2012). [<a href="http://www.nature.com/nbt/journal/v30/n10/full/nbt.2377.html" target="_blank">article</a>]
 </p>
 
   <p style="border-bottom:dotted; border-bottom-width:thin;">   
@@ -153,11 +170,11 @@ A cross-platform toolkit for mass spectrometry and proteomics.  Chambers, M.C., 
 <p>
 
 
-     There is no formal installer for Mac or Linux. For installation help see our <a href="user_installation.shtml"> installation</a> page. On Windows, we recommend using the installer. You must have <a href="http://www.microsoft.com/downloads/details.aspx?FamilyID=ab99342f-5d1a-413d-8319-81da479ab0d7&displaylang=en" target="_blank">.NET Framework 3.5 SP1</a> and <a href="http://www.microsoft.com/download/en/details.aspx?id=17851" target="_blank">4.0</a> installed: both versions are currently required for vendor DLL support.
+     There is no formal installer for Mac or Linux. For installation help see our <a href="user_installation.shtml"> installation</a> page. On Windows, we recommend using the installer. You must have <a href="http://www.microsoft.com/downloads/details.aspx?FamilyID=ab99342f-5d1a-413d-8319-81da479ab0d7&displaylang=en" target="_blank">.NET Framework 3.5 SP1</a> and <a href="http://www.microsoft.com/download/en/details.aspx?id=17851" target="_blank">4.0</a> installed: both versions are currently required for vendor DLL support.  You may also need <a href="https://www.microsoft.com/de-de/download/confirmation.aspx?id=40784">this</a>.
 
 </p>
 <p>
-	Developers interested in building ProteoWizard libraries for use in their own projects will note that there are a few choices for source distributions.  Officially, the ProteoWizard libraries and tools are built using the <a href="http://www.boost.org/boost-build2/doc/html/bbv2/jam.html">bjam</a> build system, but we also provide alternate semi-official build files for MSVC (.sln and .vc(x)proj for VC8, 9, and 10) and for GNU/Autotools (the familiar old "configure ; make ; make install").  Note that these alternate build files do not support vendor DLLs: maintaining that capability is complex and thus limited to the officially supported bjam build.  You can read more about it  <a href="https://sourceforge.net/p/proteowizard/code/HEAD/tree/trunk/pwiz/scripts/autotools/FAQ">here</a>.</p>
+	Developers interested in building ProteoWizard libraries for use in their own projects will note that there are a few choices for source distributions.  Officially, the ProteoWizard libraries and tools are built using the <a href="http://www.boost.org/boost-build2/doc/html/bbv2/jam.html">bjam</a> build system, but we also provide alternate semi-official build files for MSVC and for GNU/Autotools (the familiar old "configure ; make ; make install").  Note that these alternate build files do not support vendor DLLs: maintaining that capability is complex and thus limited to the officially supported bjam build.  You can read more about it  <a href="https://sourceforge.net/p/proteowizard/code/HEAD/tree/trunk/pwiz/scripts/autotools/FAQ">here</a>.</p>
 <p>
 <HR>
 
