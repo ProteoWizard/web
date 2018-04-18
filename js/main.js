@@ -101,28 +101,21 @@ function download() {
         return;
     }
 
-    var winInstaller = 0;
     var selected = document.getElementById('downloadType');
     var selectedData = selected.options[selected.selectedIndex];
     var downloadType = selectedData.getAttribute('data-value');
     var downloadTypeString = downloadType;
+    var matchPattern = /(\/guestAuth\/[\w\/\-.:]+\/content\/[\w\/\-.:]+.tar.bz2)/g;
 
-    if ((downloadType == 'bt36i') || (downloadType == 'bt83i')) {
-        winInstaller = 'i';
-        downloadTypeString = downloadTypeString.replace("i", "").trim();
-    }
-
-    if (downloadType == 'bt81n') 
-        downloadTypeString = 'bt81';
-
-    if (downloadType == 'Bumbershoot_Windows_X86_64_i') {
-        downloadTypeString = 'Bumbershoot_Windows_X86_64';
-        winInstaller = '_i';
-    }
-
-    if (downloadType == 'ProteoWizard_Bumbershoot_Windows_X86_i') {
-        downloadTypeString = 'ProteoWizard_Bumbershoot_Windows_X86';
-        winInstaller = '_i';
+    if (downloadType.match(/_installer$/)) {
+        matchPattern = /(\/guestAuth\/[\w\/\-.:]+\/content\/[\w\/\-.:]+.msi)/g;
+        downloadTypeString = downloadTypeString.replace("_installer", "").trim();
+    } else if (downloadType.match(/_no_binary_msdata$/)) {
+        matchPattern = /(\/guestAuth\/[\w\/\-.:]+\/content\/pwiz-src-without-v-[\w\/\-.:]+.tar.bz2)/g;
+        downloadTypeString = downloadTypeString.replace("_no_binary_msdata", "").trim();
+    } else if (downloadType.match(/_without_tests$/)) {
+        matchPattern = /(\/guestAuth\/[\w\/\-.:]+\/content\/bumbershoot-src-without-t-[\w\/\-.:]+.tar.bz2)/g;
+        downloadTypeString = downloadTypeString.replace("_without_tests", "").trim();
     }
 
     var remoteURL = "http://teamcity.labkey.org/guestAuth/app/rest/builds/status:SUCCESS,buildType:id:" + downloadTypeString + "/artifacts/children";
@@ -134,8 +127,8 @@ function download() {
         request.onload = function(){
             teamCityInfoString = request.responseText;
 
-            var matches = teamCityInfoString.match(/content href=\"([\w\/\-.:]+)\"/);
-            var downloadURL = matches[1];
+            var matches = teamCityInfoString.match(matchPattern);
+            var downloadURL = matches[0];
             if(email) {
                 writeEmailToFile(email, function() {
                     window.location = "http://teamcity.labkey.org" + downloadURL;

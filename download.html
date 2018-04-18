@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -94,88 +94,99 @@
         <div class="row">
             <div class="col-xs-10 col-xs-offset-1">
                 <h1>Download</h1>
-                <h2 id="subheading">Downloading is as easy as...</h2>
+              
+                <form action="javascript:download();">
+                    <div class="row">
+                        <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="selectSoftware">Project</label>
+                                    <select id="softwareType" class="form-control">
+                                        <option value="proteo">ProteoWizard</option>
+                                        <option value="bumber">Bumbershoot</option>
+                                        <!--<option value="sky">Skyline</option>-->
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="selectPlatform">Platform</label>
+                                    <select id="downloadType" class="form-control" id="selectPlatform">
+                                        <option value="proteo" disabled="disabled">For End Users</option>
+                                        <option value="proteo" data-value="bt83_installer" selected="selected">Windows 64-bit installer (able to convert vendor files except T2D)</option>
+                                        <option value="proteo" data-value="bt36_installer">Windows 32-bit installer (able to convert vendor files)</option>
+                                        <!--<option value="proteo" data-value="bt23">Macintosh (NOT able to convert vendor files)</option>-->
+                                        <option value="proteo" data-value="bt83">Windows 64-bit tar.bz2 (able to convert vendor files except T2D)</option>
+                                        <option value="proteo" data-value="bt36">Windows 32-bit tar.bz2 (able to convert vendor files)</option>
+                                        <option value="proteo" data-value="bt17">Linux 64-bit (NOT able to convert vendor files)</option>
 
-                <div class="row">
-                    <div class="col-sm-6">
-                        <form action="javascript:download();">
-                            <!--<div class="form-group">
-                                <label for="inputName">Name</label>
-                                <input type="text" class="form-control" id="inputName" placeholder="John Appleseed">
-                            </div>-->
-                            <div class="form-group">
-                                <label for="inputEmail">Email <span style="font-weight:normal;">(optional) <span class="pwiz-orange">*</span></span></label>
-                                <input type="text" class="form-control" id="inputEmail" placeholder="john.appleseed@gmail.com">
-                            </div>
-                            <div class="form-group">
-                                <label for="selectSoftware">Software</label>
-                                <select id="softwareType" class="form-control">
-                                    <option value="proteo">ProteoWizard</option>
-                                    <option value="bumber">Bumbershoot</option>
-                                    <option value="sky">Skyline</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="selectPlatform">Platform</label>
-                                <select id="downloadType" class="form-control" id="selectPlatform">
-                                    <option value="proteo" disabled="disabled">For End Users</option>
-                                    <option value="proteo" data-value="bt83i" selected="selected">Windows 64-bit installer(able to convert vendor files except T2D)</option>
-                                    <option value="proteo" data-value="bt36i">Windows installer (able to convert vendor files)</option>
-                                    <option value="proteo" data-value="bt23">Macintosh (NOT able to convert vendor files)</option>
-                                    <option value="proteo" data-value="bt17">Linux 64 bit (NOT able to convert vendor files</option>
-                                    <option value="proteo" data-value="bt36">Windows tar.bz2 (able to convert vendor files)</option>
-                                    <option value="proteo" data-value="bt83">Windows 64-bit tar.bz2 (able to convert vendor files except T2D)</option>
+                                        <option value="proteo" disabled="disabled"></option>
+                                        <option value="proteo" disabled="disabled">For Developers</option>
+                                        <option value="proteo" data-value="bt81">Source, bjam build (includes vendor reader support)</option>
+                                        <option value="proteo" data-value="bt81_no_binary_msdata">Source, bjam build (NO 3rd party reader support (e.g. vendors, mz5))</option>
+                                        <!--<option value="proteo" data-value="bt211">Source, MSVC build (NO 3rd party reader support (e.g. vendors, mz5))</option>
+                                        <option value="proteo" data-value="bt212">Source, GNU Autotools build (NO 3rd party reader support (e.g. vendors, mz5))</option>-->
+                                        <option value="proteo" data-value="ProteoWizard_Windows_X86_64_pwizBindingsCli_ExampleProject">Windows x86_64 pwiz_bindings_cli example project</option>
 
-                                    <option value="proteo" disabled="disabled"></option>
-                                    <option value="proteo" disabled="disabled">For Developers</option>
-                                    <option value="proteo" data-value="bt81">Source, bjam build (includes vendor reader support)</option>
-                                    <option value="proteo" data-value="bt81n">Source, bjam build (NO 3rd party reader support (e.g. vendors, mz5))</option>
-                                    <option value="proteo" data-value="bt211">Source, MSVC build (NO 3rd party reader support (e.g. vendors, mz5))</option>
-                                    <option value="proteo" data-value="bt212">Source, GNU Autotools build (NO 3rd party reader support (e.g. vendors, mz5))</option>
-                                    <option value="proteo" data-value="ProteoWizard_Windows_X86_64_pwizBindingsCli_ExampleProject">Windows x86_64 pwiz_bindings_cli example project</option>
-                                
-                                    <option value="bumber" data-value="Bumbershoot_Windows_X86_64_i">IDPicker Windows x86 64-bit Installer</option>
-                                    <option value="bumber" data-value="ProteoWizard_Bumbershoot_Windows_X86_i">IDPicker Windows x86 Installer</option>
-                                    <option value="bumber" data-value="Bumbershoot_Windows_X86_64">Bumbershoot Win x86 64bit tar.bz2</option>
-                                    <option value="bumber" data-value="ProteoWizard_Bumbershoot_Windows_X86">Bumbershoot Win x86 tar.bz2</option>
-                                    <option value="bumber" data-value="ProteoWizard_Bumbershoot_Linux_X86_64">Bumbershoot Linux x86 64bit tar.bz2</option>
-                                </select>
-                            </div>
-                            <div class="form-check">
-                                <label class="form-check-label">
-                                    <input id="license-agreements" class="form-check-input" type="checkbox" value="">
-                                    I have read and accepted the <a href="licenses.html" onclick="return popup(this, 'License-Agreements')">license agreements</a>
-                                </label>
-                            </div>
-                            <p><span class="pwiz-orange">* </span><small>We will never email you except with major update announcements. This information is needed for supporting the project in funding applications.</small></p>
+                                        <option value="bumber" disabled="disabled">For End Users</option>
+                                        <option value="bumber" data-value="Bumbershoot_Windows_X86_64_installer">IDPicker Windows 64-bit Installer</option>
+                                        <option value="bumber" data-value="ProteoWizard_Bumbershoot_Windows_X86_installer">IDPicker Windows 32-bit Installer</option>
+                                        <option value="bumber" data-value="Bumbershoot_Windows_X86_64">Bumbershoot Windows 64-bit tar.bz2</option>
+                                        <option value="bumber" data-value="ProteoWizard_Bumbershoot_Windows_X86">Bumbershoot Windows 32-bit tar.bz2</option>
+                                        <option value="bumber" data-value="ProteoWizard_Bumbershoot_Linux_X86_64">Bumbershoot Linux 64-bit tar.bz2</option>
+
+                                        <option value="bumber" disabled="disabled"></option>
+                                        <option value="bumber" disabled="disabled">For Developers</option>
+                                        <option value="bumber" data-value="BumbershootSubsetSourceTarball">Source code with tests</option>
+                                        <option value="bumber" data-value="BumbershootSubsetSourceTarball_without_tests">Source code without tests</option>
+                                      
+                                    </select>
+                                </div>
+                                <!--<div class="form-group">
+                                    <label for="inputName">Name</label>
+                                    <input type="text" class="form-control" id="inputName" placeholder="John Appleseed">
+                                </div>-->
+                                <div class="form-group">
+                                    <label for="inputEmail">Email <span style="font-weight:normal;">(optional) <span class="pwiz-orange" title="This is only used to keep track of how many people are using the project (helpful for funding applications)."><sup>?</sup></span></span></label>
+                                    <input type="text" class="form-control" id="inputEmail" placeholder="john.appleseed@gmail.com">
+                                </div>
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input id="license-agreements" class="form-check-input" type="checkbox" value="">
+                                        I have read and accepted the <a href="licenses.html" onclick="return popup(this, 'License-Agreements')">license agreements</a>
+                                    </label>
+                                </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <p>Please cite us in your publications</p>
+                            <p>A cross-platform toolkit for mass spectrometry and proteomics. Chambers, M.C., MacLean, B., ... Mallick, P. Nature Biotechnology 30, 918-920 (2012). <a href="http://www.nature.com/nbt/journal/v30/n10/full/nbt.2377.html"><b>Article&nbsp;&rarr;</b></a></p>
+                            <p>If you would like to support the efforts of ProteoWizard, donations are happily accepted. Thank you for your support!</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
                             <button id="download-btn" type="submit" class="btn btn-default btn-lg center-block">Download</button>
-                        </form>
+                        </div>
+                        <div class="col-sm-6">
+                            <a href="http://giving.stanford.edu/goto/mallickgift" target="_blank" class="btn btn-default btn-lg center-block">Donate</a>
+                        </div>
                     </div>
-                    <div class="col-sm-6">
-                        <p>Please cite us in your publications</p>
-                        <p>A cross-platform toolkit for mass spectrometry and proteomics. Chambers, M.C., MacLean, B., ... Mallick, P. Nature Biotechnology 30, 918-920 (2012). <a href="http://www.nature.com/nbt/journal/v30/n10/full/nbt.2377.html"><b>Article&nbsp;&rarr;</b></a></p>
-                        <p>If you would like to support the efforts of ProteoWizard, donations are happily accepted. Thank you so much for your support!</p>
-                        <a href="http://giving.stanford.edu/goto/mallickgift" target="_blank" class="btn btn-default btn-lg center-block">Donate</a>
-                    </div>
-                </div>
+                </form>
 
                 <h2>Installation</h2>
                 <ul class="list-unstyled">
                     <li>
-                        <span class="underline"><b>Windows Users</b></span>: You must have the following software installed to use ProteoWizard - <a href="http://www.microsoft.com/downloads/details.aspx?familyid=A5C84275-3B97-4AB7-A40D-3802B2AF5FC2&displaylang=en">MSVC 2008 SP1 (x86)</a>, <a href="http://www.microsoft.com/downloads/details.aspx?FamilyID=ab99342f-5d1a-413d-8319-81da479ab0d7&displaylang=en">.NET Framework 3.5 SP1</a> and <a href="http://www.microsoft.com/download/en/details.aspx?id=17851">4.0</a> - note that both versions are currently required in order to get vendor support. You might also need <a href="https://www.microsoft.com/de-de/download/confirmation.aspx?id=40784">this</a>.
+                        <span class="underline"><b>Windows Users</b></span>: If you use the installer, then the only requirement is having <a href="http://www.microsoft.com/download/en/details.aspx?id=17851">Microsoft .NET Framework 4.0</a> or higher. To use the binary tarball distribution however, you must also have Visual C++ redistributables (for either x86 or x64 depending on which tarball you download) for these VC versions: 2008, 2010, 2012, 2013, 2015, 2017. <a href="https://support.microsoft.com/en-us/help/2977003/the-latest-supported-visual-c-downloads">This page</a> links to the most recent redistributable for each VC version (NB: only get the redistributables, not the service packs). These are required because different vendor DLLs depend on different versions of VC.
                     </li>
-                    <li>
+                    <!--<li>
                         <span class="underline"><b>Mac Users</b></span>: You will need to unzip the ProteoWizard package, which will show up on your computer as a folder labeled pwiz and should end with .tar.bz2. In order to obtain the package, you will need to use either Stuffit-expander or Archive Utility (typically located in the Applications folder of your computer) to save and move the pwiz folder to your computer.
-                    </li>
+                    </li>-->
                     <li>
                         <span class="underline"><b>Linux Users</b></span>: Navigate to the download directory. Once there, use 'tar xjvf [archive name].tar.bz2' on the archive and move the pwiz directory into a directory of your choice. PRO-TIP: For convenience, adjust your "PATH" environment variable to include your ProteoWizard tools directory, so that the command line tools may be run from any directory.
                     </li>
                 </ul>
 
                 <h2>Versions</h2>
-                <p>We are formally at version 3. Older versions are archived on <a href="http://teamcity.labkey.org:8080/project.html?projectId=project4">TeamCity</a>.</p>
-                <p>There are several flavors of ProteoWizard depending upon your intended use. If you are primarily interested in using the tools, the binary distributions for your platform are most likely what you want. If you are interested in using ProteoWizard as part of a software project you are developing, you should get the source distribution, or download from our <a href="https://sourceforge.net/p/proteowizard/code/">subversion repository</a> directly. Other packages are also on <a href="http://teamcity.labkey.org:8080/project.html?projectId=project4">Teamcity</a>.</p>
-                <p>Developers interested in building ProteoWizard libraries for use in their own projects will note that there are a few choices for source distributions. Officially, the ProteoWizard libraries and tools are built using the <a href="http://www.boost.org/boost-build2/doc/html/bbv2/jam.html">bjam</a> build system, but we also provide alternate semi-official build files for MSVC and for GNU/Autotools (the familiar old "configure ; make ; make install"). Note that these alternate build files do not support vendor DLLs: maintaining that capability is complex and thus limited to the officially supported bjam build. You can read more about it <a href="https://sourceforge.net/p/proteowizard/code/HEAD/tree/trunk/pwiz/scripts/autotools/FAQ">here</a>.</p>
+                <p>We are formally at version 3. Older versions are archived on <a href="http://teamcity.labkey.org/project.html?projectId=project4">TeamCity</a>.</p>
+                <p>There are several flavors of ProteoWizard depending upon your intended use. If you are primarily interested in using the tools, the binary distributions for your platform are most likely what you want. If you are interested in using ProteoWizard as part of a software project you are developing, you should get the source distribution, or check out the code from our <a href="https:/github.com/ProteoWizard/pwiz">GitHub repository</a> directly. Other packages are also on <a href="http://teamcity.labkey.org/project.html?projectId=project4">Teamcity</a>.</p>
+                <p>Developers interested in building ProteoWizard libraries for use in their own projects will note that there are a few choices for source distributions. Officially, the ProteoWizard libraries and tools are built using the <a href="http://www.boost.org/boost-build2/doc/html/bbv2/jam.html">bjam</a> build system, but we also provide alternate semi-official build files for MSVC and for GNU/Autotools (the familiar old "configure ; make ; make install"). Note that these alternate build files do not support vendor DLLs: maintaining that capability is complex and thus limited to the officially supported bjam build. You can read more about it <a href="https://raw.githubusercontent.com/ProteoWizard/pwiz/981c7c70bfed46a145931dbea4da9e2edde72cf5/scripts/autotools/FAQ">here</a>.</p>
             </div>
         </div>
     </section>
@@ -187,8 +198,8 @@
                 <div class="col-xs-8 col-xs-offset-2 col-sm-10 col-sm-offset-1">
                     <div class="row">
                         <div class="col-sm-4">
-                            <h3>Careers</h3>
-                            <p>The ProteoWizard team is always looking to expand its volunteer developer base! To contribute, please email <a href="mailto:parag@proteowizard.org" target="_top"><b>parag@proteowizard.org</b></a></p>
+                            <h3>Contribute</h3>
+                            <p>Pull requests to our <a href="https:/github.com/ProteoWizard/pwiz">GitHub repository</a> are always welcome! To get involved more formally, please email <a href="mailto:parag@proteowizard.org" target="_top"><b>parag@proteowizard.org</b></a></p>
                         </div>
                         <div class="col-sm-4">
                             <h3>Contact Us</h3>
@@ -207,8 +218,10 @@
 
     <!-- Banner -->
     <div id="sourceforge-banner">
-        <a href="http://sourceforge.net/projects/proteowizard">
-            <img src="http://sflogo.sourceforge.net/sflogo.php?group_id=216483&type=11" width="120" height="30" border="0" alt="Get ProteoWizard at SourceForge.net. Fast, secure, and free open source software downloads" />
+        <a href="http://sourceforge.net"><img src="http://sflogo.sourceforge.net/sflogo.php?group_id=216483&type=11" width="120" height="30" border="0" alt="Website hosted by SourceForge.net. Fast, secure and Free Open Source software downloads" /></a>
+        <a href="https:/github.com/ProteoWizard/pwiz">
+            <svg height="28" viewBox="0 0 10 16" version="1.1" width="40" aria-hidden="true" style="vertical-align: middle;"><path fill-rule="evenodd" fill="white" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"></path></svg>
+            <svg height="30" viewBox="25 0 1 15" version="1.1" width="107" aria-hidden="true" style="vertical-align: middle;"><path fill-rule="evenodd" fill="white" d="M18.53 12.03h-.02c.009 0 .015.01.024.011h.006l-.01-.01zm.004.011c-.093.001-.327.05-.574.05-.78 0-1.05-.36-1.05-.83V8.13h1.59c.09 0 .16-.08.16-.19v-1.7c0-.09-.08-.17-.16-.17h-1.59V3.96c0-.08-.05-.13-.14-.13h-2.16c-.09 0-.14.05-.14.13v2.17s-1.09.27-1.16.28c-.08.02-.13.09-.13.17v1.36c0 .11.08.19.17.19h1.11v3.28c0 2.44 1.7 2.69 2.86 2.69.53 0 1.17-.17 1.27-.22.06-.02.09-.09.09-.16v-1.5a.177.177 0 0 0-.146-.18zm23.696-2.2c0-1.81-.73-2.05-1.5-1.97-.6.04-1.08.34-1.08.34v3.52s.49.34 1.22.36c1.03.03 1.36-.34 1.36-2.25zm2.43-.16c0 3.43-1.11 4.41-3.05 4.41-1.64 0-2.52-.83-2.52-.83s-.04.46-.09.52c-.03.06-.08.08-.14.08h-1.48c-.1 0-.19-.08-.19-.17l.02-11.11c0-.09.08-.17.17-.17h2.13c.09 0 .17.08.17.17v3.77s.82-.53 2.02-.53l-.01-.02c1.2 0 2.97.45 2.97 3.88zm-8.72-3.61H33.84c-.11 0-.17.08-.17.19v5.44s-.55.39-1.3.39-.97-.34-.97-1.09V6.25c0-.09-.08-.17-.17-.17h-2.14c-.09 0-.17.08-.17.17v5.11c0 2.2 1.23 2.75 2.92 2.75 1.39 0 2.52-.77 2.52-.77s.05.39.08.45c.02.05.09.09.16.09h1.34c.11 0 .17-.08.17-.17l.02-7.47c0-.09-.08-.17-.19-.17zm-23.7-.01h-2.13c-.09 0-.17.09-.17.2v7.34c0 .2.13.27.3.27h1.92c.2 0 .25-.09.25-.27V6.23c0-.09-.08-.17-.17-.17zm-1.05-3.38c-.77 0-1.38.61-1.38 1.38 0 .77.61 1.38 1.38 1.38.75 0 1.36-.61 1.36-1.38 0-.77-.61-1.38-1.36-1.38zm16.49-.25h-2.11c-.09 0-.17.08-.17.17v4.09h-3.31V2.6c0-.09-.08-.17-.17-.17h-2.13c-.09 0-.17.08-.17.17v11.11c0 .09.09.17.17.17h2.13c.09 0 .17-.08.17-.17V8.96h3.31l-.02 4.75c0 .09.08.17.17.17h2.13c.09 0 .17-.08.17-.17V2.6c0-.09-.08-.17-.17-.17zM8.81 7.35v5.74c0 .04-.01.11-.06.13 0 0-1.25.89-3.31.89-2.49 0-5.44-.78-5.44-5.92S2.58 1.99 5.1 2c2.18 0 3.06.49 3.2.58.04.05.06.09.06.14L7.94 4.5c0 .09-.09.2-.2.17-.36-.11-.9-.33-2.17-.33-1.47 0-3.05.42-3.05 3.73s1.5 3.7 2.58 3.7c.92 0 1.25-.11 1.25-.11v-2.3H4.88c-.11 0-.19-.08-.19-.17V7.35c0-.09.08-.17.19-.17h3.74c.11 0 .19.08.19.17z"></path></svg>
         </a>
     </div>
 
