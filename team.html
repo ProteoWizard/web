@@ -1,0 +1,196 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Michael Doshi">
+
+    <title>ProteoWizard: Team</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+
+    <!-- Theme CSS -->
+    <link href="css/main.css" rel="stylesheet">
+    <link href="css/template.css" rel="stylesheet">
+
+    <!-- Google Analytics -->
+    <script async src="//www.google-analytics.com/analytics.js"></script>
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){ (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o), m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-54926454-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
+                    Menu <i class="fa fa-bars"></i>
+                </button>
+                <a href="index.html" class="navbar-left page-scroll">
+                    <img src="img/proteowizard-logo.jpg">
+                </a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="projects.html">Projects</a>
+                    </li>
+                    <li>
+                        <a href="download.html">Download</a>
+                    </li>
+                    <li>
+                        <a href="publications.html">Publications</a>
+                    </li>
+                    <li>
+                        <a href="team.html">Team</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-toggle" data-toggle="dropdown">Documentation<span class="caret"></span></button></a>
+                        <ul class="dropdown-menu dropdown-menu-custom">
+                            <li><a href="doc_users.html">Users</a></li>
+                            <li><a href="doc_developers.html">Developers</a></li>
+                            <!-- TODO: Add Tutorials page -->
+                            <!--<li><a href="tutorials.html">Tutorials</a></li>-->
+                            <li><a href="faq.html">FAQ</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="support.html">Support</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <!-- Info Section -->
+    <section id="info" class="container content-section">
+        <div class="row">
+            <div class="col-xs-10 col-xs-offset-1">
+                <h1>Team - <span style="vertical-align: middle; font-size: 20pt; opacity: 0.75">none of us is as smart as all of us</span></h1>
+
+                <p>Several hundred labs around the world are using ProteoWizard within their development processes and computational workflows. We'd like to thank the many users who have contributed feedback to the project. We also thank the TPP team for their ongoing support.</p>
+
+                <h2>People</h2>
+                <table>
+                    <tr>
+                        <td><img src="img/Amodei.jpg"></td>
+                        <td><b>Dario Amodei | Mallick Lab</b><br>Dario contributed to benchmarking, and now is doing a lot of work with Skyline's DIA implementation.</td>
+                    </tr>
+                    <tr>
+                        <td><img src="img/Burke.jpg"></td>
+                        <td><b><span class="orange">Robert Burke</span> | <span class="orange">Mallick Lab, USC CAMM</span></b><br>Rob works on mspicture, the ProteoWizard pseudo-2D gel image creation tool. In addition, he has been working on our mzIdentML implementation.</td>
+                    </tr>
+                    <tr>
+                        <td><img src="img/Chambers.jpg"></td>
+                        <td><b><span class="orange">Matt Chambers</span> | <span class="orange">Tabb Lab, Vanderbilt</span></b><br>Matt has been driving the development of a lot of the core of ProteoWizard and Bumbershoot. Initially in the Tabb Lab, he most recently has been working with Bing Zhang.</td>
+                    </tr>
+                    <tr>
+                        <td><img src="img/Doshi.png"></td>
+                        <td><b><span class="orange">Michael Doshi</span> | <span class="orange">Stanford University</span></b><br>Michael is a senior at Stanford studying computer science and is the web designer.</td>
+                    </tr>
+                    <tr>
+                        <td><img src="img/Egertson.jpg"></td>
+                        <td><b><span class="orange">Jarrett Egertson</span> | <span class="orange">MacCoss Lab, Department of Genome Sciences, University of Washington</span></b><br>Parag hooked me on proteomics back in 2006 and it's been a great ride ever since. I work on the development of instrumentation, acquisition methods, and analytical tools for targeted data independent acquisition (DIA) approaches. I have developed algorithms for handling multiplexed (MSX) DIA data that are currently implemented in Skyline and will eventually be implemented directly into the Proteowizard data-access layer.</td>
+                    </tr>
+                    <tr>
+                        <td><img src="img/Hoff.jpg"></td>
+                        <td><b><span class="orange">Kate Hoff</span> | <span class="orange">Mallick Lab, USC CAMM</span></b><br>Kate was previously a bioinformatics analyst in Mallick lab. Now, she's the Department Chair of Mathematics Northfield Mt. Hermon.</td>
+                    </tr>
+                    <tr>
+                        <td><img src="img/Kessner.jpg"></td>
+                        <td><b><span class="orange">Darren Kessner</span> | <span class="orange">Stanford University & USC CAMM</span></b><br>Darren is responsible for the design of ProteoWizard, and the initial implementation of the libraries and tools. Previously a software developer in Mallick lab, Darren completed his Ph.D in genetics and is now teaching computer science at Marlborough School.</td>
+                    </tr>
+                    <tr>
+                        <td><img src="img/MacLean.png"></td>
+                        <td><b><span class="orange">Brendan MacLean</span> | <span class="orange">MacCoss Lab, University of Washington</span></b><br>Brendan works in the MacCoss Lab at the University of Washington, and has been developing <a class="orange" href=" http://proteome.gs.washington.edu/software/skyline">Skyline</a>, a Windows client application for building SRM/MRM methods and analyzing the resulting mass spectrometer data.</td>
+                    </tr>
+                    <tr>
+                        <td><img src="img/Mallick.jpg"></td>
+                        <td><b><span class="orange">Parag Mallick</span> | <span class="orange">Stanford University, USC CAMM</span></b><br>Parag is the PI of the ProteoWizard project and President of the ProteoWizard Software Foundation.</td>
+                    </tr>
+                    <tr>
+                        <td><img src="img/Pratt.jpg"></td>
+                        <td><b><span class="orange">Brian Pratt</span> | <span class="orange">Insilicos</span></b><br>Brian is responsible for integration of ProteoWizard into the Trans-Proteomic Pipeline.</td>
+                    </tr>
+                    <tr>
+                        <td><img src="img/wizard-hat.jpg"></td>
+                        <td><b><span class="orange">Natalie Tasman</span> | <span class="orange">Insilicos</span></b><br>Natalie provided critical early feedback on integrating ProteoWizard with the Trans-Proteomic Pipeline, and has contributed vendor data reading code to ProteoWizard.</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container text-center">
+            <div class="row">
+                <div class="col-xs-8 col-xs-offset-2 col-sm-10 col-sm-offset-1">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <h3>Contribute</h3>
+                            <p>Pull requests to our <a href="https:/github.com/ProteoWizard/pwiz">GitHub repository</a> are always welcome! To get involved more formally, please email <a href="mailto:parag@proteowizard.org" target="_top"><b>parag@proteowizard.org</b></a></p>
+                        </div>
+                        <div class="col-sm-4">
+                            <h3>Contact Us</h3>
+                            <p>3155 Porter Drive<br>Palo Alto, CA 94304</p>
+                        </div>
+                        <div class="col-sm-4">
+                            <h3>Donate</h3>
+                            <p>If you would like to support the efforts of ProteoWizard, you can donate <a href="http://giving.stanford.edu/goto/mallickgift" target="_blank"><b>HERE</b></a>. Thank you so much for your support!</p>
+                        </div>
+                    </div>
+                </div> 
+            </div>
+            <p>Copyright &copy;2016 ProteoWizard. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Banner -->
+    <div id="sourceforge-banner">
+        <a href="http://sourceforge.net"><img src="http://sflogo.sourceforge.net/sflogo.php?group_id=216483&type=11" width="120" height="30" border="0" alt="Website hosted by SourceForge.net. Fast, secure and Free Open Source software downloads" /></a>
+        <a href="https:/github.com/ProteoWizard/pwiz">
+            <svg height="28" viewBox="0 0 10 16" version="1.1" width="40" aria-hidden="true" style="vertical-align: middle;"><path fill-rule="evenodd" fill="white" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"></path></svg>
+            <svg height="30" viewBox="25 0 1 15" version="1.1" width="107" aria-hidden="true" style="vertical-align: middle;"><path fill-rule="evenodd" fill="white" d="M18.53 12.03h-.02c.009 0 .015.01.024.011h.006l-.01-.01zm.004.011c-.093.001-.327.05-.574.05-.78 0-1.05-.36-1.05-.83V8.13h1.59c.09 0 .16-.08.16-.19v-1.7c0-.09-.08-.17-.16-.17h-1.59V3.96c0-.08-.05-.13-.14-.13h-2.16c-.09 0-.14.05-.14.13v2.17s-1.09.27-1.16.28c-.08.02-.13.09-.13.17v1.36c0 .11.08.19.17.19h1.11v3.28c0 2.44 1.7 2.69 2.86 2.69.53 0 1.17-.17 1.27-.22.06-.02.09-.09.09-.16v-1.5a.177.177 0 0 0-.146-.18zm23.696-2.2c0-1.81-.73-2.05-1.5-1.97-.6.04-1.08.34-1.08.34v3.52s.49.34 1.22.36c1.03.03 1.36-.34 1.36-2.25zm2.43-.16c0 3.43-1.11 4.41-3.05 4.41-1.64 0-2.52-.83-2.52-.83s-.04.46-.09.52c-.03.06-.08.08-.14.08h-1.48c-.1 0-.19-.08-.19-.17l.02-11.11c0-.09.08-.17.17-.17h2.13c.09 0 .17.08.17.17v3.77s.82-.53 2.02-.53l-.01-.02c1.2 0 2.97.45 2.97 3.88zm-8.72-3.61H33.84c-.11 0-.17.08-.17.19v5.44s-.55.39-1.3.39-.97-.34-.97-1.09V6.25c0-.09-.08-.17-.17-.17h-2.14c-.09 0-.17.08-.17.17v5.11c0 2.2 1.23 2.75 2.92 2.75 1.39 0 2.52-.77 2.52-.77s.05.39.08.45c.02.05.09.09.16.09h1.34c.11 0 .17-.08.17-.17l.02-7.47c0-.09-.08-.17-.19-.17zm-23.7-.01h-2.13c-.09 0-.17.09-.17.2v7.34c0 .2.13.27.3.27h1.92c.2 0 .25-.09.25-.27V6.23c0-.09-.08-.17-.17-.17zm-1.05-3.38c-.77 0-1.38.61-1.38 1.38 0 .77.61 1.38 1.38 1.38.75 0 1.36-.61 1.36-1.38 0-.77-.61-1.38-1.36-1.38zm16.49-.25h-2.11c-.09 0-.17.08-.17.17v4.09h-3.31V2.6c0-.09-.08-.17-.17-.17h-2.13c-.09 0-.17.08-.17.17v11.11c0 .09.09.17.17.17h2.13c.09 0 .17-.08.17-.17V8.96h3.31l-.02 4.75c0 .09.08.17.17.17h2.13c.09 0 .17-.08.17-.17V2.6c0-.09-.08-.17-.17-.17zM8.81 7.35v5.74c0 .04-.01.11-.06.13 0 0-1.25.89-3.31.89-2.49 0-5.44-.78-5.44-5.92S2.58 1.99 5.1 2c2.18 0 3.06.49 3.2.58.04.05.06.09.06.14L7.94 4.5c0 .09-.09.2-.2.17-.36-.11-.9-.33-2.17-.33-1.47 0-3.05.42-3.05 3.73s1.5 3.7 2.58 3.7c.92 0 1.25-.11 1.25-.11v-2.3H4.88c-.11 0-.19-.08-.19-.17V7.35c0-.09.08-.17.19-.17h3.74c.11 0 .19.08.19.17z"></path></svg>
+        </a>
+    </div>
+
+    <!-- jQuery -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+
+</body>
+
+</html>
