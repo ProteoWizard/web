@@ -73,11 +73,15 @@ function switchLicense(className) {
 }
 
 // Software selector
-$('#softwareType').change(function() {
-    if ($(this).data('options') == undefined) 
+$('#softwareType').change(function () {
+    if ($(this).data('options') == undefined)
         $(this).data('options', $('#downloadType option').clone());
     var id = $(this).val();
     var options = $(this).data('options').filter('[value=' + id + ']');
+    if (id == "sky") {
+        window.open("https://skyline.ms/project/home/software/Skyline/begin.view");
+        options = "<option>Visit Skyline website</option>";
+    }
     $('#downloadType').html(options);
 });
 $('#softwareType').change();
