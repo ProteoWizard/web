@@ -1,0 +1,9 @@
+<!-- HTML meta refresh URL redirection -->
+<html>
+<head>
+   <meta http-equiv="refresh" content="0; url=http://proteowizard.sourceforge.net/download.html">
+</head>
+<body>
+   <p>The page has moved to: <a href="http://proteowizard.sourceforge.net/download.html">this page</a></p>
+</body>
+</html>
