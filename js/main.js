@@ -120,6 +120,9 @@ function download() {
     } else if (downloadType.match(/_without_tests$/)) {
         matchPattern = /(\/guestAuth\/[\w\/\-.:]+\/content\/bumbershoot-src-without-t-[\w\/\-.:]+.tar.bz2)/g;
         downloadTypeString = downloadTypeString.replace("_without_tests", "").trim();
+    } else if (downloadType.match(/ProteoWizardAndSkylineDockerContainerWineX8664/)) {
+        window.location = "https://hub.docker.com/r/chambm/pwiz-skyline-i-agree-to-the-vendor-licenses";
+        return;
     }
 
     var remoteURL = "http://teamcity.labkey.org/guestAuth/app/rest/builds/status:SUCCESS,buildType:id:" + downloadTypeString + "/artifacts/children";
