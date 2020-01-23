@@ -125,7 +125,7 @@ function download() {
         return;
     }
 
-    var remoteURL = "http://teamcity.labkey.org/guestAuth/app/rest/builds/status:SUCCESS,buildType:id:" + downloadTypeString + "/artifacts/children";
+    var remoteURL = "https://teamcity.labkey.org/guestAuth/app/rest/builds/status:SUCCESS,buildType:id:" + downloadTypeString + "/artifacts/children";
     //alert("Remote URL: " + remoteURL);
 
     var teamCityInfoString = "";
@@ -138,10 +138,10 @@ function download() {
             var downloadURL = matches[0];
             if(email) {
                 writeEmailToFile(email, function() {
-                    window.location = "http://teamcity.labkey.org" + downloadURL;
+                    window.location = "https://teamcity.labkey.org" + downloadURL;
                 });
             } else {
-                window.location = "http://teamcity.labkey.org" + downloadURL;
+                window.location = "https://teamcity.labkey.org" + downloadURL;
             }
         };
         request.send();
