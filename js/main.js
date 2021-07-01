@@ -134,14 +134,19 @@ function download() {
         request.onload = function(){
             teamCityInfoString = request.responseText;
 
+            // Change TeamCity artifact string to point directly at S3, e.g.
+            // From /guestAuth/app/rest/builds/id:1461109/artifacts/content/pwiz-setup-3.0.21180.d45de83ec-x86_64.msi
+            // To https://proteowizard-teamcity-artifacts.s3.us-west-2.amazonaws.com/ProteoWizard/bt83/1461109/pwiz-setup-3.0.21180.d45de83ec-x86_64.msi
             var matches = teamCityInfoString.match(matchPattern);
-            var downloadURL = matches[0];
+            var teamCityDownloadURL = matches[0];
+            var hrefMatches = teamCityDownloadURL.match(/builds\/id:(\d+)\/artifacts\/content\/(.*)/);
+            var downloadURL = `https://proteowizard-teamcity-artifacts.s3.us-west-2.amazonaws.com/ProteoWizard/${downloadTypeString}/${hrefMatches[1]}/${hrefMatches[2]}`;
             if(email) {
                 writeEmailToFile(email, function() {
-                    window.location = "https://teamcity.labkey.org" + downloadURL;
+                    window.location = downloadURL;
                 });
             } else {
-                window.location = "https://teamcity.labkey.org" + downloadURL;
+                window.location = downloadURL;
             }
         };
         request.send();
