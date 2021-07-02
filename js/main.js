@@ -141,20 +141,32 @@ function download() {
             var teamCityDownloadURL = matches[0];
             var hrefMatches = teamCityDownloadURL.match(/builds\/id:(\d+)\/artifacts\/content\/(.*)/);
             var downloadURL = `https://proteowizard-teamcity-artifacts.s3.us-west-2.amazonaws.com/ProteoWizard/${downloadTypeString}/${hrefMatches[1]}/${hrefMatches[2]}`;
+          
+            var alreadyTriggered = false;
+            var downloadArtifact = function()
+            {
+                if (alreadyTriggered) return;
+                alreadyTriggered = true;
 
-            // Send Google Analytics hit for downloaded file
+                if(email) {
+                    writeEmailToFile(email, function() {
+                        window.location = downloadURL;
+                    });
+                } else {
+                    window.location = downloadURL;
+                }
+            };
+
+            // Send Google Analytics hit for downloaded file, then trigger the artifact download;
+            // always trigger the download after a timeout if the analytics hit fails for some reason
             (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){ (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o), m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})
               (window,document,'script','//www.google-analytics.com/analytics.js','ga2');
             ga2("create", "UA-54926454-1", "auto");
-            ga2("send", {"hitType": "pageview", "page": "/download/" + hrefMatches[2]});
-
-            if(email) {
-                writeEmailToFile(email, function() {
-                    window.location = downloadURL;
-                });
-            } else {
-                window.location = downloadURL;
-            }
+            ga2("send", {"hitType": "pageview",
+                         "page": "/download/" + hrefMatches[2],
+                         "hitCallback": downloadArtifact
+            });
+            setTimeout(downloadArtifact, 5000);
         };
         request.send();
     }
