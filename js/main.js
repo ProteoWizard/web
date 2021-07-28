@@ -125,7 +125,7 @@ function download() {
         return;
     }
 
-    var remoteURL = "/releases/" + downloadTypeString + ".xml";
+    var remoteURL = "https://teamcity.labkey.org/guestAuth/app/rest/builds/status:SUCCESS,buildType:id:" + downloadTypeString + "/artifacts/children";
     //alert("Remote URL: " + remoteURL);
 
     var teamCityInfoString = "";
