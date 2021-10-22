@@ -141,7 +141,13 @@ function download() {
             var teamCityDownloadURL = matches[0];
             var hrefMatches = teamCityDownloadURL.match(/builds\/id:(\d+)\/artifacts\/content\/(.*)/);
             var downloadURL = `https://proteowizard-teamcity-artifacts.s3.us-west-2.amazonaws.com/ProteoWizard/${downloadTypeString}/${hrefMatches[1]}/${hrefMatches[2]}`;
-          
+            
+            // Bumbershoot is now a subproject so its artifact paths changed
+            if (document.getElementById('softwareType').selectedIndex == 1)
+            {
+                downloadURL = downloadURL.replace("/ProteoWizard/", "/ProteoWizard_Bumbershoot/");
+            }
+            
             var alreadyTriggered = false;
             var downloadArtifact = function()
             {
