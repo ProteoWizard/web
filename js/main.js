@@ -140,7 +140,7 @@ function download() {
             var matches = teamCityInfoString.match(matchPattern);
             var teamCityDownloadURL = matches[0];
             var hrefMatches = teamCityDownloadURL.match(/builds\/id:(\d+)\/artifacts\/content\/(.*)/);
-            var downloadURL = `https://proteowizard-teamcity-artifacts.s3.us-west-2.amazonaws.com/ProteoWizard/${downloadTypeString}/${hrefMatches[1]}/${hrefMatches[2]}`;
+            var downloadURL = `https://mc-tca-01.s3.us-west-2.amazonaws.com/ProteoWizard/${downloadTypeString}/${hrefMatches[1]}/${hrefMatches[2]}`;
             
             // Bumbershoot is now a subproject so its artifact paths changed
             if (document.getElementById('softwareType').selectedIndex == 1)
