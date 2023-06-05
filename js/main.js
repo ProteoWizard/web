@@ -61,7 +61,7 @@ function popup(link, windowName) {
 }
 
 // Toggles currently shown license agreement
-function switchLicense(className) {
+function switchLicense(className, eulaPath) {
     if ($('div.' + className).hasClass('hidden')) {
         var oldHidden = $('div.' + className);
         var oldShown = $('.shown');
@@ -69,6 +69,16 @@ function switchLicense(className) {
         oldHidden.addClass('shown');
         oldShown.removeClass('shown');
         oldShown.addClass('hidden');
+        
+        if (eulaPath) {
+            fetch('https://api.github.com/repos/ProteoWizard/pwiz/contents/pwiz_aux/msrc/utility/vendor_api/' + eulaPath)
+                .then(function(response) {
+                    return response.json();
+                }).then(function(data) {
+                    var iframe = document.getElementById(className + '-iframe');
+                    iframe.src = 'data:text/text;base64,' + encodeURIComponent(data['content']);
+                });
+        }
     }
 }
 
