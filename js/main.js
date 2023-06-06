@@ -56,7 +56,7 @@ function popup(link, windowName) {
         href = link;
     else 
         href = link.href; 
-    window.open(href, windowName, 'width=600,height=400,scrollbars=yes'); 
+    window.open(href, windowName, 'width=800,height=600,scrollbars=yes'); 
     return false; 
 }
 
