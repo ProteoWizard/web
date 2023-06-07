@@ -395,6 +395,7 @@ body {
   border: none;
   margin: 0;
   padding: 55px 0 0 0;
+  background: white; /* override body background so it doesn't make black on black for plain txt license sources */
 }
 .row-container {
   display: flex;
