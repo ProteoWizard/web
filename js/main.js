@@ -77,7 +77,7 @@ function switchLicense(className, eulaPath) {
                 }).then(function(data) {
                     var iframe = document.getElementById(className + '-iframe');
                     iframe.contentDocument.head.innerHTML = '<link href="css/main.css" rel="stylesheet">\n<link href="css/template.css" rel="stylesheet">';
-                    iframe.contentDocument.body.innerText = atob(data['content']);
+                    iframe.contentDocument.body.innerText = decodeURIComponent(escape(atob(data['content'])));
                 });
         }
     }
