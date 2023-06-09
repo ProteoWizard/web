@@ -56,12 +56,12 @@ function popup(link, windowName) {
         href = link;
     else 
         href = link.href; 
-    window.open(href, windowName, 'width=600,height=400,scrollbars=yes'); 
+    window.open(href, windowName, 'width=800,height=600,scrollbars=yes'); 
     return false; 
 }
 
 // Toggles currently shown license agreement
-function switchLicense(className) {
+function switchLicense(className, eulaPath) {
     if ($('div.' + className).hasClass('hidden')) {
         var oldHidden = $('div.' + className);
         var oldShown = $('.shown');
@@ -69,6 +69,17 @@ function switchLicense(className) {
         oldHidden.addClass('shown');
         oldShown.removeClass('shown');
         oldShown.addClass('hidden');
+        
+        if (eulaPath) {
+            fetch('https://api.github.com/repos/ProteoWizard/pwiz/contents/pwiz_aux/msrc/utility/vendor_api/' + eulaPath)
+                .then(function(response) {
+                    return response.json();
+                }).then(function(data) {
+                    var iframe = document.getElementById(className + '-iframe');
+                    iframe.contentDocument.head.innerHTML = '<link href="css/main.css" rel="stylesheet">\n<link href="css/template.css" rel="stylesheet">';
+                    iframe.contentDocument.body.innerText = decodeURIComponent(escape(atob(data['content'])));
+                });
+        }
     }
 }
 
