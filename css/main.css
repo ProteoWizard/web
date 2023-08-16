@@ -412,3 +412,6 @@ body {
   text-wrap: balance;
   width: min(98%, 80em);
 }
+a.heading {
+  scroll-margin-top: 70px;
+}
