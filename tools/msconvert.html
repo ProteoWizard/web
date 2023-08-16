@@ -13,14 +13,14 @@
         gtag('config', 'UA-54926454-1');
     </script>
     <link rel="stylesheet" href="../css/main.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="../css/template.css" type="text/css" media="screen" />
     <script>
       fetch('https://api.github.com/repos/ProteoWizard/pwiz/contents/pwiz_tools/commandline/msconvert-help.txt')
                 .then(function(response) {
                     return response.json();
                 }).then(function(data) {
-                    var iframe = document.getElementById('help-iframe');
-                    iframe.contentDocument.head.innerHTML = '<link href="../css/main.css" rel="stylesheet">\n<link href="../css/template.css" rel="stylesheet">';
-                    iframe.contentDocument.body.innerText = decodeURIComponent(escape(atob(data['content'])));
+                    var helpdiv = document.getElementById('help-div');
+                    helpdiv.innerText = decodeURIComponent(escape(atob(data['content'])));
                 });
     </script>
 </head>
@@ -38,11 +38,9 @@
 
         </p>
     <p>
-    <br/>Running msconvert with no arguments produces this helpful output:<br/><br/>
-    <iframe id="help-iframe" class="license-iframe" src=""></iframe> 
+    Running msconvert with no arguments produces this helpful output:
     </p>
-
-    <hr/>
+    <pre class="console-help"><code id="help-div"></code></pre>
 </body>
 </html>
 
