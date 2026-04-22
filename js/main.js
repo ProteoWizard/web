@@ -120,6 +120,11 @@ function download() {
     var selectedData = selected.options[selected.selectedIndex];
     var downloadType = selectedData.getAttribute('data-value');
     var downloadTypeString = downloadType;
+    var allowedDownloadTypePattern = /^[A-Za-z0-9._-]+$/;
+    if (!downloadTypeString || !allowedDownloadTypePattern.test(downloadTypeString)) {
+        alert("Invalid download type selected.");
+        return;
+    }
     var matchPattern = /(\/guestAuth\/[\w\/\-.:]+\/content\/[\w\/\-.:]+.tar.bz2)/g;
 
     if (downloadType.match(/_installer$/)) {
@@ -149,8 +154,16 @@ function download() {
             // From /guestAuth/app/rest/builds/id:1461109/artifacts/content/pwiz-setup-3.0.21180.d45de83ec-x86_64.msi
             // To https://proteowizard-teamcity-artifacts.s3.us-west-2.amazonaws.com/ProteoWizard/bt83/1461109/pwiz-setup-3.0.21180.d45de83ec-x86_64.msi
             var matches = teamCityInfoString.match(matchPattern);
+            if (!matches || !matches.length) {
+                alert("Unable to determine download artifact.");
+                return;
+            }
             var teamCityDownloadURL = matches[0];
             var hrefMatches = teamCityDownloadURL.match(/builds\/id:(\d+)\/artifacts\/content\/(.*)/);
+            if (!hrefMatches || hrefMatches.length < 3) {
+                alert("Invalid download metadata.");
+                return;
+            }
             var downloadURL = `https://mc-tca-01.s3.us-west-2.amazonaws.com/ProteoWizard/${downloadTypeString}/${hrefMatches[1]}/${hrefMatches[2]}`;
             
             // Bumbershoot is now a subproject so its artifact paths changed
