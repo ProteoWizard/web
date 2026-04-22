@@ -24,8 +24,9 @@ function buildTOC(tagFilter, tocNode) {
     var olList = $("<ol id='toc'>");
     $("div:not([id=header]) " + tagFilter).each(function(){
         $(this).html("<a name='toc"+index+"'></a>"+$(this).html());
-        olList.append("<li><a href='#toc"+ index++ +"'> " +
-            $(this).text() + "</a></li>");
+        var currentIndex = index++;
+        var link = $("<a>").attr("href", "#toc" + currentIndex).text(" " + $(this).text());
+        olList.append($("<li>").append(link));
      });
      $("#"+tocNode).append(olList);
 }
