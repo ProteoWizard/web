@@ -111,21 +111,16 @@
                                     <label for="selectPlatform">Platform</label>
                                     <select id="downloadType" class="form-control" id="selectPlatform">
                                         <option value="proteo" disabled="disabled">For End Users</option>
-                                        <option value="proteo" data-value="bt83_installer" selected="selected">Windows 64-bit installer (able to convert vendor files except T2D)</option>
-                                        <option value="proteo" data-value="bt36_installer">Windows 32-bit installer (able to convert vendor files)</option>
+                                        <option value="proteo" data-value="bt83_setup" selected="selected">Windows 64-bit installer (able to convert vendor files; includes the .NET runtime)</option>
+                                        <option value="proteo" data-value="bt83_setup_noruntime">Windows 64-bit installer without the .NET runtime (requires the .NET 10 Desktop Runtime)</option>
+                                        <option value="proteo" data-value="bt83_setup_vendorsdks">Windows 64-bit offline installer (includes all vendor libraries, for computers without internet access)</option>
                                         <!--<option value="proteo" data-value="bt23">Macintosh (NOT able to convert vendor files)</option>-->
-                                        <option value="proteo" data-value="bt83">Windows 64-bit tar.bz2 (able to convert vendor files except T2D)</option>
-                                        <option value="proteo" data-value="bt36">Windows 32-bit tar.bz2 (able to convert vendor files)</option>
-                                        <option value="proteo" data-value="ProteoWizardAndSkylineDockerContainerWineX8664">Linux Wine/Docker 64-bit (able to convert vendor files except T2D/FID/YEP)</option>
-                                        <option value="proteo" data-value="bt17">Linux native 64-bit (NOT able to convert vendor files)</option>
+                                        <option value="proteo" data-value="ProteoWizardAndSkylineDockerContainerWineX8664">Linux Wine/Docker 64-bit (able to convert vendor files except FID/YEP)</option>
+                                        <option value="proteo" data-value="bt17_linux">Linux .NET 64-bit (able to convert Thermo, Bruker and Waters files, NOT other vendor files)</option>
 
                                         <option value="proteo" disabled="disabled"></option>
                                         <option value="proteo" disabled="disabled">For Developers</option>
-                                        <option value="proteo" data-value="bt81">Source, bjam build (includes vendor reader support)</option>
-                                        <option value="proteo" data-value="bt81_no_binary_msdata">Source, bjam build (NO 3rd party reader support (e.g. vendors, mz5))</option>
-                                        <!--<option value="proteo" data-value="bt211">Source, MSVC build (NO 3rd party reader support (e.g. vendors, mz5))</option>
-                                        <option value="proteo" data-value="bt212">Source, GNU Autotools build (NO 3rd party reader support (e.g. vendors, mz5))</option>-->
-                                        <option value="proteo" data-value="ProteoWizard_Windows_X86_64_pwizBindingsCli_ExampleProject">Windows x86_64 pwiz_bindings_cli example project</option>
+                                        <option value="proteo" data-value="pwiz_source">Source Code (GitHub repository)</option>
 
                                         <option value="bumber" disabled="disabled">For End Users</option>
                                         <option value="bumber" data-value="Bumbershoot_Windows_X86_64_installer">IDPicker Windows 64-bit Installer</option>
@@ -178,14 +173,14 @@
                         <span class="underline"><b>Mac Users</b></span>: You will need to unzip the ProteoWizard package, which will show up on your computer as a folder labeled pwiz and should end with .tar.bz2. In order to obtain the package, you will need to use either Stuffit-expander or Archive Utility (typically located in the Applications folder of your computer) to save and move the pwiz folder to your computer.
                     </li>-->
                     <li>
-                        <span class="underline"><b>Linux Users</b></span>: There are two options for using ProteoWizard on Linux: native executables or running the Windows executables via Wine/Docker. Only the Wine/Docker option allows converting vendor formats. For Docker instructions, see <a href="https://hub.docker.com/r/chambm/pwiz-skyline-i-agree-to-the-vendor-licenses">here</a>. For a native installation, download the native binary tarball, navigate to the download directory. Once there, use 'tar xjvf [archive name].tar.bz2' on the archive and move the pwiz directory into a directory of your choice. PRO-TIP: For convenience, adjust your "PATH" environment variable to include your ProteoWizard tools directory, so that the command line tools may be run from any directory.
+                        <span class="underline"><b>Linux Users</b></span>: There are two options for using ProteoWizard on Linux: the Linux .NET executables or running the Windows executables via Wine/Docker. The Linux .NET executables can convert Thermo, Bruker and Waters files; the other vendor formats need the Wine/Docker option. For Docker instructions, see <a href="https://hub.docker.com/r/chambm/pwiz-skyline-i-agree-to-the-vendor-licenses">here</a>. For the Linux .NET executables, download the Linux .NET tarball, navigate to the download directory. Once there, use 'tar xzvf [archive name].tar.gz' on the archive and move the extracted directory into a directory of your choice. The tarball includes the .NET runtime, so nothing else needs to be installed. PRO-TIP: For convenience, adjust your "PATH" environment variable to include your ProteoWizard tools directory, so that the command line tools may be run from any directory.
                     </li>
                 </ul>
 
                 <h2>Versions</h2>
-                <p>We are formally at version 3. Older versions are archived on <a href="http://teamcity.labkey.org/project.html?projectId=ProteoWizard">TeamCity</a>.</p>
-                <p>There are several flavors of ProteoWizard depending upon your intended use. If you are primarily interested in using the tools, the binary distributions for your platform are most likely what you want. If you are interested in using ProteoWizard as part of a software project you are developing, you should get the source distribution, or check out the code from our <a href="https://github.com/ProteoWizard/pwiz">GitHub repository</a> directly. Other packages are also on <a href="http://teamcity.labkey.org/project.html?projectId=ProteoWizard">Teamcity</a>.</p>
-                <p>Developers interested in building ProteoWizard libraries for use in their own projects will note that there are a few choices for source distributions. Officially, the ProteoWizard libraries and tools are built using the <a href="http://www.boost.org/boost-build2/doc/html/bbv2/jam.html">bjam</a> build system, but we also provide alternate semi-official build files for MSVC and for GNU/Autotools (the familiar old "configure ; make ; make install"). Note that these alternate build files do not support vendor DLLs: maintaining that capability is complex and thus limited to the officially supported bjam build. You can read more about it <a href="https://raw.githubusercontent.com/ProteoWizard/pwiz/981c7c70bfed46a145931dbea4da9e2edde72cf5/scripts/autotools/FAQ">here</a>.</p>
+                <p>We are formally at version 4. Older versions are archived on <a href="http://teamcity.labkey.org/project.html?projectId=ProteoWizard">TeamCity</a>.</p>
+                <p>There are several flavors of ProteoWizard depending upon your intended use. If you are primarily interested in using the tools, the binary distributions for your platform are most likely what you want. If you are interested in using ProteoWizard as part of a software project you are developing, check out the code from our <a href="https://github.com/ProteoWizard/pwiz">GitHub repository</a>. Other packages are also on <a href="http://teamcity.labkey.org/project.html?projectId=ProteoWizard">Teamcity</a>.</p>
+                <p>Developers interested in building the ProteoWizard libraries for use in their own projects can build the repository with the .NET SDK, using build.bat on Windows or build.sh on Linux; the <a href="https://github.com/ProteoWizard/pwiz#readme">README</a> describes the options.</p>
             </div>
         </div>
     </section>

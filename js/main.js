@@ -71,7 +71,7 @@ function switchLicense(className, eulaPath) {
         oldShown.addClass('hidden');
         
         if (eulaPath) {
-            fetch('https://api.github.com/repos/ProteoWizard/pwiz/contents/pwiz_aux/msrc/utility/vendor_api/' + eulaPath)
+            fetch('https://api.github.com/repos/ProteoWizard/pwiz/contents/pwiz/data/vendor_readers/' + eulaPath)
                 .then(function(response) {
                     return response.json();
                 }).then(function(data) {
@@ -125,20 +125,41 @@ function download() {
         alert("Invalid download type selected.");
         return;
     }
-    var matchPattern = /(\/guestAuth\/[\w\/\-.:]+\/content\/[\w\/\-.:]+.tar.bz2)/g;
-
-    if (downloadType.match(/_installer$/)) {
-        matchPattern = /(\/guestAuth\/[\w\/\-.:]+\/content\/[\w\/\-.:]+.msi)/g;
-        downloadTypeString = downloadTypeString.replace("_installer", "").trim();
-    } else if (downloadType.match(/_no_binary_msdata$/)) {
-        matchPattern = /(\/guestAuth\/[\w\/\-.:]+\/content\/pwiz-src-without-v-[\w\/\-.:]+.tar.bz2)/g;
-        downloadTypeString = downloadTypeString.replace("_no_binary_msdata", "").trim();
-    } else if (downloadType.match(/_without_tests$/)) {
-        matchPattern = /(\/guestAuth\/[\w\/\-.:]+\/content\/bumbershoot-src-without-t-[\w\/\-.:]+.tar.bz2)/g;
-        downloadTypeString = downloadTypeString.replace("_without_tests", "").trim();
-    } else if (downloadType.match(/ProteoWizardAndSkylineDockerContainerWineX8664/)) {
+    if (downloadType.match(/ProteoWizardAndSkylineDockerContainerWineX8664/)) {
         window.location = "https://hub.docker.com/r/chambm/pwiz-skyline-i-agree-to-the-vendor-licenses";
         return;
+    }
+    if (downloadType === "pwiz_source") {
+        window.location = "https://github.com/ProteoWizard/pwiz";
+        return;
+    }
+
+    // An option's data-value is a TeamCity build configuration id, optionally followed by a
+    // suffix that picks one artifact out of the several that configuration publishes. The
+    // ProteoWizard-*Setup-* patterns name the whole file prefix after "content/", because
+    // ProteoWizard-Setup- would otherwise also match inside ProteoWizard-NoNetRuntime-Setup-.
+    //
+    // Patterns are tried in order. The .NET options fall back to the C++ build's .msi and
+    // .tar.bz2, which is all the published artifact list holds until the .NET builds of
+    // bt83 and bt17 replace it.
+    var msiPattern = /(\/guestAuth\/[\w\/\-.:]+\/content\/[\w\/\-.:]+.msi)/g;
+    var tarBz2Pattern = /(\/guestAuth\/[\w\/\-.:]+\/content\/[\w\/\-.:]+.tar.bz2)/g;
+    var artifactTypes = [
+        { suffix: "_setup",             patterns: [/(\/guestAuth\/[\w\/\-.:]+\/content\/ProteoWizard-Setup-[\w\-.]+\.exe)/g, msiPattern] },
+        { suffix: "_setup_noruntime",   patterns: [/(\/guestAuth\/[\w\/\-.:]+\/content\/ProteoWizard-NoNetRuntime-Setup-[\w\-.]+\.exe)/g, msiPattern] },
+        { suffix: "_setup_vendorsdks",  patterns: [/(\/guestAuth\/[\w\/\-.:]+\/content\/ProteoWizard-WithVendorSdks-Setup-[\w\-.]+\.exe)/g, msiPattern] },
+        { suffix: "_linux",             patterns: [/(\/guestAuth\/[\w\/\-.:]+\/content\/ProteoWizard-linux-x64-[\w\-.]+\.tar\.gz)/g, tarBz2Pattern] },
+        { suffix: "_installer",         patterns: [msiPattern] },
+        { suffix: "_without_tests",     patterns: [/(\/guestAuth\/[\w\/\-.:]+\/content\/bumbershoot-src-without-t-[\w\/\-.:]+.tar.bz2)/g] }
+    ];
+    var matchPatterns = [tarBz2Pattern];
+    for (var i = 0; i < artifactTypes.length; i++) {
+        var suffix = artifactTypes[i].suffix;
+        if (downloadType.length > suffix.length && downloadType.slice(-suffix.length) === suffix) {
+            matchPatterns = artifactTypes[i].patterns;
+            downloadTypeString = downloadType.slice(0, -suffix.length);
+            break;
+        }
     }
 
     var remoteURL = "/releases/" + downloadTypeString + ".xml";
@@ -153,7 +174,10 @@ function download() {
             // Change TeamCity artifact string to point directly at S3, e.g.
             // From /guestAuth/app/rest/builds/id:1461109/artifacts/content/pwiz-setup-3.0.21180.d45de83ec-x86_64.msi
             // To https://proteowizard-teamcity-artifacts.s3.us-west-2.amazonaws.com/ProteoWizard/bt83/1461109/pwiz-setup-3.0.21180.d45de83ec-x86_64.msi
-            var matches = teamCityInfoString.match(matchPattern);
+            var matches = null;
+            for (var p = 0; p < matchPatterns.length && !(matches && matches.length); p++) {
+                matches = teamCityInfoString.match(matchPatterns[p]);
+            }
             if (!matches || !matches.length) {
                 alert("Unable to determine download artifact.");
                 return;
