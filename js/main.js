@@ -300,14 +300,19 @@ $(function() {
     });
     $(variantSelect).change(fillArchiveReleases);
 
+    // An option holds only its release's index into archiveReleases; the download URL is built
+    // from that release's own data, never from text read back from the page
     $('#archive-download-btn').click(function() {
         var option = releaseSelect.options[releaseSelect.selectedIndex];
-        if (!option) {
+        var release = option ? archiveReleases[parseInt(option.value, 10)] : null;
+        var fileName = release ? archiveFileName(release) : null;
+        if (!fileName) {
             return;
         }
         var email = getValidatedEmail();
         if (email !== null) {
-            startDownload(option.value, option.getAttribute('data-file'), email);
+            startDownload(`https://mc-tca-01.s3.us-west-2.amazonaws.com/ProteoWizard/${MONTHLY_CHANNEL_CONFIG}/${release.buildId}/${fileName}`,
+                          fileName, email);
         }
     });
 });
@@ -315,31 +320,34 @@ $(function() {
 // Lists each archived release that has an installer for the selected variant, keeping the
 // selected release when the variant changes
 function fillArchiveReleases() {
-    var variantPattern = archiveVariantPatterns[document.getElementById('archiveVariant').value];
     var releaseSelect = document.getElementById('archiveRelease');
-    var selectedTag = releaseSelect.selectedIndex >= 0 ? releaseSelect.options[releaseSelect.selectedIndex].getAttribute('data-tag') : null;
+    var selected = releaseSelect.selectedIndex >= 0 ? releaseSelect.options[releaseSelect.selectedIndex].value : null;
     while (releaseSelect.options.length) {
         releaseSelect.remove(0);
     }
     for (var r = 0; r < archiveReleases.length; r++) {
         var release = archiveReleases[r];
-        var fileName = findArchiveArtifact(release.artifacts || [], variantPattern) ||
-                       findArchiveArtifact(release.artifacts || [], archiveMsiPattern);
+        var fileName = archiveFileName(release);
         if (!fileName) {
             continue;
         }
         var option = document.createElement('option');
-        option.value = `https://mc-tca-01.s3.us-west-2.amazonaws.com/ProteoWizard/${MONTHLY_CHANNEL_CONFIG}/${release.buildId}/${fileName}`;
+        option.value = String(r);
         // The select is monospace, and the label is padded with non-breaking spaces (an option
         // collapses ordinary ones), so versions line up for both month and daily labels
         var label = release.daily === true ? release.date : release.date.substring(0, 7);
         option.textContent = label.padEnd(ARCHIVE_LABEL_WIDTH, NON_BREAKING_SPACE) + " " + (release.version || "") +
                              (archiveMsiPattern.test(fileName) ? " (.msi)" : "");
-        option.setAttribute('data-file', fileName);
-        option.setAttribute('data-tag', release.tag);
-        option.selected = release.tag === selectedTag;
+        option.selected = option.value === selected;
         releaseSelect.appendChild(option);
     }
+}
+
+// The release's installer for the selected variant; a C++-era release's .msi serves every variant
+function archiveFileName(release) {
+    var variantPattern = archiveVariantPatterns[document.getElementById('archiveVariant').value];
+    return findArchiveArtifact(release.artifacts || [], variantPattern) ||
+           findArchiveArtifact(release.artifacts || [], archiveMsiPattern);
 }
 
 function findArchiveArtifact(artifacts, pattern) {
