@@ -259,11 +259,12 @@ function startDownload(downloadURL, fileName, email) {
 }
 
 // Monthly release archive: /releases/bt83-archive.json, published by the job that pins the
-// releases, lists every release newest first: a month's release is named YYYY-MM and listed after
-// (newer than) that month's mid-month releases, which are named by the date their build finished
-// (YYYY-MM-DD, with -2, -3, ... for a later release the same day), e.g.
-//   {"releases": [{"release": "2026-09", "version": "3.0.26272.10aac2d9", "buildId": 4230560,
-//                  "commit": "10aac2d9...", "artifacts": ["pwiz-setup-3.0.26272.10aac2d9-x86_64.msi"]}]}
+// releases, lists every release newest first. Each is a month's release, or a "daily" release made
+// between months; its tag carries the installer's commit date and git SHA, e.g.
+//   {"releases": [{"tag": "release-2026-09-29-10aac2d9", "date": "2026-09-29", "daily": false,
+//                  "version": "3.0.26272.10aac2d9", "buildId": 4230560, "commit": "10aac2d9...",
+//                  "artifacts": ["pwiz-setup-3.0.26272.10aac2d9-x86_64.msi", "VERSION"]}]}
+// A month's release is shown by its month (2026-09) and a daily release by its date (2026-10-23).
 // Releases through 2026-09 are the C++ build's single .msi; later ones are the three .exe installers.
 // Installer file name for each #archiveVariant value; a C++-era release has only its .msi,
 // which is offered for every variant
@@ -273,7 +274,8 @@ var archiveVariantPatterns = {
     vendorsdks: /^ProteoWizard-WithVendorSdks-Setup-[\w\-.]+\.exe$/
 };
 var archiveMsiPattern = /^pwiz-setup-[\w\-.]+\.msi$/;
-var ARCHIVE_RELEASE_WIDTH = "YYYY-MM-DD-N".length;
+var ARCHIVE_LABEL_WIDTH = "YYYY-MM-DD".length;
+var NON_BREAKING_SPACE = String.fromCharCode(160);
 var archiveReleases = [];
 
 $(function() {
@@ -286,7 +288,8 @@ $(function() {
         var releases = (archive && archive.releases) || [];
         for (var r = 0; r < releases.length; r++) {
             var release = releases[r];
-            if (/^\d{4}-\d{2}(-\d{2}(-\d+)?)?$/.test(release.release) && /^\d+$/.test(String(release.buildId))) {
+            if (/^release-[\w\-]+$/.test(release.tag) && /^\d{4}-\d{2}-\d{2}$/.test(release.date) &&
+                /^\d+$/.test(String(release.buildId))) {
                 archiveReleases.push(release);
             }
         }
@@ -314,7 +317,7 @@ $(function() {
 function fillArchiveReleases() {
     var variantPattern = archiveVariantPatterns[document.getElementById('archiveVariant').value];
     var releaseSelect = document.getElementById('archiveRelease');
-    var selectedRelease = releaseSelect.selectedIndex >= 0 ? releaseSelect.options[releaseSelect.selectedIndex].getAttribute('data-release') : null;
+    var selectedTag = releaseSelect.selectedIndex >= 0 ? releaseSelect.options[releaseSelect.selectedIndex].getAttribute('data-tag') : null;
     while (releaseSelect.options.length) {
         releaseSelect.remove(0);
     }
@@ -327,13 +330,14 @@ function fillArchiveReleases() {
         }
         var option = document.createElement('option');
         option.value = `https://mc-tca-01.s3.us-west-2.amazonaws.com/ProteoWizard/${MONTHLY_CHANNEL_CONFIG}/${release.buildId}/${fileName}`;
-        // The select is monospace, and the release name is padded with non-breaking spaces (an option
-        // collapses ordinary ones), so versions line up whether the release is YYYY-MM or YYYY-MM-DD
-        option.textContent = release.release.padEnd(ARCHIVE_RELEASE_WIDTH, " ") + " " + (release.version || "") +
+        // The select is monospace, and the label is padded with non-breaking spaces (an option
+        // collapses ordinary ones), so versions line up for both month and daily labels
+        var label = release.daily === true ? release.date : release.date.substring(0, 7);
+        option.textContent = label.padEnd(ARCHIVE_LABEL_WIDTH, NON_BREAKING_SPACE) + " " + (release.version || "") +
                              (archiveMsiPattern.test(fileName) ? " (.msi)" : "");
         option.setAttribute('data-file', fileName);
-        option.setAttribute('data-release', release.release);
-        option.selected = release.release === selectedRelease;
+        option.setAttribute('data-tag', release.tag);
+        option.selected = release.tag === selectedTag;
         releaseSelect.appendChild(option);
     }
 }
