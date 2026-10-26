@@ -136,6 +136,13 @@
                                       
                                     </select>
                                 </div>
+                                <div class="form-group" id="releaseChannelGroup">
+                                    <label for="releaseChannel">Release channel <span class="pwiz-orange" title="Monthly releases are permanently archived; beta builds are replaced by each new build. See Versions below."><sup>?</sup></span></label>
+                                    <select id="releaseChannel" class="form-control">
+                                        <option value="monthly" selected="selected">Monthly (the last build of each month; permanently archived)</option>
+                                        <option value="beta">Beta (the latest successful build; replaced by each new build)</option>
+                                    </select>
+                                </div>
                                 <!--<div class="form-group">
                                     <label for="inputName">Name</label>
                                     <input type="text" class="form-control" id="inputName" placeholder="John Appleseed">
@@ -178,7 +185,35 @@
                 </ul>
 
                 <h2>Versions</h2>
-                <p>We are formally at version 4. Older versions are archived on <a href="http://teamcity.labkey.org/project.html?projectId=ProteoWizard">TeamCity</a>.</p>
+                <p>We are formally at version 4. The Windows installers are published on two release channels:</p>
+                <ul>
+                    <li><b>Monthly</b>: the last successful build of each month, and occasionally a release between months when a fix cannot wait. This is the recommended channel.</li>
+                    <li><b>Beta</b>: the latest successful build, with the newest features and fixes. Each new build replaces it, and beta builds are deleted after about two weeks.</li>
+                </ul>
+                <p><b>Only monthly releases are permanently archived.</b> If you need to reproduce a result or stay on a known version, use a monthly release.</p>
+                <div id="monthly-archive" class="hidden">
+                    <h3>Monthly release archive</h3>
+                    <p>Downloading a release from the archive requires accepting the license agreements above.</p>
+                    <div class="row">
+                        <div class="col-sm-5 form-group">
+                            <label for="archiveVariant">Installer</label>
+                            <select id="archiveVariant" class="form-control">
+                                <option value="setup" selected="selected">Includes the .NET runtime</option>
+                                <option value="noruntime">Without the .NET runtime</option>
+                                <option value="vendorsdks">Offline (includes all vendor libraries)</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-5 form-group">
+                            <label for="archiveRelease">Release and version</label>
+                            <select id="archiveRelease" class="form-control" style="font-family: monospace;"></select>
+                        </div>
+                        <div class="col-sm-2 form-group">
+                            <label>&nbsp;</label>
+                            <button id="archive-download-btn" type="button" class="btn btn-default btn-block">Download</button>
+                        </div>
+                    </div>
+                    <p>Releases before 2026-10 have a single .msi installer, which is offered for every installer choice.</p>
+                </div>
                 <p>There are several flavors of ProteoWizard depending upon your intended use. If you are primarily interested in using the tools, the binary distributions for your platform are most likely what you want. If you are interested in using ProteoWizard as part of a software project you are developing, check out the code from our <a href="https://github.com/ProteoWizard/pwiz">GitHub repository</a>. Other packages are also on <a href="http://teamcity.labkey.org/project.html?projectId=ProteoWizard">Teamcity</a>.</p>
                 <p>Developers interested in building the ProteoWizard libraries for use in their own projects can build the repository with the .NET SDK, using build.bat on Windows or build.sh on Linux; the <a href="https://github.com/ProteoWizard/pwiz#readme">README</a> describes the options.</p>
             </div>

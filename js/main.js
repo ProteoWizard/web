@@ -18,7 +18,7 @@ $('.navbar-collapse ul li a').click(function() {
 
 // Toggles hidden divs on button click
 $('.content-section button').click(function() {
-    if (!($(this).hasClass('btn-selected')) && $(this).attr('id') != 'download-btn') {
+    if (!($(this).hasClass('btn-selected')) && $(this).attr('id') != 'download-btn' && $(this).attr('id') != 'archive-download-btn') {
         $('.content-section button').removeClass('btn-selected');
         $(this).addClass('btn-selected');
 
@@ -94,10 +94,19 @@ $('#softwareType').change(function () {
         options = "<option>Visit Skyline website</option>";
     }
     $('#downloadType').html(options);
+    $('#downloadType').change();
+});
+
+// Only the Windows installers (bt83) have a monthly channel; the other downloads are always
+// the latest successful build, so the channel selector is hidden for them
+var MONTHLY_CHANNEL_CONFIG = "bt83";
+$('#downloadType').change(function () {
+    var downloadType = $(this).find('option:selected').attr('data-value') || "";
+    $('#releaseChannelGroup').toggle(downloadType.indexOf(MONTHLY_CHANNEL_CONFIG + "_") === 0);
 });
 $('#softwareType').change();
 
-// Downloads specified software 
+// Downloads specified software
 function download() {
     /*var name = document.getElementById('inputName').value;
     if (!validateName(name)) {
@@ -105,14 +114,8 @@ function download() {
         return
     }*/
 
-    var email = document.getElementById('inputEmail').value.trim();
-    if (email && !validateEmail(email)) {
-        alert("Invalid email address.");
-        return;
-    }
-
-    if (!document.getElementById('license-agreements').checked) {
-        alert("You must accept the license agreements before downloading.");
+    var email = getValidatedEmail();
+    if (email === null) {
         return;
     }
 
@@ -162,13 +165,21 @@ function download() {
         }
     }
 
-    var remoteURL = "/releases/" + downloadTypeString + ".xml";
+    // The monthly channel's metadata is published beside the latest build's, in the same format,
+    // by the job that pins each month's release
+    var monthly = downloadTypeString === MONTHLY_CHANNEL_CONFIG &&
+                  document.getElementById('releaseChannel').value === "monthly";
+    var remoteURL = "/releases/" + downloadTypeString + (monthly ? "-monthly" : "") + ".xml";
     //alert("Remote URL: " + remoteURL);
 
     var teamCityInfoString = "";
     var request = createCORSRequest("GET", remoteURL);
     if (request) {
         request.onload = function(){
+            if (request.status !== undefined && request.status !== 200) {
+                alert("Unable to find the " + (monthly ? "monthly release" : "latest build") + " for this download.");
+                return;
+            }
             teamCityInfoString = request.responseText;
 
             // Change TeamCity artifact string to point directly at S3, e.g.
@@ -195,35 +206,157 @@ function download() {
             {
                 downloadURL = downloadURL.replace("/ProteoWizard/", "/ProteoWizard_Bumbershoot/");
             }
-            
-            var alreadyTriggered = false;
-            var downloadArtifact = function()
-            {
-                if (alreadyTriggered) return;
-                alreadyTriggered = true;
 
-                if(email) {
-                    writeEmailToFile(email, function() {
-                        window.location = downloadURL;
-                    });
-                } else {
-                    window.location = downloadURL;
-                }
-            };
-
-            // Send Google Analytics hit for downloaded file, then trigger the artifact download;
-            // always trigger the download after a timeout if the analytics hit fails for some reason
-            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){ (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o), m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})
-              (window,document,'script','//www.google-analytics.com/analytics.js','ga2');
-            ga2("create", "UA-54926454-1", "auto");
-            ga2("send", {"hitType": "pageview",
-                         "page": "/download/" + hrefMatches[2],
-                         "hitCallback": downloadArtifact
-            });
-            setTimeout(downloadArtifact, 5000);
+            startDownload(downloadURL, hrefMatches[2], email);
         };
         request.send();
     }
+}
+
+// Returns the optional email address ("" when blank), or null after alerting when the email is
+// invalid or the license agreements are not accepted
+function getValidatedEmail() {
+    var email = document.getElementById('inputEmail').value.trim();
+    if (email && !validateEmail(email)) {
+        alert("Invalid email address.");
+        return null;
+    }
+
+    if (!document.getElementById('license-agreements').checked) {
+        alert("You must accept the license agreements before downloading.");
+        return null;
+    }
+    return email;
+}
+
+// Records the email (if any) and an analytics hit for fileName, then navigates to downloadURL
+function startDownload(downloadURL, fileName, email) {
+    var alreadyTriggered = false;
+    var downloadArtifact = function()
+    {
+        if (alreadyTriggered) return;
+        alreadyTriggered = true;
+
+        if(email) {
+            writeEmailToFile(email, function() {
+                window.location = downloadURL;
+            });
+        } else {
+            window.location = downloadURL;
+        }
+    };
+
+    // Send Google Analytics hit for downloaded file, then trigger the artifact download;
+    // always trigger the download after a timeout if the analytics hit fails for some reason
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){ (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o), m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})
+      (window,document,'script','//www.google-analytics.com/analytics.js','ga2');
+    ga2("create", "UA-54926454-1", "auto");
+    ga2("send", {"hitType": "pageview",
+                 "page": "/download/" + fileName,
+                 "hitCallback": downloadArtifact
+    });
+    setTimeout(downloadArtifact, 5000);
+}
+
+// Monthly release archive: /releases/bt83-archive.json, published by the job that pins the
+// releases, lists every release newest first. Each is a month's release, or a "daily" release made
+// between months; its tag carries the installer's commit date and git SHA, e.g.
+//   {"releases": [{"tag": "release-2026-09-29-10aac2d9", "date": "2026-09-29", "daily": false,
+//                  "version": "3.0.26272.10aac2d9", "buildId": 4230560, "commit": "10aac2d9...",
+//                  "artifacts": ["pwiz-setup-3.0.26272.10aac2d9-x86_64.msi", "VERSION"]}]}
+// A month's release is shown by its month (2026-09) and a daily release by its date (2026-10-23).
+// Releases through 2026-09 are the C++ build's single .msi; later ones are the three .exe installers.
+// Installer file name for each #archiveVariant value; a C++-era release has only its .msi,
+// which is offered for every variant
+var archiveVariantPatterns = {
+    setup:      /^ProteoWizard-Setup-[\w\-.]+\.exe$/,
+    noruntime:  /^ProteoWizard-NoNetRuntime-Setup-[\w\-.]+\.exe$/,
+    vendorsdks: /^ProteoWizard-WithVendorSdks-Setup-[\w\-.]+\.exe$/
+};
+var archiveMsiPattern = /^pwiz-setup-[\w\-.]+\.msi$/;
+var ARCHIVE_LABEL_WIDTH = "YYYY-MM-DD".length;
+var NON_BREAKING_SPACE = String.fromCharCode(160);
+var archiveReleases = [];
+
+$(function() {
+    var variantSelect = document.getElementById('archiveVariant');
+    var releaseSelect = document.getElementById('archiveRelease');
+    if (!variantSelect || !releaseSelect) {
+        return;
+    }
+    $.getJSON("/releases/" + MONTHLY_CHANNEL_CONFIG + "-archive.json", function(archive) {
+        var releases = (archive && archive.releases) || [];
+        for (var r = 0; r < releases.length; r++) {
+            var release = releases[r];
+            if (/^release-[\w\-]+$/.test(release.tag) && /^\d{4}-\d{2}-\d{2}$/.test(release.date) &&
+                /^\d+$/.test(String(release.buildId))) {
+                archiveReleases.push(release);
+            }
+        }
+        fillArchiveReleases();
+        if (releaseSelect.options.length) {
+            $('#monthly-archive').removeClass('hidden');
+        }
+    });
+    $(variantSelect).change(fillArchiveReleases);
+
+    // An option holds only its release's index into archiveReleases; the download URL is built
+    // from that release's own data, never from text read back from the page
+    $('#archive-download-btn').click(function() {
+        var option = releaseSelect.options[releaseSelect.selectedIndex];
+        var release = option ? archiveReleases[parseInt(option.value, 10)] : null;
+        var fileName = release ? archiveFileName(release) : null;
+        if (!fileName) {
+            return;
+        }
+        var email = getValidatedEmail();
+        if (email !== null) {
+            startDownload(`https://mc-tca-01.s3.us-west-2.amazonaws.com/ProteoWizard/${MONTHLY_CHANNEL_CONFIG}/${release.buildId}/${fileName}`,
+                          fileName, email);
+        }
+    });
+});
+
+// Lists each archived release that has an installer for the selected variant, keeping the
+// selected release when the variant changes
+function fillArchiveReleases() {
+    var releaseSelect = document.getElementById('archiveRelease');
+    var selected = releaseSelect.selectedIndex >= 0 ? releaseSelect.options[releaseSelect.selectedIndex].value : null;
+    while (releaseSelect.options.length) {
+        releaseSelect.remove(0);
+    }
+    for (var r = 0; r < archiveReleases.length; r++) {
+        var release = archiveReleases[r];
+        var fileName = archiveFileName(release);
+        if (!fileName) {
+            continue;
+        }
+        var option = document.createElement('option');
+        option.value = String(r);
+        // The select is monospace, and the label is padded with non-breaking spaces (an option
+        // collapses ordinary ones), so versions line up for both month and daily labels
+        var label = release.daily === true ? release.date : release.date.substring(0, 7);
+        option.textContent = label.padEnd(ARCHIVE_LABEL_WIDTH, NON_BREAKING_SPACE) + " " + (release.version || "") +
+                             (archiveMsiPattern.test(fileName) ? " (.msi)" : "");
+        option.selected = option.value === selected;
+        releaseSelect.appendChild(option);
+    }
+}
+
+// The release's installer for the selected variant; a C++-era release's .msi serves every variant
+function archiveFileName(release) {
+    var variantPattern = archiveVariantPatterns[document.getElementById('archiveVariant').value];
+    return findArchiveArtifact(release.artifacts || [], variantPattern) ||
+           findArchiveArtifact(release.artifacts || [], archiveMsiPattern);
+}
+
+function findArchiveArtifact(artifacts, pattern) {
+    for (var a = 0; a < artifacts.length; a++) {
+        if (pattern && pattern.test(artifacts[a])) {
+            return artifacts[a];
+        }
+    }
+    return null;
 }
 
 // Writes email to file
