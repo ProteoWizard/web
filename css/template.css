@@ -102,9 +102,3 @@ details[open] summary::-webkit-details-marker {
 		/*margin-bottom: 35px;*/
 	}
 }
-#inputEmail::selection {
-	background: #a8d1ff;
-}
-#inputEmail::-moz-selection {
-	background: #a8d1ff;
-}
