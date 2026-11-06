@@ -106,16 +106,15 @@ $('#downloadType').change(function () {
 });
 $('#softwareType').change();
 
+// Release metadata (each configuration's latest artifact list and the monthly archive) is
+// published by the TeamCity builds to S3; the SourceForge-hosted site reads its own /releases/ copy
+var RELEASES_URL = window.location.hostname === "www-test.proteowizard.org"
+    ? "https://mc-tca-01.s3.us-west-2.amazonaws.com/releases/"
+    : "/releases/";
+
 // Downloads specified software
 function download() {
-    /*var name = document.getElementById('inputName').value;
-    if (!validateName(name)) {
-        alert("The name field cannot be left blank.");
-        return
-    }*/
-
-    var email = getValidatedEmail();
-    if (email === null) {
+    if (!licensesAccepted()) {
         return;
     }
 
@@ -169,8 +168,7 @@ function download() {
     // by the job that pins each month's release
     var monthly = downloadTypeString === MONTHLY_CHANNEL_CONFIG &&
                   document.getElementById('releaseChannel').value === "monthly";
-    var remoteURL = "/releases/" + downloadTypeString + (monthly ? "-monthly" : "") + ".xml";
-    //alert("Remote URL: " + remoteURL);
+    var remoteURL = RELEASES_URL + downloadTypeString + (monthly ? "-monthly" : "") + ".xml";
 
     var teamCityInfoString = "";
     var request = createCORSRequest("GET", remoteURL);
@@ -184,7 +182,7 @@ function download() {
 
             // Change TeamCity artifact string to point directly at S3, e.g.
             // From /guestAuth/app/rest/builds/id:1461109/artifacts/content/pwiz-setup-3.0.21180.d45de83ec-x86_64.msi
-            // To https://proteowizard-teamcity-artifacts.s3.us-west-2.amazonaws.com/ProteoWizard/bt83/1461109/pwiz-setup-3.0.21180.d45de83ec-x86_64.msi
+            // To https://mc-tca-01.s3.us-west-2.amazonaws.com/ProteoWizard/bt83/1461109/pwiz-setup-3.0.21180.d45de83ec-x86_64.msi
             var matches = null;
             for (var p = 0; p < matchPatterns.length && !(matches && matches.length); p++) {
                 matches = teamCityInfoString.match(matchPatterns[p]);
@@ -207,43 +205,32 @@ function download() {
                 downloadURL = downloadURL.replace("/ProteoWizard/", "/ProteoWizard_Bumbershoot/");
             }
 
-            startDownload(downloadURL, hrefMatches[2], email);
+            startDownload(downloadURL, hrefMatches[2]);
+        };
+        request.onerror = function() {
+            alert("Unable to reach the release metadata for this download.");
         };
         request.send();
     }
 }
 
-// Returns the optional email address ("" when blank), or null after alerting when the email is
-// invalid or the license agreements are not accepted
-function getValidatedEmail() {
-    var email = document.getElementById('inputEmail').value.trim();
-    if (email && !validateEmail(email)) {
-        alert("Invalid email address.");
-        return null;
-    }
-
+// Returns whether the license agreements are accepted, alerting when they are not
+function licensesAccepted() {
     if (!document.getElementById('license-agreements').checked) {
         alert("You must accept the license agreements before downloading.");
-        return null;
+        return false;
     }
-    return email;
+    return true;
 }
 
-// Records the email (if any) and an analytics hit for fileName, then navigates to downloadURL
-function startDownload(downloadURL, fileName, email) {
+// Records an analytics hit for fileName, then navigates to downloadURL
+function startDownload(downloadURL, fileName) {
     var alreadyTriggered = false;
     var downloadArtifact = function()
     {
         if (alreadyTriggered) return;
         alreadyTriggered = true;
-
-        if(email) {
-            writeEmailToFile(email, function() {
-                window.location = downloadURL;
-            });
-        } else {
-            window.location = downloadURL;
-        }
+        window.location = downloadURL;
     };
 
     // Send Google Analytics hit for downloaded file, then trigger the artifact download;
@@ -258,7 +245,7 @@ function startDownload(downloadURL, fileName, email) {
     setTimeout(downloadArtifact, 5000);
 }
 
-// Monthly release archive: /releases/bt83-archive.json, published by the job that pins the
+// Monthly release archive: bt83-archive.json under RELEASES_URL, published by the job that pins the
 // releases, lists every release newest first. Each is a month's release, or a "daily" release made
 // between months; its tag carries the installer's commit date and git SHA, e.g.
 //   {"releases": [{"tag": "release-2026-09-29-10aac2d9", "date": "2026-09-29", "daily": false,
@@ -284,7 +271,7 @@ $(function() {
     if (!variantSelect || !releaseSelect) {
         return;
     }
-    $.getJSON("/releases/" + MONTHLY_CHANNEL_CONFIG + "-archive.json", function(archive) {
+    $.getJSON(RELEASES_URL + MONTHLY_CHANNEL_CONFIG + "-archive.json", function(archive) {
         var releases = (archive && archive.releases) || [];
         for (var r = 0; r < releases.length; r++) {
             var release = releases[r];
@@ -309,10 +296,9 @@ $(function() {
         if (!fileName) {
             return;
         }
-        var email = getValidatedEmail();
-        if (email !== null) {
+        if (licensesAccepted()) {
             startDownload(`https://mc-tca-01.s3.us-west-2.amazonaws.com/ProteoWizard/${MONTHLY_CHANNEL_CONFIG}/${release.buildId}/${fileName}`,
-                          fileName, email);
+                          fileName);
         }
     });
 });
@@ -359,36 +345,13 @@ function findArchiveArtifact(artifacts, pattern) {
     return null;
 }
 
-// Writes email to file
-function writeEmailToFile(email, callback) {
-
-    $.post("js/ajax.php", {
-        email: email
-    }, function(data, status) {
-        console.log(status);
-        callback();
-    });
-}
-
-// Validates name of downloader
-function validateName(name) {
-    var nameRegex = /^[A-Za-z\s]+$/;
-    return nameRegex.test(name);
-}
-
-// Validates email of downloader
-function validateEmail(email) {
-    var emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return emailRegex.test(email);
-}
-
 // Cross-domain AJAX request 
 // http://jquery-howto.blogspot.fr/2013/09/jquery-cross-domain-ajax-request.html#cors 
 function createCORSRequest(method, url) {
     var xhr = new XMLHttpRequest();
     if ("withCredentials" in xhr){
         // XHR has 'withCredentials' property only if it supports CORS
-        xhr.open(method, url, false);
+        xhr.open(method, url, true);
     } else if (typeof XDomainRequest != "undefined"){ // if IE use XDR
         xhr = new XDomainRequest();
         xhr.open(method, url);
@@ -396,13 +359,4 @@ function createCORSRequest(method, url) {
         xhr = null;
     }
     return xhr;
-}
-
-// Javascript equivalent basename function in PHP 
-// http://stackoverflow.com/questions/3820381/need-a-basename-function-in-javascript 
-function baseName(str) {
-   var base = new String(str).substring(str.lastIndexOf('/') + 1); 
-    if(base.lastIndexOf(".") != -1)       
-        base = base.substring(0, base.lastIndexOf("."));
-   return base;
 }
