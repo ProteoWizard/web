@@ -107,10 +107,8 @@ $('#downloadType').change(function () {
 $('#softwareType').change();
 
 // Release metadata (each configuration's latest artifact list and the monthly archive) is
-// published by the TeamCity builds to S3; the SourceForge-hosted site reads its own /releases/ copy
-var RELEASES_URL = window.location.hostname === "www-test.proteowizard.org"
-    ? "https://mc-tca-01.s3.us-west-2.amazonaws.com/releases/"
-    : "/releases/";
+// published by the TeamCity builds to S3, whose CORS rule allows the proteowizard.org origins
+var RELEASES_URL = "https://mc-tca-01.s3.us-west-2.amazonaws.com/releases/";
 
 // Downloads specified software
 function download() {
